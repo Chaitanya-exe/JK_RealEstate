@@ -16,6 +16,7 @@ export default {
         prim_black: "#1A202C",
         prim_white: "#F5F5FA",
         gray: "#4A5568",
+        cardBg: "#EDF2F7",
       },
     },
   },
