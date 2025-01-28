@@ -1,3 +1,6 @@
+"use client";
+
+
 import AccordianComp from "@/components/AccordianComp";
 import Button from "@/components/Button";
 import Footer from "@/components/Footer";
@@ -7,11 +10,124 @@ import Slick from "@/components/Slick";
 import Top from "@/components/Top";
 import { properties } from "@/constants/dummydata";
 import Image from "next/image";
+import { gsap } from "gsap";
+// import { SplitText } from "gsap/SplitText";
+import { useEffect, useRef } from "react";
+
+// gsap.registerPlugin(SplitText);
+
 
 export default function Home() {
+  const headingRef = useRef(null);
+  const spanRef = useRef(null);
+
+    // useEffect(() => {
+    //   const tl = gsap.timeline();
+
+    //   // Fade-in with scale
+    //   tl.from(headingRef.current, {
+    //     opacity: 0,
+    //     scale: 0.8,
+    //     y: 50,
+    //     duration: 1.5,
+    //     ease: "power4.out",
+    //   });
+
+    //   // Text wobble effect
+    //   tl.to(headingRef.current, {
+    //     rotate: 2,
+    //     duration: 0.3,
+    //     yoyo: true,
+    //     repeat: 1,
+    //     ease: "elastic.out(1, 0.5)",
+    //   });
+
+    //   // Subtle infinite glow effect
+    //   tl.to(headingRef.current, {
+    //     textShadow: "0px 0px 15px rgba(255, 255, 255, 0.8)",
+    //     duration: 2.5,
+    //     repeat: -1,
+    //     yoyo: true,
+    //     ease: "power1.inOut",
+    //   });
+    // }, []);
+
+    //  useEffect(() => {
+    //    // Split the text into characters
+    //    const chars = headingRef.current.textContent.split("");
+    //    headingRef.current.innerHTML = chars
+    //      .map((char) => `<span style="display: inline-block">${char}</span>`)
+    //      .join("");
+
+    //    // Animate each character
+    //    gsap.fromTo(
+    //      headingRef.current.children,
+    //      { opacity: 0, y: 50 },
+    //      {
+    //        opacity: 1,
+    //        y: 0,
+    //        stagger: 0.05,
+    //        ease: "power2.out",
+    //        duration: 1.5,
+    //      }
+    //    );
+    //  }, []);
+
+
+    useEffect(() => {
+      // Split the text into words
+      const words = headingRef.current.textContent.split(" ");
+      headingRef.current.innerHTML = words
+        .map(
+          (word) =>
+            `<span style="display: inline-block; margin-right: 8px">${word}</span>`
+        )
+        .join("");
+
+      // Animate each word
+      gsap.fromTo(
+        headingRef.current.children,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.2,
+          ease: "power2.out",
+          duration: 1,
+        }
+      );
+
+
+        gsap.fromTo(
+          spanRef.current,
+          {
+            scale: "1.8",
+            borderRadius: "100%",
+            x: 820,
+            y: -70,
+            // borderRadius: "15%",
+            backgroundColor: "#F43F5E",
+          },
+          {
+            ease: "power2.inOut",
+            scale: 0.3,
+            duration: 2,
+            delay: 1, // Start after text animation
+            x: 0,
+            y: 0,
+            backgroundColor: "white",
+            borderRadius: "20%",
+            // clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)", // Triangle shape
+          }
+        );
+        }, []);
+
   return (
     <div>
-      <section className="relative pt-40 px-10  bg-gradient-to-b from-bright_red to-dark_red min-h-[730px]">
+      <section
+        id="/"
+        className="relative pt-40 px-10  bg-gradient-to-b from-bright_red to-dark_red min-h-[730px]"
+      >
         {/* rectangles */}
         <div className="block -top-64 left-[0rem]" />
         <div className="block -top-[260px] left-[13rem]" />
@@ -20,9 +136,16 @@ export default function Home() {
         <div className="flex justify-between">
           {/* content */}
           <div className="relative px-16 capitalize text-prim_white">
-            <h1 className="hero_heading  ">
+          <div className="flex items-end">
+
+            <h1 ref={headingRef} className="hero_heading relative ">
               Find Your Dream Property – Exclusive Listings Tailored for You
             </h1>
+              <p
+                ref={spanRef}
+                className="spanclass absolute left-56  w-10 h-10 inline-block"
+              ></p>
+          </div>
             <h2 className="hero_subheading text-prim_white/95">
               Luxury Homes, Commercial Spaces, and Prime Investments – All in
               One Place.
@@ -49,7 +172,7 @@ export default function Home() {
       </section>
 
       {/* properties */}
-      <section className="px-28 pb-6">
+      <section id="properties" className="px-28 pb-6">
         <Top
           head1={
             <p>
@@ -62,13 +185,14 @@ export default function Home() {
 
         <div className="divide-y divide-[#D6DCE1]">
           {properties.map((property) => (
-            <PropertyCard property={property} />
+            <PropertyCard property={property} key={property.id} />
           ))}
         </div>
       </section>
 
       {/* stats */}
       <section
+        id="stats"
         className="bg-bright_red 
        *:min-w-[250px] my-8 py-12 flex justify-center items-center gap-16 *:space-y-3 text-center"
       >
@@ -109,7 +233,7 @@ export default function Home() {
       </section>
 
       {/* work */}
-      <section>
+      <section id="aboutUs">
         <Top
           head1={
             <p>
@@ -171,7 +295,7 @@ export default function Home() {
       </section>
 
       {/* testimonial */}
-      <section className="">
+      <section id="testimonials" className="">
         <Top
           head1={
             <p>
@@ -185,7 +309,10 @@ export default function Home() {
       </section>
 
       {/* form */}
-      <section className="h-[690px] py-10 mb-12 mt-36 relative w-full bg-[url('/formBg.png')] bg-cover bg-center">
+      <section
+        id="form"
+        className="h-[690px] py-10 mb-12 mt-36 relative w-full bg-[url('/formBg.png')] bg-cover bg-center"
+      >
         <Image
           src={"/formSvg.svg"}
           width={400}
@@ -210,7 +337,7 @@ export default function Home() {
       </section>
 
       {/* faqs */}
-      <section>
+      <section id="faqs">
         <Top
           head1={<p>Your Questions, Answered</p>}
           classname={" py-5 text-center mx-auto max-w-[600px] "}

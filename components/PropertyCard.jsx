@@ -40,8 +40,8 @@ const PropertyCard = ({ property }) => {
           {property.description}
         </h3>
         <ul className="list-disc list-inside bodyText text-[#003A47]">
-          {property.features.map((feature) => (
-            <li>{feature}</li>
+          {property.features.map((feature,i) => (
+            <li key={i}>{feature}</li>
           ))}
         </ul>
       </div>

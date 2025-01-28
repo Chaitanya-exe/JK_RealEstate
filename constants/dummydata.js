@@ -36,3 +36,34 @@ export const properties = [
     ],
   },
 ];
+
+export const heroLinks=[
+  {
+    name:"home",
+    sectionlink:"/"
+  },
+  {
+    name:"properties",
+    sectionlink:"properties"
+  },
+  {
+    name:"stats",
+    sectionlink:"stats"
+  },
+  {
+    name:"about Us",
+    sectionlink:"aboutUs"
+  },
+  {
+    name:"testimonials",
+    sectionlink:"testimonials"
+  },
+  {
+    name:"contact us",
+    sectionlink:"form"
+  },
+  {
+    name:"FAQs",
+    sectionlink:"faqs"
+  }
+]
