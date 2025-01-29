@@ -1,6 +1,5 @@
 "use client";
 
-
 import AccordianComp from "@/components/AccordianComp";
 import Button from "@/components/Button";
 import Footer from "@/components/Footer";
@@ -13,13 +12,14 @@ import Image from "next/image";
 import { gsap } from "gsap";
 // import { SplitText } from "gsap/SplitText";
 import { useEffect, useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// gsap.registerPlugin(SplitText);
+gsap.registerPlugin(ScrollTrigger);
 
 
 export default function Home() {
   const headingRef = useRef(null);
-  const spanRef = useRef(null);
 
     // useEffect(() => {
     //   const tl = gsap.timeline();
@@ -74,7 +74,7 @@ export default function Home() {
     //  }, []);
 
 
-    useEffect(() => {
+    useGSAP(() => {
       // Split the text into words
       const words = headingRef.current.textContent.split(" ");
       headingRef.current.innerHTML = words
@@ -99,7 +99,7 @@ export default function Home() {
 
 
         gsap.fromTo(
-          spanRef.current,
+          '.spanclass',
           {
             scale: "1.8",
             borderRadius: "100%",
@@ -120,13 +120,37 @@ export default function Home() {
             // clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)", // Triangle shape
           }
         );
+
+        gsap.from(".hero_subheading",{
+          x : -15,
+          // y:10,
+          opacity:0,
+          ease:"power1.inOut",
+          duration:1
+        });
+
+        gsap.utils.toArray(".tophead1").forEach((el)=>{
+          gsap.from(el, {
+            opacity: 0,
+            y: 8,
+            // rotate:1,
+            ease: "power1.inOut",
+            duration: 1.5,
+            scrollTrigger: {
+              trigger: el,
+              start: "top 90%",
+              toggleActions: "play reverse play reverse",
+            },
+          });
+          
+        });
         }, []);
 
   return (
-    <div>
+    <div >
       <section
         id="/"
-        className="relative pt-40 px-10  bg-gradient-to-b from-bright_red to-dark_red min-h-[730px]"
+        className="relative  pt-40 px-10  bg-gradient-to-b from-bright_red to-dark_red min-h-[730px]"
       >
         {/* rectangles */}
         <div className="block -top-64 left-[0rem]" />
@@ -142,7 +166,6 @@ export default function Home() {
               Find Your Dream Property – Exclusive Listings Tailored for You
             </h1>
               <p
-                ref={spanRef}
                 className="spanclass absolute left-56  w-10 h-10 inline-block"
               ></p>
           </div>

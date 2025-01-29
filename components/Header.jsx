@@ -3,53 +3,54 @@
 import React, { useEffect, useState } from "react";
 import Button from "./Button";
 import { heroLinks } from "@/constants/dummydata";
+import Image from "next/image";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const handleSectionScroll=(e,targetId)=>{
+  const handleSectionScroll = (e, targetId) => {
     e.preventDefault();
 
     const targetEle = document.getElementById(targetId);
 
-    if(targetEle){
-        const offsetPosition = targetEle.offsetTop - window.innerHeight*0.1;
+    if (targetEle) {
+      const offsetPosition = targetEle.offsetTop - window.innerHeight * 0.1;
 
-        window.scrollTo({
-            top: offsetPosition,
-            behavior:"smooth"
-        })
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
     }
-
-  }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY >  50);
     };
 
-    window.addEventListener('scroll',handleScroll);
+    handleScroll();
 
-    return()=> {
-        window.removeEventListener('scroll',handleScroll)
-    }
-  },[]);
+    window.addEventListener("scroll", handleScroll);
 
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <nav
       className={`${
         isScrolled ? "bg-bright_red shadow" : "bg-none"
-      } transition-all duration-300 w-full fixed top-0  z-10`}
+      } transition-all duration-300 left-0 right-0 overflow-hidden fixed top-0  z-10`}
     >
       <div className="flex  capitalize pl-14 items-center justify-between w-full">
-        <h2 className="logo_text uppercase">
-          J.K. e<span className="text-[28px]">state</span>
-        </h2>
+        <div className="logo_text uppercase flex-center">
+          <Image src={"/logoRg.png"} width={100} height={100} alt="logo" />
+          {/* <Image src={"/logo.jpg"} width={100} height={100} alt="logo" /> */}
+          <h1>
+            J.K. e<span className="text-[28px]">state</span>
+          </h1>
+        </div>
         <div className=" flex-center divide-x divide-prim_white/50 text-[19px] text-prim_white  *:px-6 *:py-2 *:flex *:justify-between">
           {heroLinks.map((item) => (
             <div
