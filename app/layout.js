@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
     <head>
       <link rel="icon" href="/logo.jpg" type="image/x-icon"  />
     </head>
-      <body className="overflow-x-hidden">
+      <body className="overflow-x-idden">
         <Header />
         {children}
       </body>

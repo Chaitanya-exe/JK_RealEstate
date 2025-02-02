@@ -14,188 +14,193 @@ import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import PhoneSlick from "@/components/PhoneSlick";
 
 gsap.registerPlugin(ScrollTrigger);
-
 
 export default function Home() {
   const headingRef = useRef(null);
 
-    // useEffect(() => {
-    //   const tl = gsap.timeline();
+  // useEffect(() => {
+  //   const tl = gsap.timeline();
 
-    //   // Fade-in with scale
-    //   tl.from(headingRef.current, {
-    //     opacity: 0,
-    //     scale: 0.8,
-    //     y: 50,
-    //     duration: 1.5,
-    //     ease: "power4.out",
-    //   });
+  //   // Fade-in with scale
+  //   tl.from(headingRef.current, {
+  //     opacity: 0,
+  //     scale: 0.8,
+  //     y: 50,
+  //     duration: 1.5,
+  //     ease: "power4.out",
+  //   });
 
-    //   // Text wobble effect
-    //   tl.to(headingRef.current, {
-    //     rotate: 2,
-    //     duration: 0.3,
-    //     yoyo: true,
-    //     repeat: 1,
-    //     ease: "elastic.out(1, 0.5)",
-    //   });
+  //   // Text wobble effect
+  //   tl.to(headingRef.current, {
+  //     rotate: 2,
+  //     duration: 0.3,
+  //     yoyo: true,
+  //     repeat: 1,
+  //     ease: "elastic.out(1, 0.5)",
+  //   });
 
-    //   // Subtle infinite glow effect
-    //   tl.to(headingRef.current, {
-    //     textShadow: "0px 0px 15px rgba(255, 255, 255, 0.8)",
-    //     duration: 2.5,
-    //     repeat: -1,
-    //     yoyo: true,
-    //     ease: "power1.inOut",
-    //   });
-    // }, []);
+  //   // Subtle infinite glow effect
+  //   tl.to(headingRef.current, {
+  //     textShadow: "0px 0px 15px rgba(255, 255, 255, 0.8)",
+  //     duration: 2.5,
+  //     repeat: -1,
+  //     yoyo: true,
+  //     ease: "power1.inOut",
+  //   });
+  // }, []);
 
-    //  useEffect(() => {
-    //    // Split the text into characters
-    //    const chars = headingRef.current.textContent.split("");
-    //    headingRef.current.innerHTML = chars
-    //      .map((char) => `<span style="display: inline-block">${char}</span>`)
-    //      .join("");
+  //  useEffect(() => {
+  //    // Split the text into characters
+  //    const chars = headingRef.current.textContent.split("");
+  //    headingRef.current.innerHTML = chars
+  //      .map((char) => `<span style="display: inline-block">${char}</span>`)
+  //      .join("");
 
-    //    // Animate each character
-    //    gsap.fromTo(
-    //      headingRef.current.children,
-    //      { opacity: 0, y: 50 },
-    //      {
-    //        opacity: 1,
-    //        y: 0,
-    //        stagger: 0.05,
-    //        ease: "power2.out",
-    //        duration: 1.5,
-    //      }
-    //    );
-    //  }, []);
+  //    // Animate each character
+  //    gsap.fromTo(
+  //      headingRef.current.children,
+  //      { opacity: 0, y: 50 },
+  //      {
+  //        opacity: 1,
+  //        y: 0,
+  //        stagger: 0.05,
+  //        ease: "power2.out",
+  //        duration: 1.5,
+  //      }
+  //    );
+  //  }, []);
 
+  useGSAP(() => {
+    // Split the text into words
+    const words = headingRef.current.textContent.split(" ");
+    headingRef.current.innerHTML = words
+      .map(
+        (word) =>
+          `<span style="display: inline-block; margin-right: 8px">${word}</span>`
+      )
+      .join("");
 
-    useGSAP(() => {
-      // Split the text into words
-      const words = headingRef.current.textContent.split(" ");
-      headingRef.current.innerHTML = words
-        .map(
-          (word) =>
-            `<span style="display: inline-block; margin-right: 8px">${word}</span>`
-        )
-        .join("");
+    // Animate each word
+    gsap.fromTo(
+      headingRef.current.children,
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.2,
+        ease: "power2.out",
+        duration: 1,
+      }
+    );
 
-      // Animate each word
-      gsap.fromTo(
-        headingRef.current.children,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          stagger: 0.2,
-          ease: "power2.out",
-          duration: 1,
-        }
-      );
+    gsap.fromTo(
+      ".spanclass",
+      {
+        scale: "1.8",
+        borderRadius: "100%",
+        x: 820,
+        y: -70,
+        // borderRadius: "15%",
+        backgroundColor: "#F43F5E",
+      },
+      {
+        ease: "power2.inOut",
+        scale: 0.3,
+        duration: 2,
+        delay: 1, // Start after text animation
+        x: 0,
+        y: 0,
+        backgroundColor: "white",
+        borderRadius: "20%",
+        // clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)", // Triangle shape
+      }
+    );
 
+    gsap.from(".hr_subheading", {
+      x: -15,
+      // y:10,
+      opacity: 0,
+      ease: "power1.inOut",
+      duration: 1,
+    });
 
-        gsap.fromTo(
-          '.spanclass',
-          {
-            scale: "1.8",
-            borderRadius: "100%",
-            x: 820,
-            y: -70,
-            // borderRadius: "15%",
-            backgroundColor: "#F43F5E",
-          },
-          {
-            ease: "power2.inOut",
-            scale: 0.3,
-            duration: 2,
-            delay: 1, // Start after text animation
-            x: 0,
-            y: 0,
-            backgroundColor: "white",
-            borderRadius: "20%",
-            // clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)", // Triangle shape
-          }
-        );
-
-        gsap.from(".hero_subheading",{
-          x : -15,
-          // y:10,
-          opacity:0,
-          ease:"power1.inOut",
-          duration:1
-        });
-
-        gsap.utils.toArray(".tophead1").forEach((el)=>{
-          gsap.from(el, {
-            opacity: 0,
-            y: 8,
-            // rotate:1,
-            ease: "power1.inOut",
-            duration: 1.5,
-            scrollTrigger: {
-              trigger: el,
-              start: "top 90%",
-              toggleActions: "play reverse play reverse",
-            },
-          });
-          
-        });
-        }, []);
+    gsap.utils.toArray(".tophead").forEach((el) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 8,
+        // rotate:1,
+        ease: "power1.inOut",
+        duration: 1.5,
+        scrollTrigger: {
+          trigger: el,
+          start: "top 90%",
+          toggleActions: "play reverse play reverse",
+        },
+      });
+    });
+  }, []);
 
   return (
-    <div >
+    <div>
       <section
         id="/"
-        className="relative  pt-40 px-10  bg-gradient-to-b from-bright_red to-dark_red min-h-[730px]"
+        className="relative w-screen overflow-hidden pt-32 md:pt-40 md:px-10  bg-gradient-to-b from-bright_red to-dark_red md:min-h-[720px] min-h-[500px]"
       >
         {/* rectangles */}
         <div className="block -top-64 left-[0rem]" />
         <div className="block -top-[260px] left-[13rem]" />
         <div className="block -top-[517px] left-[13rem]" />
 
-        <div className="flex justify-between">
+        <div className="flex justify-center md:justify-between">
           {/* content */}
-          <div className="relative px-16 capitalize text-prim_white">
-          <div className="flex items-end">
-
-            <h1 ref={headingRef} className="hero_heading relative ">
-              Find Your Dream Property – Exclusive Listings Tailored for You
-            </h1>
-              <p
-                className="spanclass absolute left-56  w-10 h-10 inline-block"
-              ></p>
-          </div>
-            <h2 className="hero_subheading text-prim_white/95">
+          <div className="relative px-4 md:px-16 capitalize text-prim_white">
+            <div className="flex items-end">
+              <h1
+                ref={headingRef}
+                className="md:hero_heading hero_heading_Sm relative "
+              >
+                Find Your Dream Property – Exclusive Listings Tailored for You
+              </h1>
+              <p className="spanclass absolute left-56  w-10 h-10 inline-block"></p>
+            </div>
+            <h2 className="hr_subheading md:hero_subheading text-[22px] font-[550] leading-tight text-prim_white/95">
               Luxury Homes, Commercial Spaces, and Prime Investments – All in
               One Place.
             </h2>
-            <div className="flex justify-start items-center mt-4 gap-6">
+            <div className="flex justify-start items-center mt-5 gap-2 md:gap-6">
               <Button
                 type={"primary"}
                 text={"view properties"}
-                classname={"py-3 px-5 rounded-sm"}
+                classname={"md:py-3 md:px-5 p-2 rounded-sm"}
+                hrefLink="properties"
               />
               <Button
                 type={"sec"}
                 text={"schedule a consulatation"}
-                classname={"py-3 px-5 rounded-sm"}
+                classname={"md:py-3 md:px-5 p-2 rounded-sm"}
+                hrefLink="form"
               />
             </div>
           </div>
 
           {/* image */}
-          <div className="rounded-full overflow-hidden outline outline-prim_white -mt-14">
-            <Image src={"/heroImg.png"} width={510} height={600} alt="img" />
+          <div className="rounded-full max-sm:hidde flex-center min-w-[50px] min-h-[50px] overflow-hidden outline outline-prim_white md:-mt-14">
+            <Image
+              src={"/heroImg.png"}
+              width={510}
+              height={600}
+              alt="img"
+              className="w-full h-full"
+            />
           </div>
         </div>
       </section>
 
       {/* properties */}
-      <section id="properties" className="px-28 pb-6">
+      <section id="properties" className="md:px-28 pb-6">
         <Top
           head1={
             <p>
@@ -203,7 +208,7 @@ export default function Home() {
               {"  "} with Unmatched Value
             </p>
           }
-          classname={"max-w-[630px] mx-auto text-center my-10 pt-16"}
+          classname={"max-w-[630px] mx-auto text-center md:my-10 pt-16"}
         />
 
         <div className="divide-y divide-[#D6DCE1]">
@@ -217,39 +222,39 @@ export default function Home() {
       <section
         id="stats"
         className="bg-bright_red 
-       *:min-w-[250px] my-8 py-12 flex justify-center items-center gap-16 *:space-y-3 text-center"
+       md:*:min-w-[250px] *:w-[200px] my-8 py-6 md:py-12 flex flex-col gap-5 md:flex-row justify-center items-center md:gap-16 md:*:space-y-3 text-center "
       >
         <div className="">
-          <p className="text-bright_red  bg-prim_white p-8  text-[80px] font-[600] tracking-wide">
+          <p className="text-bright_red  bg-prim_white md:p-8 py-6 px-8 text-[65px]  md:text-[80px] font-[600] tracking-wide">
             10+
           </p>
-          <p className="text-prim_white text-[28px] font-medium capitalize">
+          <p className="text-prim_white text-[22px] mt-1 md:text-[28px] font-medium capitalize">
             years of experience
           </p>
         </div>
         <div>
-          <p className="text-bright_red  bg-prim_white p-8  text-[80px] font-[600] tracking-wide">
+          <p className="text-bright_red  bg-prim_white md:p-8 py-6 px-8 text-[65px]  md:text-[80px] font-[600] tracking-wide">
             100+
           </p>
-          <p className="text-prim_white text-[28px] font-medium capitalize">
+          <p className="text-prim_white text-[22px] mt-1 md:text-[28px]  font-medium capitalize">
             Properties Sold{" "}
           </p>
         </div>
         <div>
-          <p className="text-bright_red  bg-prim_white p-8 text-[80px] font-[600] tracking-wide">
+          <p className="text-bright_red  bg-prim_white md:p-8 py-6 px-8 text-[65px]  md:text-[80px] font-[600] tracking-wide">
             200+
           </p>
 
-          <p className="text-prim_white text-[28px] font-medium capitalize">
+          <p className="text-prim_white text-[22px] mt-1 md:text-[28px]  font-medium capitalize">
             Satisfied Clients{" "}
           </p>
         </div>
         <div>
-          <p className="text-bright_red  bg-prim_white p-8  text-[80px] font-[600] tracking-wide">
+          <p className="text-bright_red  bg-prim_white md:p-8 py-6 px-8 text-[65px]  md:text-[80px] font-[600] tracking-wide">
             10+
           </p>
 
-          <p className="text-prim_white text-[28px] font-medium capitalize">
+          <p className="text-prim_white text-[22px] mt-1 md:text-[28px]  font-medium capitalize">
             Expert Team{" "}
           </p>
         </div>
@@ -266,13 +271,13 @@ export default function Home() {
           }
           classname={"max-w-[630px] mx-auto text-center my-10 pt-16"}
         />
-        <div className="flex md:flex-col px-24">
-          <div className=" flex justify-center pt-10 ">
-            <div className="px-14 py-12 w-1/2 bg-[#EDF2F7] group hover:bg-gray hover:text-prim_white">
-              <h1 className="text-[34px] font-[550] text-[#003A47] group-hover:text-prim_white">
+        <div className="flx md:flex-col px-4 md:px-24">
+          <div className=" flex md:flex-row flex-col-reverse justify-center md:pt-10 ">
+            <div className="md:px-14 p-3 md:py-12 w-full md:w-1/2 bg-[#EDF2F7] group hover:bg-gray hover:text-prim_white">
+              <h1 className="md:text-[34px] text-[24px] font-[550] text-[#003A47] group-hover:text-prim_white">
                 Who we are.
               </h1>
-              <h2 className="font-medium text-[28px] tracking-[0.5px] text-[#234E70] group-hover:text-prim_white">
+              <h2 className="font-medium leading-snug md:leading-normal md:text-[28px] text-[19px] md:tracking-[0.5px] text-[#234E70] group-hover:text-prim_white">
                 At [Your Company Name], we are more than just a real estate
                 agency. Our mission is to create meaningful connections between
                 people and properties. Established in [Year], we have proudly
@@ -289,11 +294,11 @@ export default function Home() {
             />
           </div>
 
-          <div className="-my-9 z-10 bg-bright_red rounded-full w-fit p-6 rotate-12 mx-auto">
+          <div className="max-sm:hidden  -my-9 z-10 bg-bright_red rounded-full w-fit p-6 rotate-12 mx-auto">
             <Image src={"/triangle.svg"} width={80} height={80} alt="svg" />
           </div>
 
-          <div className="flex justify-center  pb-16">
+          <div className=" flex md:flex-row flex-col justify-center mt-6 md:mt-0 md:pt-10 ">
             <Image
               src={"/what.png"}
               width={695}
@@ -301,11 +306,11 @@ export default function Home() {
               alt="img"
               className="hover:scale-1"
             />
-            <div className="px-14 py-12 w-1/2 bg-[#EDF2F7] hover:bg-gray group">
-              <h1 className="text-[34px] font-[550] text-[#003A47] group-hover:text-prim_white">
+            <div className="md:px-14 p-3 md:py-12 w-full md:w-1/2 bg-[#EDF2F7] group hover:bg-gray hover:text-prim_white">
+              <h1 className="md:text-[34px] text-[24px] font-[550] text-[#003A47] group-hover:text-prim_white">
                 Who we are.
               </h1>
-              <h2 className="font-medium text-[28px] tracking-[0.5px] text-[#234E70] group-hover:text-prim_white">
+              <h2 className="font-medium leading-snug md:leading-normal md:text-[28px] text-[19px] md:tracking-[0.5px] text-[#234E70] group-hover:text-prim_white">
                 At [Your Company Name], we are more than just a real estate
                 agency. Our mission is to create meaningful connections between
                 people and properties. Established in [Year], we have proudly
@@ -326,9 +331,19 @@ export default function Home() {
               <span className="text-bright_red">Industry leaders.</span>
             </p>
           }
-          classname={"max-w-[630px] mx-auto text-center my-10 pt-16"}
+          classname={"max-w-[630px] mx-auto text-center my-10 md:pt-16"}
         />
-        <Slick />
+
+        <div className="opacity-0 md:opacity-100 absolute md:relative">
+          <Slick />
+        </div>
+
+        <div className="relative md:hidden min-h-[400px]">
+          <div className="opacity-100 md:opacity-0 absolute ">
+            <PhoneSlick />
+          </div>
+        </div>
+
       </section>
 
       {/* form */}

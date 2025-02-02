@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import { Rating } from "@mui/material";
+import { testimonialData } from "@/constants/dummydata";
 
 const Slick = () => {
   const [nav1, setNav1] = useState(null);
@@ -18,34 +19,7 @@ const Slick = () => {
     setNav2(sliderRef2.current);
   }, []);
 
-  const testimonialData = [
-    {
-      name: "John Doe",
-      role: "CEO, Example Corp",
-      imageUrl: "/user.png",
-      feedback:
-        "This service is amazing! It has truly transformed the way our company operates.",
-      rating: "5",
-    },
-    {
-      name: "Jane Smith",
-      role: "CTO, Tech Innovations",
-      imageUrl: "/user.png",
-
-      feedback:
-        "The quality and professionalism are top-notch. Highly recommend!",
-      rating: "5",
-    },
-    {
-      name: "Mark Lee",
-      imageUrl: "/user.png",
-
-      role: "Product Manager, Startup Co.",
-      feedback:
-        "A game-changer for our business! The team was great to work with.",
-      rating: "5",
-    },
-  ];
+ 
 
   const settings = {
     dots: true,
@@ -74,35 +48,40 @@ const Slick = () => {
   };
 
   return (
-    <div className="slider-container text-prim_black  py-10 px-32  relative">
-      <div className=" absolute right-44 top-6 grid w-fit grid-cols-2 gap-2">
-        <div className="bg-bright_red/40 w-[180px] h-[180px] rounded-lg" />
-        <div className="bg-bright_red/40 w-[180px] h-[180px] rounded-lg" />
-        <div className="bg-bright_red/40 w-[180px] h-[180px] rounded-lg" />
-        <div className="bg-bright_red/40 w-[180px] h-[180px] rounded-full" />
+    <div className="slider-container text-prim_black  py-10 md:px-32  relative">
+      <div className=" absolute right-10 md:right-44 top-6 grid w-fit grid-cols-2 gap-2">
+        <div className="bg-bright_red/40 w-[60px] md:w-[180px] h-[60px] md:h-[180px] rounded-lg" />
+        <div className="bg-bright_red/40 w-[60px] md:w-[180px] h-[60px] md:h-[180px] rounded-lg" />
+        <div className="bg-bright_red/40 w-[60px] md:w-[180px] h-[60px] md:h-[180px] rounded-lg" />
+        <div className="bg-bright_red/40 w-[60px] md:w-[180px] h-[60px] md:h-[180px] rounded-full" />
       </div>
+
       {/* Main Slider */}
       <Slider {...settings} asNavFor={nav2} ref={sliderRef1} className="mb-6">
         {testimonialData.map((testimonial, index) => (
-          <div key={index} className="px-4">
-            <div className="flex shadow backdrop-blur-sm bg-cardBg/40 w-fit py-5 px-20 mx-auto text-center items-center justify-center gap-12">
+          <div key={index} className="md:px-4 px-2">
+            <div className="flex md:flex-row flex-col shadow backdrop-blur-sm bg-cardBg/40 w-fit md:py-5 p-2 md:px-20 mx-auto text-center items-center justify-center md:gap-12">
               {/* Testimonial Image and Details */}
-              <div className="">
-                <div className="rounded-full overflow-hidden bg-red-100 max-w-[180px] max-h-[180px] flex items-center justify-center">
+              <div className="flex flex-col items-center ">
+                <div className="rounded-full overflow-hidden bg-red-100 w-[80px] h-[80px] md:w-[180px] md:h-[180px]  flex items-center justify-center">
                   <Image
                     src={testimonial.imageUrl}
                     width={180}
                     height={200}
                     alt="img"
-                    className="object-cover"
+                    className="object-cover w-[80px] h-[80px] md:w-[180px] md:h-[200px]"
                   />
                 </div>
-                <p className="mt-3 font-semibold">— {testimonial.name}</p>
-                <p className="text-sm">{testimonial.role}</p>
+                <p className="md:mt-3  md:leading-normal leading-tight font-semibold">
+                  — {testimonial.name}
+                </p>
+                <p className="text-sm md:leading-normal leading-tight">
+                  {testimonial.role}
+                </p>
               </div>
 
               {/* Testimonial Feedback */}
-              <div className="max-w-xl">
+              <div className="md:max-w-xl px-8 md:px-0">
                 <p className="bodyText my-3">{testimonial.feedback}</p>
                 <Rating name="read-only" value={testimonial.rating} readOnly />
               </div>
@@ -112,6 +91,7 @@ const Slick = () => {
       </Slider>
 
       {/* Thumbnail Navigation */}
+
       <Slider {...navSettings} asNavFor={nav1} ref={sliderRef2}>
         {testimonialData.map((testimonial, index) => (
           <div key={index} className="">

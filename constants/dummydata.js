@@ -67,3 +67,48 @@ export const heroLinks=[
     sectionlink:"faqs"
   }
 ]
+
+export const testimonialData = [
+   {
+     name: "John Doe",
+     role: "CEO, Example Corp",
+     imageUrl: "/user.png",
+     feedback:
+       "This service is amazing! It has truly transformed the way our company operates.",
+     rating: "5",
+   },
+   {
+     name: "John Doe",
+     role: "CEO, Example Corp",
+     imageUrl: "/user.png",
+     feedback:
+       "This service is amazing! It has truly transformed the way our company operates.",
+     rating: "5",
+   },
+   {
+     name: "John Doe",
+     role: "CEO, Example Corp",
+     imageUrl: "/user.png",
+     feedback:
+       "This service is amazing! It has truly transformed the way our company operates.",
+     rating: "5",
+   },
+   {
+     name: "Jane Smith",
+     role: "CTO, Tech Innovations",
+     imageUrl: "/user.png",
+
+     feedback:
+       "The quality and professionalism are top-notch. Highly recommend!",
+     rating: "5",
+   },
+   {
+     name: "Mark Lee",
+     imageUrl: "/user.png",
+
+     role: "Product Manager, Startup Co.",
+     feedback:
+       "A game-changer for our business! The team was great to work with.",
+     rating: "5",
+   },
+ ];

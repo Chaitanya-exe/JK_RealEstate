@@ -54,8 +54,8 @@ const PropertyCard = ({ property }) => {
     <div
       key={property.id}
       className={` ${
-        property.id % 2 !== 0 ? "flex-row" : "flex-row-reverse"
-      } relative flex-center py-16  gap-28`}
+        property.id % 2 !== 0 ? "md:flex-row" : "md:flex-row-reverse"
+      } relative md:flex-center  flex flex-col gap-6 py-16 px-4  md:gap-28`}
     >
       <div className={`${property.id%2 !== 0 ? "right_imgclass" : "left_imgclass"} relative `}>
         <Image
@@ -63,33 +63,33 @@ const PropertyCard = ({ property }) => {
           width={545}
           height={340}
           alt="propertyImg"
-          className={` ${property.id % 2 !== 0 ? "-rotate-3" : "rotate-3"} `}
+          className={` ${property.id % 2 !== 0 ? "md:-rotate-3" : "md:rotate-3"} `}
         />
 
         <div
           className={`${
             property.id % 2 !== 0
-              ? "-left-12 rotate-12"
-              : " -right-12 -rotate-12"
-          } absolute bg-bright_red rounded-full p-2 -top-5 `}
+              ? "md:-left-12 -left-3  rotate-12"
+              : " md:-right-12 -right-3 -rotate-12"
+          } absolute bg-bright_red rounded-full md:p-2 p-1 md:-top-5 -top-3 `}
         >
           <Image
             src={"/triangle.svg"}
             width={70}
             height={72}
             alt="svg"
-            className=""
+            className="md:w-[70px] w-[40px] "
           />
         </div>
       </div>
       <div className={` ${property.id%2 !==0 ? "left_imgclass" : "right_imgclass" } max-w-[700px] `}>
-        <h2 className="text-[34px] font-[550] text-[#003A47]">
+        <h2 className="md:text-[34px] text-[28px] leading-snug md:leading-normal font-[550] text-[#003A47]">
           {property.title}
         </h2>
-        <h3 className="font-medium text-[28px] tracking-[0.5px] text-[#234E70]">
+        <h3 className="font-medium md:text-[28px] text-[23px] leading-tight md:leading-normal md:tracking-[0.5px] text-[#234E70]">
           {property.description}
         </h3>
-        <ul className="list-disc list-inside bodyText text-[#003A47]">
+        <ul className="list-disc list-inside md:bodyText text-[#003A47]">
           {property.features.map((feature, i) => (
             <li key={i}>{feature}</li>
           ))}
