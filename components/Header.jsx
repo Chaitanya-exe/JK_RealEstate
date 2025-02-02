@@ -6,13 +6,17 @@ import Button from "./Button";
 import { heroLinks } from "@/constants/dummydata";
 import Image from "next/image";
 import { IconButton } from "@mui/material";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [openMenu,setOpenMenu] = useState(true);
+  const [openMenu, setOpenMenu] = useState(true);
 
   const handleSectionScroll = (e, targetId) => {
     e.preventDefault();
+
+    setOpenMenu(false);
 
     const targetEle = document.getElementById(targetId);
 
@@ -28,7 +32,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY >  50);
+      setIsScrolled(window.scrollY > 50);
     };
 
     handleScroll();
@@ -39,6 +43,7 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
 
   return (
     <nav
@@ -61,7 +66,12 @@ const Header = () => {
           </h1>
         </div>
         <div
-          className={`transition-all ease-in  md:opacity-100 hidden md:flex-center divide-x divide-prim_white/50 text-[19px] text-prim_white  *:px-6 *:py-2 *:flex *:justify-between `}
+          className={`
+          ${
+            openMenu
+              ? "max-md:fixed top-0 left-0 right-0 max-md:shadow-lg max-md:bg-red-600/95 max-h-[400px] max-md:flex max-md:flex-col flex-center"
+              : "flex-center max-md:hidden "
+          }  transition-all ease-in md:divide-x divide-prim_white/50  text-[19px] text-prim_white  *:px-6 *:py-2 *:flex *:justify-between `}
         >
           {heroLinks.map((item) => (
             <div
@@ -82,7 +92,10 @@ const Header = () => {
             classname={"md:p-6 p-2.5 max-sm:rounded-md  rounded-l-md"}
             hrefLink="form"
           />
-          <IconButton className="max-sm:inline-flex hidden">
+          <IconButton
+            onClick={() => setOpenMenu(!openMenu)}
+            className="max-sm:inline-flex hidden"
+          >
             <MenuTwoToneIcon
               sx={{
                 fontSize: 40,
