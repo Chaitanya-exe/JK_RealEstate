@@ -7,12 +7,18 @@
   --foreground: #1a202c;
 }
 
+html{
+  scroll-behavior:  smooth;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
   /* font-family: Arial, Helvetica, sans-serif; */
+  scroll-behavior:  smooth;
   font-family: "Sarala";
 }
+
 
 @layer utilities {
   .flex-center {
@@ -26,8 +32,8 @@ body {
     /* Kara */
     font-family: "Urbanist";
     font-style: normal;
-    font-weight: 700;
-    font-size: 42px;
+    /* font-weight: 700; */
+    /* font-size: 42px; */
     line-height: 67px;
     letter-spacing: 0.02em;
     color: var(--background);
@@ -55,8 +61,16 @@ line-height: 56px;
 letter-spacing: 0.02em;
 text-transform: capitalize;
   }
-  .hero_subheading{
+  .hero_heading_Sm{
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 600;
+font-size: 28px;
+line-height: 30px;
+text-transform: capitalize;
+  }
 
+  .hero_subheading{
 width: 721px;
 height: 118px;
 
@@ -74,6 +88,15 @@ font-style: normal;
 font-weight: 650;
 font-size: 48px;
 line-height: 59px;
+letter-spacing: 0.02em;
+text-transform: capitalize;
+  }
+  .tophead1_Sm{
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 28px;
+/* line-height: 59px; */
 letter-spacing: 0.02em;
 text-transform: capitalize;
   }

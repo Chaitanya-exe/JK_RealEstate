@@ -1,12 +1,43 @@
-import React from 'react'
+import React from "react";
 
-const Button = ({type,text,icon,classname}) => {
+const Button = ({ type, text, icon, classname, funCall, hrefLink }) => {
+  console.log(hrefLink);
+
+   if (hrefLink) {
+    return (
+      <a
+        href={`#${hrefLink}`}
+        className={`${
+          type === "primary"
+            ? "bg-prim_black text-prim_white hover:bg-gray"
+            : "bg-none border hover:ring-1 hover:ring-prim_white border-prim_white"
+        } capitalize text-nowrap ${classname} p-2 inline-block`}
+      >
+        {icon && <span>{icon}</span>}
+        {text}
+      </a>
+    );
+  }
+
   return (
-    <button className={`${type == "primary" ? "bg-prim_black text-prim_white hover:bg-gray  " : "bg-none border hover:ring-  hover:ring-prim_white border-prim_white"} capitalize ${classname} `}>
-    {icon && <span>{icon}</span>}
+    <button
+      className={`${
+        type === "primary"
+          ? "bg-prim_black text-prim_white hover:bg-gray"
+          : "bg-none border hover:ring-1 hover:ring-prim_white border-prim_white"
+      } capitalize text-nowrap ${classname}`}
+      onClick={(e) => {
+        e.preventDefault();
+        if (typeof funCall === "function") {
+          funCall(); 
+        }
+      }}
+    >
+      {icon && <span>{icon}</span>}
       <p>{text}</p>
     </button>
-  )
-}
+  );
+};
+  
 
-export default Button
+export default Button;
