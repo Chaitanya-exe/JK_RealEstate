@@ -68,7 +68,7 @@ const QueryForm = () => {
   );
 
   return (
-    <form className={`*:my-2 pt-6 w-full mx-auto  `}>
+    <form className={`*:my-2 content-center pt-2 md:pt-6 md:w-full mx-auto  `}>
       <Snackbar
         open={querySent}
         autoHideDuration={6000}

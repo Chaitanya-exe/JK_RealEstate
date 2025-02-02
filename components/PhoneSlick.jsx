@@ -21,8 +21,8 @@ function PhoneSlick() {
     },
   };
   return (
-    <div className="slider-container">
-      <Slider {...settings}>
+    // <div className="slider-container">
+      <Slider {...settings} >
         {testimonialData.map((testimonial, index) => (
           <div key={index} className="">
             <div className="flex flex-col shadow backdrop-blur-sm bg-cardBg/40 w-fit py-5 px-5 text-wrap mx-auto text-center items-center">
@@ -41,7 +41,7 @@ function PhoneSlick() {
           </div>
         ))}
       </Slider>
-    </div>
+    // </div>
   );
 }
 
