@@ -14,14 +14,22 @@ datasource db {
 }
 
 model Query {
-  id      String   @unique @default(uuid())
+  id      String    @unique @default(uuid())
   name    String
-  number  String   @unique
-  email   String   @unique
-  inquiry String[] @default([])
+  number  String    @unique
+  email   String    @unique
+  inquiry String[]  @default([])
   type    Inquiry[] @default([])
 }
 
+model Property {
+  id       String   @unique @default(uuid())
+  address  String   @unique
+  location String
+  size     Int
+  owner    String?  @default("")
+  images   String[] @default([])
+}
 
 enum Inquiry {
   CONSULTATION
