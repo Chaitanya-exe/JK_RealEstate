@@ -14,6 +14,7 @@ const Manager = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(property)
         try {
             const response = await fetch("api/estate/post",{
                 method:"POST",
@@ -22,7 +23,11 @@ const Manager = () => {
                 },
                 body:JSON.stringify({...property})
             })
-            const data = await response.json()
+            const data = await response.json();
+            if(!data.success){
+                alert("error while submitting form")
+                return
+            }
             alert("form submitted successfully");
         } catch (err) {
             alert("some error occured");
@@ -34,6 +39,7 @@ const Manager = () => {
             ...prev,
             images: [...prev.images, result.info.secure_url]
         }))
+        alert("images uploaded successfully")
     }
 
     return (
