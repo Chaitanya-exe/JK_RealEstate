@@ -62,7 +62,6 @@ const Manager = () => {
                 <CldUploadWidget
                     uploadPreset='ogtUploadPreset'
                     onSuccess={handleImageUpload}
-
                 >
                     {({ open }) => (
                         <button
