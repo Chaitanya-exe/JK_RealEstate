@@ -144,10 +144,10 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <section
         id="/"
-        className="relative w-screen overflow-hidden pt-32 md:pt-40 md:px-10  bg-gradient-to-b from-bright_red to-dark_red md:min-h-[720px] min-h-[500px]"
+        className="relative w-screen overflow-hidden pt-24 md:pt-40 md:px-10  bg-gradient-to-b from-bright_red to-dark_red md:min-h-[720px] min-h-[450px]"
       >
         {/* rectangles */}
         <div className="block -top-64 left-[0rem]" />
@@ -164,7 +164,7 @@ export default function Home() {
               >
                 Find Your Dream Property – Exclusive Listings Tailored for You
               </h1>
-              <p className="spanclass absolute left-56  w-10 h-10 inline-block"></p>
+              <p className="spanclass absolute md:left-56 left-28 w-6 h-6 md:w-10 md:h-10 inline-block"></p>
             </div>
             <h2 className="hr_subheading md:hero_subheading text-[22px] font-[550] leading-tight text-prim_white/95">
               Luxury Homes, Commercial Spaces, and Prime Investments – All in
@@ -187,7 +187,7 @@ export default function Home() {
           </div>
 
           {/* image */}
-          <div className="rounded-full max-sm:hidde flex-center min-w-[50px] min-h-[50px] overflow-hidden outline outline-prim_white md:-mt-14">
+          <div className="rounded-full max-sm:hidden flex-center min-w-[50px] min-h-[50px] overflow-hidden outline outline-prim_white md:-mt-14">
             <Image
               src={"/heroImg.png"}
               width={510}

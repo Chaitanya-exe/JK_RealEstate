@@ -8,10 +8,11 @@ import Image from "next/image";
 import { IconButton } from "@mui/material";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import MenuCom from "./MenuCom";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [openMenu, setOpenMenu] = useState(true);
+  const [openMenu, setOpenMenu] = useState(false);
 
   const handleSectionScroll = (e, targetId) => {
     e.preventDefault();
@@ -51,8 +52,8 @@ const Header = () => {
         isScrolled ? "bg-bright_red shadow" : "bg-none"
       } transition-all duration-300 left-0 right-0 overflow-hidden fixed top-0  max-sm:px-2  z-50`}
     >
-      <div className="flex  capitalize md:pl-14 items-center justify-between">
-        <div className="logo_text text-[28px] font-[600] md:text-[42px] md:font-[700] uppercase flex-center">
+      <div className="flex capitalize md:pl-14 items-center justify-between">
+        <div className="logo_text text-nowrap text-[22px] font-[600] md:text-[42px] md:font-[700] uppercase flex-center">
           <Image
             src={"/logoRg.png"}
             width={100}
@@ -62,7 +63,7 @@ const Header = () => {
           />
           {/* <Image src={"/logo.jpg"} width={100} height={100} alt="logo" /> */}
           <h1>
-            J.K. e<span className="text-[20px] md:text-[24px]">state</span>
+            J.K. e<span className="text-[16px] md:text-[24px]">state</span>
           </h1>
         </div>
         <div
@@ -77,19 +78,22 @@ const Header = () => {
             <div
               onClick={(e) => handleSectionScroll(e, item.sectionlink)}
               key={item.name}
-              className="group  relative inline-block "
+              className="group *:hover:cursor-pointer relative inline-block "
             >
               <a href={`#${item.sectionlink}`}>{item.name}</a>
               <span className="absolute  bottom-0 left-0  h-[0.6px] bg-prim_white w-0 group-hover:w-full transition-all duration-500 ease-in-out"></span>
             </div>
           ))}
+
+          <MenuCom />
+
         </div>
 
-        <div className="">
+        <div className="flex-center">
           <Button
             type={"primary"}
             text={"Schedule a consulatation"}
-            classname={"md:p-6 p-2.5 max-sm:rounded-md  rounded-l-md"}
+            classname={"md:p-6 p-1 max-sm:hidden max-sm:rounded-md  rounded-l-md"}
             hrefLink="form"
           />
           <IconButton
@@ -98,7 +102,7 @@ const Header = () => {
           >
             <MenuTwoToneIcon
               sx={{
-                fontSize: 40,
+                fontSize: 36,
                 color: "black",
                 backgroundColor: "white",
                 paddingY: 1,
