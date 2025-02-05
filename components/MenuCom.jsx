@@ -1,12 +1,13 @@
 "use client";
 
 import { Button, Fade, Menu, MenuItem } from "@mui/material";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
-const MenuCom = () => {
+const MenuCom = ({setOpenMenu}) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const Router = useRouter();
+  const pathname = usePathname()
 
   const open = Boolean(anchorEl);
 
@@ -15,7 +16,24 @@ const MenuCom = () => {
   };
 
   const handleClose = (linkTo) => {
-    Router.push(`services/${linkTo}`);
+    setOpenMenu(false);
+
+    // Get the current pathname; if it doesn't exist, default to an empty string.
+    const currentPath = pathname || "";
+
+    if (currentPath.includes("services/")) {
+      // Replace the current service id in the pathname with the new one.
+      const newPath = currentPath.replace(
+        /services\/[^/]+/,
+        `services/${linkTo}`
+      );
+      Router.push(newPath);
+    } else {
+      // Otherwise, simply navigate to the services page with the new id.
+      Router.push(`services/${linkTo}`);
+    }
+
+    // Router.push(`services/${linkTo}`);
     setAnchorEl(null);
   };
 
@@ -34,12 +52,12 @@ const MenuCom = () => {
         onClose={handleClose}
         // TransitionComponent={Fade}
       >
-        <MenuItem onClick={() => handleClose("PropertySales&Acquisitions")}>
+        <MenuItem onClick={() => handleClose("1")}>
           Property Sales & Acquisitions
         </MenuItem>
-        <MenuItem onClick={handleClose}> Property Management</MenuItem>
-        <MenuItem onClick={handleClose}>Investment Consulting</MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={() => handleClose("2")}> Property Management</MenuItem>
+        <MenuItem onClick={() => handleClose("3")}>Investment Consulting</MenuItem>
+        <MenuItem onClick={() => handleClose("4")}>
           Market Research & Property Valuations
         </MenuItem>
       </Menu>

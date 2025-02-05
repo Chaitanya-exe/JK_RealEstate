@@ -17,6 +17,12 @@ const Header = () => {
   const handleSectionScroll = (e, targetId) => {
     e.preventDefault();
 
+    // If we're not on the homepage, redirect to home with the hash.
+    if (window.location.pathname !== "/") {
+      window.location.href = `/#${targetId}`;
+      return;
+    }
+
     setOpenMenu(false);
 
     const targetEle = document.getElementById(targetId);
@@ -85,7 +91,7 @@ const Header = () => {
             </div>
           ))}
 
-          <MenuCom />
+          <MenuCom setOpenMenu={setOpenMenu} />
 
         </div>
 

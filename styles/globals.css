@@ -72,7 +72,7 @@ text-transform: capitalize;
 
   .hero_subheading{
 width: 721px;
-height: 118px;
+/* height: 118px; */
 
 font-family: 'Sarala';
 font-style: normal;

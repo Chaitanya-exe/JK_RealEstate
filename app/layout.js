@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "../styles/globals.css";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "J.K. Estate",
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
       <body className="overflow-x-hidden h-full w-full  bg-prim_white">
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

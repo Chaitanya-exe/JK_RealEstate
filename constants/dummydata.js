@@ -112,3 +112,106 @@ export const testimonialData = [
      rating: "5",
    },
  ];
+
+ export const services = [
+   {
+     id: 1,
+     name: " Commercial Brokerage & Property Sales",
+     title: "Maximize Your Investment Potential",
+     subtitle:
+       "Our commercial brokerage team specializes in strategic property transactions.",
+     list: [
+       {
+         key: "Market Analysis & Valuation:",
+         value:
+           " Leverage data-driven insights to understand current market trends.",
+       },
+       {
+         key: "Negotiation Expertise:",
+         value:
+           "Secure the best possible terms through expert negotiation and transparent communication.",
+       },
+       {
+         key: "Market Analysis & Valuation:",
+         value:
+           " Leverage data-driven insights to understand current market trends.",
+       },
+     ],
+     imagePath: "/formBg.png",
+   },
+   {
+     id: 2,
+     name: "Property Management & Leasing",
+     title: "Maximize Your Investment Potential",
+     subtitle:
+       "Our commercial brokerage team specializes in strategic property transactions.",
+     list: [
+       {
+         key: "Market Analysis & Valuation:",
+         value:
+           " Leverage data-driven insights to understand current market trends.",
+       },
+       {
+         key: "Negotiation Expertise:",
+         value:
+           "Secure the best possible terms through expert negotiation and transparent communication.",
+       },
+       {
+         key: "Market Analysis & Valuation:",
+         value:
+           " Leverage data-driven insights to understand current market trends.",
+       },
+     ],
+     imagePath: "/formBg.png",
+   },
+   {
+     id: 3,
+     name: "Real Estate Investment Consulting",
+     title: "Maximize Your Investment Potential",
+     subtitle:
+       "Our commercial brokerage team specializes in strategic property transactions.",
+     list: [
+       {
+         key: "Market Analysis & Valuation:",
+         value:
+           " Leverage data-driven insights to understand current market trends.",
+       },
+       {
+         key: "Negotiation Expertise:",
+         value:
+           "Secure the best possible terms through expert negotiation and transparent communication.",
+       },
+       {
+         key: "Market Analysis & Valuation:",
+         value:
+           " Leverage data-driven insights to understand current market trends.",
+       },
+     ],
+     imagePath: "/formBg.png",
+   },
+   {
+     id: 4,
+     name: " Strategic Market Analysis & Advisory",
+     title: "Maximize Your Investment Potential",
+     subtitle:
+       "Our commercial brokerage team specializes in strategic property transactions.",
+     list: [
+       {
+         key: "Market Analysis & Valuation:",
+         value:
+           " Leverage data-driven insights to understand current market trends.",
+       },
+       {
+         key: "Negotiation Expertise:",
+         value:
+           "Secure the best possible terms through expert negotiation and transparent communication.",
+       },
+       {
+         key: "Market Analysis & Valuation:",
+         value:
+           " Leverage data-driven insights to understand current market trends.",
+       },
+     ],
+     imagePath: "/formBg.png",
+   },
+ ];

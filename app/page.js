@@ -358,20 +358,9 @@ export default function Home() {
           alt="svg"
           className="absolute max-md:w-[200px] w-[400px] -top-[12rem] md:-top-[18rem] -right-8"
         />
-        <div className="bg-white/70 pb-10 h-full md:mx-72 px-6 mx-4 md:px-12 rounded-[30px] ">
-          <Top
-            head1={<p>Let’s Connect</p>}
-            head2={
-              <p>
-                Contact us today to find the perfect property or investment
-                opportunity.
-              </p>
-            }
-            classname={" md:py-5 py-3 max-w-[600px] "}
-          />
-
-          <QueryForm />
-        </div>
+         
+         <QueryForm />
+         
       </section>
 
       {/* faqs */}
@@ -389,8 +378,6 @@ export default function Home() {
         us at contact@yourcompany.com. We’re here to help!
       </p>
 
-      {/* footer */}
-      <Footer />
     </div>
   );
 }
