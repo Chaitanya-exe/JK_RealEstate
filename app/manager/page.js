@@ -35,9 +35,13 @@ const Manager = () => {
     }
 
     const handleImageUpload = (result) => {
+        console.log(result)
         setProperty((prev) => ({
             ...prev,
-            images: [...prev.images, result.info.secure_url]
+            images: [...prev.images, {
+                url: result.info.secure_url,
+                publicId: result.info.public_id,
+            }]
         }))
         alert("images uploaded successfully")
     }
@@ -51,7 +55,7 @@ const Manager = () => {
                 <h2>location</h2>
                 <input value={property.location} type='text' name='location' onChange={(e) => setProperty({ ...property, location: e.target.value })} />
                 <h2>size</h2>
-                <input value={property.size} type='number' name='size' onChange={(e) => setProperty({ ...property, size: e.target.value })} />
+                <input value={property.size} type='number' name='size' onChange={(e) => setProperty({ ...property, size: Number(e.target.value) })} />
                 <h2>owner's name</h2>
                 <input value={property.owner} type='text' name='owner' onChange={(e) => setProperty({ ...property, owner: e.target.value })} />
                 <br></br>

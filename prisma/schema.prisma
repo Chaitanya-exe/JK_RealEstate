@@ -23,12 +23,22 @@ model Query {
 }
 
 model Property {
-  id       String   @unique @default(uuid())
-  address  String   @unique
+  id       String  @unique @default(uuid())
+  address  String  @unique
   location String
   size     Int
-  owner    String?  @default("")
-  images   String[] @default([])
+  owner    String? @default("")
+  images   Image[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Image {
+  id         String   @unique @default(uuid())
+  url        String
+  publicId   String
+  property   Property @relation(fields: [propertyId], references: [id])
+  propertyId String
 }
 
 enum Inquiry {

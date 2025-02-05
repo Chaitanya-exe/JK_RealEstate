@@ -5,10 +5,8 @@ const userClient = new PrismaClient();
 async function handler(req){
     try {
         const body = await req.json();
-        console.log(parseInt(body.size))
         const response = await userClient.property.create({
             data:{
-               size:parseInt(body.size),
                images:{
                 push:body.images
                },
