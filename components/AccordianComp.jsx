@@ -7,10 +7,10 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const AccordianComp = () => {
   return (
-    <div className="max-w-[980px] mx-auto pb-8 my-10">
+    <div className="max-w-[980px] max-md:mx-4 mx-auto md:pb-8 my-4 md:my-10">
       <Accordion
         defaultExpanded
-        className="divide-y-2 divide-white bg-cardBg/90 shadow"
+        className="divide-y-2 max-sm:-space-y-2 divide-white bg-cardBg/90 shadow"
       >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -19,7 +19,7 @@ const AccordianComp = () => {
         >
           <Typography
             component="span"
-            className="font-medium text-[22px] tracking-[0.5px]"
+            className="font-medium text-[19px] tracking-normal md:text-[22px] md:tracking-[0.5px]"
           >
             Q1: What services does [Your Company Name] offer?
           </Typography>
@@ -35,7 +35,7 @@ const AccordianComp = () => {
       </Accordion>
       <Accordion
         defaultExpanded
-        className="divide-y-2 shadow divide-white bg-cardBg/90"
+        className="divide-y-2 max-sm:-space-y-2 divide-white bg-cardBg/90 shadow"
       >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -44,7 +44,7 @@ const AccordianComp = () => {
         >
           <Typography
             component="span"
-            className="font-medium text-[22px] tracking-[0.5px]"
+            className="font-medium text-[19px] tracking-normal md:text-[22px] md:tracking-[0.5px]"
           >
             Q2: How do I schedule a consultation?{" "}
           </Typography>
@@ -58,7 +58,7 @@ const AccordianComp = () => {
       </Accordion>
       <Accordion
         defaultExpanded
-        className="divide-y-2 shadow divide-white bg-cardBg/90"
+        className="divide-y-2 max-sm:-space-y-2 divide-white bg-cardBg/90 shadow"
       >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -67,7 +67,7 @@ const AccordianComp = () => {
         >
           <Typography
             component="span"
-            className="font-medium text-[22px] tracking-[0.5px]"
+            className="font-medium text-[19px] tracking-normal md:text-[22px] md:tracking-[0.5px]"
           >
             Q2: How do I schedule a consultation?{" "}
           </Typography>

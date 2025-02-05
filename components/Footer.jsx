@@ -8,9 +8,9 @@ import { heroLinks } from "@/constants/dummydata";
 
 const Footer = () => {
   return (
-    <footer className="bg-bright_red px-28 pb-4 pt-16  text-prim_white">
-      <div className="gap-20 text-prim_white flex *:w-1/3 justify-between items-start">
-        <div>
+    <footer className="bg-bright_red  px-14 md:px-28 pb-4 pt-16  text-prim_white">
+      <div className="md:gap-20 gap-8 text-prim_white flex md:flex-row flex-col w-full md:*:w-1/3 md:justify-between items-start">
+        <div className="">
           <h2 className="text-[26px] font-[550]">About us</h2>
           <p className="bodyText ">
             RSMI is a trusted name in real estate, providing tailored solutions
@@ -25,7 +25,7 @@ const Footer = () => {
             {heroLinks.map((item) => (
               <li
                 key={item.name}
-                className="hover:underline hover:text-prim_black hover:underline-offset-2"
+                className="hover:underline hover:text-prim_black hover:cursor-pointer hover:underline-offset-2"
               >
                 <a href={`#${item.sectionlink}`}>{item.name}</a>
               </li>
@@ -60,14 +60,14 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="flex-center mt-14 gap-56">
+      <div className="md:flex-row md:justify-center md:items-center flex flex-col gap-5 max-md:text-center mt-14 md:gap-56">
         <p>
           © [Year] [Your Company Name]. All Rights Reserved. Terms of Service |
           Privacy Policy
         </p>
         <div className="">
           <h4> Follow us for updates and inspiration!</h4>
-          <div className="flex my-3 gap-6 justify-center items-center ">
+          <div className="flex my-1 md:my-3 gap-6 justify-center items-center ">
             <InstagramIcon sx={{ fontSize: 34 }} className="hover:scale-110" />
             <FacebookRoundedIcon
               sx={{ fontSize: 34 }}

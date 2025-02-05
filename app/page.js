@@ -333,13 +333,13 @@ export default function Home() {
           }
           classname={"max-w-[630px] mx-auto text-center my-10 md:pt-16"}
         />
-
-        <div className="opacity-0 md:opacity-100 absolute md:relative">
+{/* desktop */}
+        <div className="opacity-0 md:opacity-100 absolute max-md:hidden md:relative">
           <Slick />
         </div>
-
+{/* phone */}
         <div className="relative md:hidden min-h-[400px]">
-          <div className="opacity-100 md:opacity-0 absolute ">
+          <div className="opacity-100 md:opacity-0 *:my-2 absolute ">
             <PhoneSlick />
           </div>
         </div>
@@ -356,9 +356,9 @@ export default function Home() {
           width={400}
           height={300}
           alt="svg"
-          className="absolute -top-[18rem] -right-8"
+          className="absolute max-md:w-[200px] w-[400px] -top-[12rem] md:-top-[18rem] -right-8"
         />
-        <div className="bg-white/70 pb-10 h-full md:mx-72 md:px-12 rounded-[30px] ">
+        <div className="bg-white/70 pb-10 h-full md:mx-72 px-6 mx-4 md:px-12 rounded-[30px] ">
           <Top
             head1={<p>Let’s Connect</p>}
             head2={
@@ -367,7 +367,7 @@ export default function Home() {
                 opportunity.
               </p>
             }
-            classname={" py-5 max-w-[600px] "}
+            classname={" md:py-5 py-3 max-w-[600px] "}
           />
 
           <QueryForm />
@@ -384,7 +384,7 @@ export default function Home() {
         <AccordianComp />
       </section>
 
-      <p className="md:mx-44 py-6 text-[19px] text-[#234E70] text-center  ">
+      <p className="md:mx-44 py-6 md:text-[19px]  leading-tight md:leading-normal text-[#234E70] text-center  ">
         Have more questions? Contact us directly at +1 (123) 456-7890 or email
         us at contact@yourcompany.com. We’re here to help!
       </p>
