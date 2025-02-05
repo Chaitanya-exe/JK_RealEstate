@@ -384,7 +384,7 @@ export default function Home() {
         <AccordianComp />
       </section>
 
-      <p className="md:mx-44 py-6 md:text-[19px]  leading-tight md:leading-normal text-[#234E70] text-center  ">
+      <p className="md:mx-44 mx-12 py-6 md:text-[19px] text-sm  leading-tight md:leading-normal text-[#234E70] text-center  ">
         Have more questions? Contact us directly at +1 (123) 456-7890 or email
         us at contact@yourcompany.com. We’re here to help!
       </p>
