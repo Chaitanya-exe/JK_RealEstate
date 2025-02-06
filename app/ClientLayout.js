@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 const ClientLayout = ({ children }) => {
   const pathname = usePathname();
   
-  const excludeHeaderFooter = pathname.includes('/dashboard') 
+  const excludeHeaderFooter = pathname.includes('/manager') 
 
   return (
     <div className="min-h-screen flex flex-col">
