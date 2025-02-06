@@ -147,15 +147,7 @@ const QueryForm = () => {
                 setQuery({ ...query, type: e.target.value.toUpperCase() })
               }
             >
-              <option
-                value={query.type}
-                // onChange={(e) =>
-                //   setQuery({ ...query, type: e.target.value.toUpper() })
-                // }
-                disabled
-                hidden
-                className=""
-              >
+              <option value={query.type} disabled hidden className="">
                 Type of inquiry
               </option>
               <option value="consultation" className=" *:hover:font-semibold">
@@ -197,12 +189,15 @@ const QueryForm = () => {
             icon={<PersonIcon className="inline-flex size-5 md:size-6 mr-2" />}
             classname={"py-3 px-5 rounded-sm flex items-center"}
           />
-          <Button
-            text={"send"}
-            type={"primary"}
-            classname={"py-3 px-8 rounded-sm"}
-            funCall={handleClick}
-          />
+          <button
+            className="bg-prim_black py-3 px-8 rounded-sm text-prim_white hover:bg-gray capitalize text-nowrap "
+            onClick={(e) => {
+              e.preventDefault();
+             handleClick()
+            }}
+          >
+            <p>Send</p>
+          </button>
         </div>
       </form>
     </div>

@@ -26,6 +26,7 @@ const Page = () => {
   return (
     <div>
       <ServiceDetail serviceData={serviceData} />
+      
       <section
         id="form"
         className="h-[690px] py-10 mb-12 mt-36 relative w-full bg-[url('/formBg.png')] bg-cover bg-center"

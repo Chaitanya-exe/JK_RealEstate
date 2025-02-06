@@ -14,28 +14,28 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
 
-  const handleSectionScroll = (e, targetId) => {
-    e.preventDefault();
+ const handleSectionScroll = (e, targetId) => {
+   e.preventDefault();
+   setOpenMenu(false);
 
-    // If we're not on the homepage, redirect to home with the hash.
-    if (window.location.pathname !== "/") {
-      window.location.href = `/#${targetId}`;
-      return;
-    }
+   if (
+     window.location.pathname !== "/" &&
+     targetId !== "form" &&
+     targetId !== "faqs"
+   ) {
+     window.location.href = `/#${targetId}`;
+     return;
+   }
 
-    setOpenMenu(false);
-
-    const targetEle = document.getElementById(targetId);
-
-    if (targetEle) {
-      const offsetPosition = targetEle.offsetTop - window.innerHeight * 0.1;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-  };
+   const targetEle = document.getElementById(targetId);
+   if (targetEle) {
+     const offsetPosition = targetEle.offsetTop - window.innerHeight * 0.1;
+     window.scrollTo({
+       top: offsetPosition,
+       behavior: "smooth",
+     });
+   }
+ };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,7 +67,6 @@ const Header = () => {
             alt="logo"
             className="max-sm:w-[70px]"
           />
-          {/* <Image src={"/logo.jpg"} width={100} height={100} alt="logo" /> */}
           <h1>
             J.K. e<span className="text-[16px] md:text-[24px]">state</span>
           </h1>

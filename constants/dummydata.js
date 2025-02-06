@@ -1,3 +1,5 @@
+import { Inquiry } from "@prisma/client";
+
 export const properties = [
   {
     id: 1,
@@ -213,5 +215,40 @@ export const testimonialData = [
        },
      ],
      imagePath: "/formBg.png",
+   },
+ ];
+
+ export const rows = [
+   {
+     id: 1,
+     name: "Rashmi",
+     email: "@gamil.com",
+     phoneNumber: "2490832490",
+     type: ["fervf", "reqg", "er"],
+     Inquiry: ["freqv", "non", "nkjn"],
+   },
+   {
+     id: 2,
+     name: "Rashmi",
+     email: "2@gamil.com",
+     phoneNumber: "2384908390",
+     type: ["fervf", "reqg", "er"],
+     Inquiry: ["Scrolling Behavior:If the condition is not met (meaning you're either on the home page, or the target is on the /services page), the function tries to locate the element by its id and scrolls smoothly to its position.This solution ensures that", "non", "nkjn"],
+   },
+   {
+     id: 3,
+     name: "Rashmi",
+     email: "3@gamil.com",
+     phoneNumber: "23840832490",
+     type: ["fervf", "reqg", "er"],
+     Inquiry: ["freqv", "non", "nkjn"],
+   },
+   {
+     id: 4,
+     name: "Rashmi",
+     email: "4@gamil.com",
+     phoneNumber: "23842490",
+     type: ["fervf", "reqg", "er"],
+     Inquiry: ["freqv", "non", "nkjn"],
    },
  ];
