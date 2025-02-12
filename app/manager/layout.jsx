@@ -11,24 +11,30 @@ const layout = ({children}) => {
   return (
     <div>
       <div className="flex gap-3 justify-end mx-10 my-3">
+      <Link href={'/manager/addProp'} >
+
         <Button
           text={"add Properties"}
           type={"primary"}
-          link={"/manager/addProp"}
           classname={"md:p-4 p-1 max-sm:hidden max-sm:rounded-md  rounded-md"}
         />
+      </Link>
+      <Link href={'/manager/viewProp'}>
+
         <Button
           text={"view Properties"}
           type={"primary"}
-          link={"/manager/viewProp"}
           classname={"md:p-4 p-1 max-sm:hidden max-sm:rounded-md  rounded-md"}
         />
+      </Link>
+      <Link  href={'/manager/queries'}>
+
         <Button
           text={" all queries"}
           type={"primary"}
-          link={"/manager/queries"}
           classname={"md:p-4 p-1 max-sm:hidden max-sm:rounded-md  rounded-md"}
         />
+      </Link>
        
       </div>
 

@@ -14,9 +14,9 @@ const Page = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(property)
+        // console.log(property)
         try {
-            const response = await fetch("api/estate/post",{
+            const response = await fetch("/api/estate/post",{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"

@@ -22,7 +22,10 @@ function Row(props) {
 
   return (
     <React.Fragment>
-      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+      <TableRow
+        className="min-h-screen bg-cardBg/50"
+        sx={{ "& > *": { borderBottom: "unset" } }}
+      >
         <TableCell>
           <IconButton
             aria-label="expand row"
@@ -42,18 +45,18 @@ function Row(props) {
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <div className="my-3">
-              <div className="mb-4">
+              <div className="flex gap-4  mb-4">
                 <h1 className="text-lg font-[550]">Type :-</h1>
-                <div className="flex gap-3 mt-2 text-[15px] *:bg-cardBg *:py-1 *:px-3 *:rounded *:capitalize ">
-                  {row.type.map((historyRow,i) => (
+                <div className="flex gap-2 text-[15px] *:bg-cardBg/40 *:py-1 *:px-3  *:capitalize ">
+                  {row.type.map((historyRow, i) => (
                     <span key={i}>{historyRow}</span>
                   ))}
                 </div>
               </div>
               <div>
                 <h1 className="text-lg font-[550]">Inquiries :-</h1>
-                <div className="flex flex-col text-[15px] text-wrap gap-2 tracking-wide my-2 *:bg-cardBg *:py-2 *:px-3 *:rounded *:capitalize ">
-                  {row.Inquiry.map((historyRow,i) => (
+                <div className="flex flex-col text-[15px] text-wrap gap-1 tracking-wide my-2 *:bg-cardBg/40 *:py-2 *:px-3  *:capitalize ">
+                  {row.Inquiry.map((historyRow, i) => (
                     <p key={i}>{historyRow}</p>
                   ))}
                 </div>

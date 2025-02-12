@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const Button = ({ type, text, icon, classname, hrefLink, link }) => {
+const Button = ({ type, text, icon, classname, hrefLink }) => {
 
    if (hrefLink) {
     return (
@@ -20,7 +20,7 @@ const Button = ({ type, text, icon, classname, hrefLink, link }) => {
   }
 
   return (
-    <Link href={link}
+    <button
       className={`${
         type === "primary"
           ? "bg-prim_black text-prim_white hover:bg-gray"
@@ -29,7 +29,7 @@ const Button = ({ type, text, icon, classname, hrefLink, link }) => {
     >
       {icon && <span>{icon}</span>}
       <p>{text}</p>
-    </Link>
+    </button>
   );
 };
   

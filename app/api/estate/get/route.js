@@ -4,6 +4,12 @@ import { PrismaClient } from "@prisma/client";
 async function handler(req){
     const userClient = new PrismaClient();
     try {
+        const response = await userClient.property.findMany();
+        
+        console.log(response);
+        
+
+        return NextResponse.json({msg:'properties fetched successfully',response},{status: 200})
         
     } catch (err) {
         console.log(`${err}`);
