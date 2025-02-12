@@ -75,9 +75,9 @@ const Header = () => {
           className={`
           ${
             openMenu
-              ? "max-md:fixed top-0 left-0 right-0 max-md:shadow-lg max-md:bg-red-600/95 max-h-[400px] max-md:flex max-md:flex-col flex-center"
+              ? "max-md:fixed max-sm:py-5 top-0 left-0 right-0 max-md:shadow-lg max-md:bg-red-600/95 max-h-[400px] max-md:flex max-md:flex-col flex-center"
               : "flex-center max-md:hidden "
-          }  transition-all ease-in md:divide-x divide-prim_white/50  text-[19px] text-prim_white  *:px-6 *:py-2 *:flex *:justify-between `}
+          }  transition-all ease-in md:divide-x divide-prim_white/50  md:text-[19px] text-prim_white  *:px-6 *:py-2 *:flex *:justify-between `}
         >
           {heroLinks.map((item) => (
             <div

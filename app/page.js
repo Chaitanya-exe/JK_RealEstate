@@ -74,7 +74,6 @@ export default function Home() {
   //  }, []);
 
   useGSAP(() => {
-    // Split the text into words
     const words = headingRef.current.textContent.split(" ");
     headingRef.current.innerHTML = words
       .map(
@@ -83,7 +82,6 @@ export default function Home() {
       )
       .join("");
 
-    // Animate each word
     gsap.fromTo(
       headingRef.current.children,
       { opacity: 0, y: 50 },
@@ -103,14 +101,13 @@ export default function Home() {
         borderRadius: "100%",
         x: 820,
         y: -70,
-        // borderRadius: "15%",
         backgroundColor: "#F43F5E",
       },
       {
         ease: "power2.inOut",
         scale: 0.3,
         duration: 2,
-        delay: 1, // Start after text animation
+        delay: 1,
         x: 0,
         y: 0,
         backgroundColor: "white",
@@ -156,17 +153,17 @@ export default function Home() {
 
         <div className="flex justify-center md:justify-between">
           {/* content */}
-          <div className="relative px-4 md:px-16 capitalize text-prim_white">
-            <div className="flex items-end">
+          <div className="relative px-6 md:px-16 capitalize text-prim_white">
+            <div className="flex max-sm:mt-6 items-end">
               <h1
                 ref={headingRef}
                 className="md:hero_heading hero_heading_Sm relative "
               >
                 Find Your Dream Property – Exclusive Listings Tailored for You
               </h1>
-              <p className="spanclass absolute md:left-56 left-28 w-6 h-6 md:w-10 md:h-10 inline-block"></p>
+              <p className="spanclass absolute md:left-56 left-20 w-6 h-6 md:w-10 md:h-10 inline-block"></p>
             </div>
-            <h2 className="hr_subheading md:hero_subheading text-[22px] font-[550] leading-tight text-prim_white/95">
+            <h2 className="hr_subheading md:hero_subheading text-[23px] font-[550] text-prim_white/95">
               Luxury Homes, Commercial Spaces, and Prime Investments – All in
               One Place.
             </h2>
