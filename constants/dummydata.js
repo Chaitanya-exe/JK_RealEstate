@@ -1,4 +1,3 @@
-import { Inquiry } from "@prisma/client";
 
 export const properties = [
   {
@@ -329,6 +328,22 @@ export const testimonialData = [
   {
 
     id:10,
+    owner:'Rashmi',
+    location:'dominos',
+    size:'1100',
+    address:'VPO hansi, hisar,Rohtak'
+  },
+  {
+
+    id:11,
+    owner:'Rashmi',
+    location:'dominos',
+    size:'1100',
+    address:'VPO hansi, hisar,Rohtak'
+  },
+  {
+
+    id:12,
     owner:'Rashmi',
     location:'dominos',
     size:'1100',
