@@ -26,10 +26,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const columns = [
-  { id: "owner", label: "Owner's Name", minWidth: 100 },
-  { id: "location", label: "Location", minWidth: 100 },
-  { id: "size", label: "Size", minWidth: 100, align: "center" },
-  { id: "address", label: "Address", minWidth: 150, align: "center" },
+  { id: "owner", label: "Owner's Name", maxWidth: 200 },
+  { id: "location", label: "Location", maxWidth: 200 },
+  { id: "size", label: "Size", maxWidth: 150, align: "center" },
+  { id: "address", label: "Address", maxWidth: 150, align: "center" },
 ];
 
 const Page = () => {
@@ -49,22 +49,22 @@ const Page = () => {
   };
 
   const handleChangeRowsPerPage = (event) => {
-    // setRowsPerPage(+event.target.value);
         const newRowsPerPage = parseInt(event.target.value, 10);
         setRowsPerPage(newRowsPerPage);
     setPage(0);
   };
 
   return (
-    <Paper sx={{ width: "83%", overflow: "hidden" }} className="mx-auto mt-12">
-      <TableContainer sx={{ maxHeight: 560 }}>
+    <Paper sx={{ width: "83%", overflow: "hidden" }} className="mx-auto mt-10">
+      <TableContainer sx={{ maxHeight: 580 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               <StyledTableCell />
               {columns.map((column) => (
                 <StyledTableCell
-                 key={column.id}
+                 key={column.id} 
+                 style={{ minWidth : column.maxWidth}}
                   // align={column.align} 
                  className="font-semibold">
                   {column.label}
@@ -84,7 +84,7 @@ const Page = () => {
                   <TableCell component="th" scope="row">{row.owner} -- {row.id}</TableCell>
                   <TableCell>{row.location}</TableCell>
                   <TableCell>{row.size}</TableCell>
-                  <TableCell>{row.address}</TableCell>
+                  <TableCell className="max-w-[350px]">{row.address}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
