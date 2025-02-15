@@ -105,10 +105,11 @@ const Page = () => {
               </button>
             )}
           </CldUploadWidget>
+          <p className='text-sm py-2'>{property.images.length} Uploaded Image</p>
           <br />
           <button
             type="submit"
-            className="bg-green-700 hover:bg-green-900 hover:shadow text-lg p-2.5 capitalize float-right w-[100px] rounded-lg text-white mt-6"
+            className="bg-green-700 hover:bg-green-900 hover:shadow text-lg p-2.5 capitalize float-right w-[100px] rounded-lg text-white mt-4"
           >
             submit
           </button>

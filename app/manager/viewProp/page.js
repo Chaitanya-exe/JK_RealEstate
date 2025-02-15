@@ -13,6 +13,7 @@ import { Collapse, IconButton, TablePagination } from "@mui/material";
 import { dummyPropertiesData } from "@/constants/dummydata";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import DeleteIcon from "@mui/icons-material/Delete";
 import Image from "next/image";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -44,13 +45,13 @@ const Page = () => {
     }));
   };
 
-  const handleChangePage = (event,newPage) => {
+  const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
   const handleChangeRowsPerPage = (event) => {
-        const newRowsPerPage = parseInt(event.target.value, 10);
-        setRowsPerPage(newRowsPerPage);
+    const newRowsPerPage = parseInt(event.target.value, 10);
+    setRowsPerPage(newRowsPerPage);
     setPage(0);
   };
 
@@ -63,49 +64,99 @@ const Page = () => {
               <StyledTableCell />
               {columns.map((column) => (
                 <StyledTableCell
-                 key={column.id} 
-                 style={{ minWidth : column.maxWidth}}
-                  // align={column.align} 
-                 className="font-semibold">
+                  key={column.id}
+                  style={{ minWidth: column.maxWidth }}
+                  // align={column.align}
+                  className="font-semibold"
+                >
                   {column.label}
                 </StyledTableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            {dummyPropertiesData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, i) => 
-              <React.Fragment key={row.id || i}>
-                <TableRow className="bg-cardBg/50">
-                  <TableCell>
-                    <IconButton aria-label="expand row" size="small" onClick={() => handleToggle(i)}>
-                      {openRows[i] ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                    </IconButton>
-                  </TableCell>
-                  <TableCell component="th" scope="row">{row.owner} -- {row.id}</TableCell>
-                  <TableCell>{row.location}</TableCell>
-                  <TableCell>{row.size}</TableCell>
-                  <TableCell className="max-w-[350px]">{row.address}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-                    <Collapse in={openRows[i]} timeout="auto" unmountOnExit>
-                      <div className="my-3  flex flex-wrap gap-3 *:rounded *:object-contain">
-                        <Image src={"/formBg.png"} alt="image" width={280} height={200} className="" />
-                        <Image src={"/formBg.png"} alt="image" width={280} height={200} className=" " />
-                        <Image src={"/formBg.png"} alt="image" width={280} height={200} className=" " />
-                        <Image src={"/formBg.png"} alt="image" width={280} height={200} className="" />
-                        <Image src={"/formBg.png"} alt="image" width={280} height={200} className="" />
-                      </div>
-                    </Collapse>
-                  </TableCell>
-                </TableRow>
-              </React.Fragment>
-            )}
+            {dummyPropertiesData
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row, i) => (
+                <React.Fragment key={row.id || i}>
+                  <TableRow className="bg-cardBg/50">
+                    <TableCell>
+                      <IconButton size="small" onClick={() => handleToggle(i)}>
+                        {openRows[i] ? (
+                          <KeyboardArrowUpIcon />
+                        ) : (
+                          <KeyboardArrowDownIcon />
+                        )}
+                      </IconButton>
+                      <IconButton
+                        size="small"
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </TableCell>
+
+                    <TableCell component="th" scope="row">
+                      {row.owner} -- {row.id}
+                    </TableCell>
+                    <TableCell>{row.location}</TableCell>
+                    <TableCell>{row.size}</TableCell>
+                    <TableCell className="max-w-[350px]">
+                      {row.address}
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell
+                      style={{ paddingBottom: 0, paddingTop: 0 }}
+                      colSpan={6}
+                    >
+                      <Collapse in={openRows[i]} timeout="auto" unmountOnExit>
+                        <div className="my-3  flex flex-wrap gap-3 *:rounded *:object-contain">
+                          <Image
+                            src={"/formBg.png"}
+                            alt="image"
+                            width={280}
+                            height={200}
+                            className="hover:scale-105"
+                          />
+                          <Image
+                            src={"/formBg.png"}
+                            alt="image"
+                            width={280}
+                            height={200}
+                            className="hover:scale-105 "
+                          />
+                          <Image
+                            src={"/formBg.png"}
+                            alt="image"
+                            width={280}
+                            height={200}
+                            className="hover:scale-105 "
+                          />
+                          <Image
+                            src={"/formBg.png"}
+                            alt="image"
+                            width={280}
+                            height={200}
+                            className="hover:scale-105"
+                          />
+                          <Image
+                            src={"/formBg.png"}
+                            alt="image"
+                            width={280}
+                            height={200}
+                            className="hover:scale-105"
+                          />
+                        </div>
+                      </Collapse>
+                    </TableCell>
+                  </TableRow>
+                </React.Fragment>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 100,200]}
+        rowsPerPageOptions={[10, 25, 100, 200]}
         component="div"
         count={dummyPropertiesData.length}
         rowsPerPage={rowsPerPage}

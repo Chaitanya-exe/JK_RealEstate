@@ -184,7 +184,7 @@ export default function Home() {
           </div>
 
           {/* image */}
-          <div className="rounded-full max-sm:hidden flex-center min-w-[50px] min-h-[50px] overflow-hidden outline outline-prim_white md:-mt-14">
+          <div className="rounded-full max-sm:hidden flex-center min-w-[550px] min-h-[550px] overflow-hidden outline outline-prim_white md:-mt-14">
             <Image
               src={"/heroImg.png"}
               width={510}
