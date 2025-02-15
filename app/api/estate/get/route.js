@@ -6,11 +6,15 @@ async function handler(req){
     const userClient = new PrismaClient();
     try {
         const url = new NextURL(req.url);
-        const params = url.searchParams.forEach((value, key)=>{
-            return {key: value}
-        });
-        console.log(params)
-        return NextResponse.json({success:true, data:"request received"});
+        const params = url.searchParams;
+
+        const response = await userClient.property.findMany({include:{images:true}});
+
+        if(!response){
+            throw new Error("error while fetching the properties")
+        }
+
+        return NextResponse.json({success:true, data:response});
     } catch (err) {
         console.log(`${err}`);
         return NextResponse.json({error: "some error occured", success:false},{status:500});
