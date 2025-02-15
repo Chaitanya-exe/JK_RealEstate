@@ -1,4 +1,3 @@
-import { Inquiry } from "@prisma/client";
 
 export const properties = [
   {
@@ -253,85 +252,90 @@ export const testimonialData = [
    },
  ];
 
- export const dummyPropertiesData =[
-  {
-
-    id:1,
-    owner:'Rashmi',
-    location:'dominos',
-    size:'1100',
-    address:'VPO hansi, hisar,Rohtak'
-  },
-  {
-
-    id:2,
-    owner:'Rashmi',
-    location:'dominos',
-    size:'1100',
-    address:'VPO hansi, hisar,Rohtak'
-  },
-  {
-
-    id:3,
-    owner:'Rashmi',
-    location:'dominos',
-    size:'1100',
-    address:'VPO hansi, hisar,Rohtak'
-  },
-  {
-
-    id:4,
-    owner:'Rashmi',
-    location:'dominos',
-    size:'1100',
-    address:'VPO hansi, hisar,Rohtak'
-  },
-  {
-
-    id:5,
-    owner:'Rashmi',
-    location:'dominos',
-    size:'1100',
-    address:'VPO hansi, hisar,Rohtak'
-  },
-  {
-
-    id:6,
-    owner:'Rashmi',
-    location:'dominos',
-    size:'1100',
-    address:'VPO hansi, hisar,Rohtak'
-  },
-  {
-
-    id:7,
-    owner:'Rashmi',
-    location:'dominos',
-    size:'1100',
-    address:'VPO hansi, hisar,Rohtak'
-  },
-  {
-
-    id:8,
-    owner:'Rashmi',
-    location:'dominos',
-    size:'1100',
-    address:'VPO hansi, hisar,Rohtak'
-  },
-  {
-
-    id:9,
-    owner:'Rashmi',
-    location:'dominos',
-    size:'1100',
-    address:'VPO hansi, hisar,Rohtak'
-  },
-  {
-
-    id:10,
-    owner:'Rashmi',
-    location:'dominos',
-    size:'1100',
-    address:'VPO hansi, hisar,Rohtak'
-  },
- ]
+ export const dummyPropertiesData = [
+   {
+     id: 1,
+     owner: "Rashmi",
+     location: "dominos",
+     size: "1100",
+     address:
+       "VPO hansi, hisar,Rohtak VPO hansi, hisar,Rohtak VPO hansi, hisar,Rohtak",
+   },
+   {
+     id: 2,
+     owner: "Rashmi",
+     location: "dominos",
+     size: "1100",
+     address: "VPO hansi, hisar,Rohtak",
+   },
+   {
+     id: 3,
+     owner: "Rashmi",
+     location: "dominos",
+     size: "1100",
+     address: "VPO hansi, hisar,Rohtak",
+   },
+   {
+     id: 4,
+     owner: "Rashmi",
+     location: "dominos",
+     size: "1100",
+     address: "VPO hansi, hisar,Rohtak",
+   },
+   {
+     id: 5,
+     owner: "Rashmi",
+     location: "dominos",
+     size: "1100",
+     address: "VPO hansi, hisar,Rohtak",
+   },
+   {
+     id: 6,
+     owner: "Rashmi",
+     location: "dominos",
+     size: "1100",
+     address: "VPO hansi, hisar,Rohtak",
+   },
+   {
+     id: 7,
+     owner: "Rashmi",
+     location: "dominos",
+     size: "1100",
+     address: "VPO hansi, hisar,Rohtak",
+   },
+   {
+     id: 8,
+     owner: "Rashmi",
+     location: "dominos",
+     size: "1100",
+     address: "VPO hansi, hisar,Rohtak",
+   },
+   {
+     id: 9,
+     owner: "Rashmi",
+     location: "dominos",
+     size: "1100",
+     address: "VPO hansi, hisar,Rohtak",
+   },
+   {
+     id: 10,
+     owner: "Rashmi",
+     location: "dominos",
+     size: "1100",
+     address: "VPO hansi, hisar,Rohtak",
+   },
+   {
+     id: 11,
+     owner: "Rashmi",
+     location: "dominos",
+     size: "1100",
+     address: "VPO hansi, hisar,Rohtak",
+   },
+   {
+     id: 12,
+     owner: "Rashmi",
+     location: "dominos",
+     size: "1100",
+     address: "VPO hansi, hisar,Rohtak",
+   },
+ ];

@@ -9,8 +9,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { TablePagination } from "@mui/material";
+import { Collapse, IconButton, TablePagination } from "@mui/material";
 import { dummyPropertiesData } from "@/constants/dummydata";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import Image from "next/image";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -22,115 +25,87 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-
 const columns = [
-  { id: "owner", label: "Owner'sName", minWidth: 100 },
-  { id: "location", label: "Location", minWidth: 100 },
-  {
-    id: "size",
-    label: "Size",
-    minWidth: 100,
-    align: "center",
-  },
-  {
-    id: "address",
-    label: "Address",
-    minWidth: 150,
-    align: "center",
-  },
- 
+  { id: "owner", label: "Owner's Name", maxWidth: 200 },
+  { id: "location", label: "Location", maxWidth: 200 },
+  { id: "size", label: "Size", maxWidth: 150, align: "center" },
+  { id: "address", label: "Address", maxWidth: 150, align: "center" },
 ];
 
-const page = () => {
-  const [propertiesDetail, setPropertiesDetail] = React.useState([]);
+const Page = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [openRows, setOpenRows] = React.useState({});
 
-  const handleFetch = async () => {
-    // e.preventDefault();
-    try {
-      const response = await fetch("/api/estate/get", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      // Optionally check if the response is ok before parsing JSON
-      if (!response.ok) {
-        console.error("Error response:", response.statusText);
-        alert("Error while fetching properties");
-        return;
-      }
-
-      const data = await response.json();
-
-      if (!data.success) {
-        alert("Error while fetching properties");
-        return;
-      }
-
-      setPropertiesDetail(data);
-    } catch (error) {
-      console.error(error);
-      alert("some error occured");
-    }
+  const handleToggle = (index) => {
+    setOpenRows((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
   };
 
-  React.useEffect(() => {
-    // handleFetch();
-  }, []);
-
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (event,newPage) => {
     setPage(newPage);
   };
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
+        const newRowsPerPage = parseInt(event.target.value, 10);
+        setRowsPerPage(newRowsPerPage);
     setPage(0);
   };
 
   return (
-    <Paper sx={{ width: "83%", overflow: "hidden" }} className="mx-auto mt-12">
-      <TableContainer sx={{ maxHeight: 460 }}>
+    <Paper sx={{ width: "83%", overflow: "hidden" }} className="mx-auto mt-10">
+      <TableContainer sx={{ maxHeight: 580 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
+              <StyledTableCell />
               {columns.map((column) => (
                 <StyledTableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                  className="font-semibold"
-                >
+                 key={column.id} 
+                 style={{ minWidth : column.maxWidth}}
+                  // align={column.align} 
+                 className="font-semibold">
                   {column.label}
                 </StyledTableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            {dummyPropertiesData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
+            {dummyPropertiesData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, i) => 
+              <React.Fragment key={row.id || i}>
+                <TableRow className="bg-cardBg/50">
+                  <TableCell>
+                    <IconButton aria-label="expand row" size="small" onClick={() => handleToggle(i)}>
+                      {openRows[i] ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                    </IconButton>
+                  </TableCell>
+                  <TableCell component="th" scope="row">{row.owner} -- {row.id}</TableCell>
+                  <TableCell>{row.location}</TableCell>
+                  <TableCell>{row.size}</TableCell>
+                  <TableCell className="max-w-[350px]">{row.address}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                    <Collapse in={openRows[i]} timeout="auto" unmountOnExit>
+                      <div className="my-3  flex flex-wrap gap-3 *:rounded *:object-contain">
+                        <Image src={"/formBg.png"} alt="image" width={280} height={200} className="" />
+                        <Image src={"/formBg.png"} alt="image" width={280} height={200} className=" " />
+                        <Image src={"/formBg.png"} alt="image" width={280} height={200} className=" " />
+                        <Image src={"/formBg.png"} alt="image" width={280} height={200} className="" />
+                        <Image src={"/formBg.png"} alt="image" width={280} height={200} className="" />
+                      </div>
+                    </Collapse>
+                  </TableCell>
+                </TableRow>
+              </React.Fragment>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={[10, 25, 100,200]}
         component="div"
         count={dummyPropertiesData.length}
         rowsPerPage={rowsPerPage}
@@ -142,4 +117,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
