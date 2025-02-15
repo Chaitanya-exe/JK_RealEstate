@@ -14,23 +14,25 @@ datasource db {
 }
 
 model Query {
-  id      String    @unique @default(uuid())
-  name    String
-  number  String    @unique
-  email   String    @unique
-  inquiry String[]  @default([])
-  type    Inquiry[] @default([])
+  id        String    @unique @default(uuid())
+  name      String
+  number    String    @unique
+  email     String    @unique
+  inquiry   String[]  @default([])
+  type      Inquiry[] @default([])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt @default(now())
 }
 
 model Property {
-  id       String  @unique @default(uuid())
-  address  String  @unique
-  location String
-  size     Int
-  owner    String? @default("")
-  images   Image[]
+  id        String   @unique @default(uuid())
+  address   String   @unique
+  location  String
+  size      Int
+  owner     String?  @default("")
+  images    Image[]
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt() @default(now())
 }
 
 model Image {
