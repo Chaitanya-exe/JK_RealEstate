@@ -1,3 +1,5 @@
+import { Inquiry } from "@prisma/client";
+
 export const properties = [
   {
     id: 1,
@@ -112,3 +114,224 @@ export const testimonialData = [
      rating: "5",
    },
  ];
+
+ export const services = [
+   {
+     id: 1,
+     name: " Commercial Brokerage & Property Sales",
+     title: "Maximize Your Investment Potential",
+     subtitle:
+       "Our commercial brokerage team specializes in strategic property transactions.",
+     list: [
+       {
+         key: "Market Analysis & Valuation:",
+         value:
+           " Leverage data-driven insights to understand current market trends.",
+       },
+       {
+         key: "Negotiation Expertise:",
+         value:
+           "Secure the best possible terms through expert negotiation and transparent communication.",
+       },
+       {
+         key: "Market Analysis & Valuation:",
+         value:
+           " Leverage data-driven insights to understand current market trends.",
+       },
+     ],
+     imagePath: "/formBg.png",
+   },
+   {
+     id: 2,
+     name: "Property Management & Leasing",
+     title: "Maximize Your Investment Potential",
+     subtitle:
+       "Our commercial brokerage team specializes in strategic property transactions.",
+     list: [
+       {
+         key: "Market Analysis & Valuation:",
+         value:
+           " Leverage data-driven insights to understand current market trends.",
+       },
+       {
+         key: "Negotiation Expertise:",
+         value:
+           "Secure the best possible terms through expert negotiation and transparent communication.",
+       },
+       {
+         key: "Market Analysis & Valuation:",
+         value:
+           " Leverage data-driven insights to understand current market trends.",
+       },
+     ],
+     imagePath: "/formBg.png",
+   },
+   {
+     id: 3,
+     name: "Real Estate Investment Consulting",
+     title: "Maximize Your Investment Potential",
+     subtitle:
+       "Our commercial brokerage team specializes in strategic property transactions.",
+     list: [
+       {
+         key: "Market Analysis & Valuation:",
+         value:
+           " Leverage data-driven insights to understand current market trends.",
+       },
+       {
+         key: "Negotiation Expertise:",
+         value:
+           "Secure the best possible terms through expert negotiation and transparent communication.",
+       },
+       {
+         key: "Market Analysis & Valuation:",
+         value:
+           " Leverage data-driven insights to understand current market trends.",
+       },
+     ],
+     imagePath: "/formBg.png",
+   },
+   {
+     id: 4,
+     name: " Strategic Market Analysis & Advisory",
+     title: "Maximize Your Investment Potential",
+     subtitle:
+       "Our commercial brokerage team specializes in strategic property transactions.",
+     list: [
+       {
+         key: "Market Analysis & Valuation:",
+         value:
+           " Leverage data-driven insights to understand current market trends.",
+       },
+       {
+         key: "Negotiation Expertise:",
+         value:
+           "Secure the best possible terms through expert negotiation and transparent communication.",
+       },
+       {
+         key: "Market Analysis & Valuation:",
+         value:
+           " Leverage data-driven insights to understand current market trends.",
+       },
+     ],
+     imagePath: "/formBg.png",
+   },
+ ];
+
+ export const rows = [
+   {
+     id: 1,
+     name: "Rashmi",
+     email: "@gamil.com",
+     phoneNumber: "2490832490",
+     type: ["fervf", "reqg", "er"],
+     Inquiry: ["freqv", "non", "nkjn"],
+   },
+   {
+     id: 2,
+     name: "Rashmi",
+     email: "2@gamil.com",
+     phoneNumber: "2384908390",
+     type: ["fervf", "reqg", "er"],
+     Inquiry: ["Scrolling Behavior:If the condition is not met (meaning you're either on the home page, or the target is on the /services page), the function tries to locate the element by its id and scrolls smoothly to its position.This solution ensures that", "non", "nkjn"],
+   },
+   {
+     id: 3,
+     name: "Rashmi",
+     email: "3@gamil.com",
+     phoneNumber: "23840832490",
+     type: ["fervf", "reqg", "er"],
+     Inquiry: ["freqv", "non", "nkjn"],
+   },
+   {
+     id: 4,
+     name: "Rashmi",
+     email: "4@gamil.com",
+     phoneNumber: "23842490",
+     type: ["fervf", "reqg", "er"],
+     Inquiry: ["freqv", "non", "nkjn"],
+   },
+ ];
+
+ export const dummyPropertiesData =[
+  {
+
+    id:1,
+    owner:'Rashmi',
+    location:'dominos',
+    size:'1100',
+    address:'VPO hansi, hisar,Rohtak'
+  },
+  {
+
+    id:2,
+    owner:'Rashmi',
+    location:'dominos',
+    size:'1100',
+    address:'VPO hansi, hisar,Rohtak'
+  },
+  {
+
+    id:3,
+    owner:'Rashmi',
+    location:'dominos',
+    size:'1100',
+    address:'VPO hansi, hisar,Rohtak'
+  },
+  {
+
+    id:4,
+    owner:'Rashmi',
+    location:'dominos',
+    size:'1100',
+    address:'VPO hansi, hisar,Rohtak'
+  },
+  {
+
+    id:5,
+    owner:'Rashmi',
+    location:'dominos',
+    size:'1100',
+    address:'VPO hansi, hisar,Rohtak'
+  },
+  {
+
+    id:6,
+    owner:'Rashmi',
+    location:'dominos',
+    size:'1100',
+    address:'VPO hansi, hisar,Rohtak'
+  },
+  {
+
+    id:7,
+    owner:'Rashmi',
+    location:'dominos',
+    size:'1100',
+    address:'VPO hansi, hisar,Rohtak'
+  },
+  {
+
+    id:8,
+    owner:'Rashmi',
+    location:'dominos',
+    size:'1100',
+    address:'VPO hansi, hisar,Rohtak'
+  },
+  {
+
+    id:9,
+    owner:'Rashmi',
+    location:'dominos',
+    size:'1100',
+    address:'VPO hansi, hisar,Rohtak'
+  },
+  {
+
+    id:10,
+    owner:'Rashmi',
+    location:'dominos',
+    size:'1100',
+    address:'VPO hansi, hisar,Rohtak'
+  },
+ ]

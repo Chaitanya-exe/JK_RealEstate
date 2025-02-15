@@ -1,7 +1,7 @@
+import Link from "next/link";
 import React from "react";
 
-const Button = ({ type, text, icon, classname, funCall, hrefLink }) => {
-  console.log(hrefLink);
+const Button = ({ type, text, icon, classname, hrefLink }) => {
 
    if (hrefLink) {
     return (
@@ -26,12 +26,6 @@ const Button = ({ type, text, icon, classname, funCall, hrefLink }) => {
           ? "bg-prim_black text-prim_white hover:bg-gray"
           : "bg-none border hover:ring-1 hover:ring-prim_white border-prim_white"
       } capitalize text-nowrap ${classname}`}
-      onClick={(e) => {
-        e.preventDefault();
-        if (typeof funCall === "function") {
-          funCall(); 
-        }
-      }}
     >
       {icon && <span>{icon}</span>}
       <p>{text}</p>

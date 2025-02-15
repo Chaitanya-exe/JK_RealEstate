@@ -55,7 +55,7 @@ const PropertyCard = ({ property }) => {
       key={property.id}
       className={` ${
         property.id % 2 !== 0 ? "md:flex-row" : "md:flex-row-reverse"
-      } relative md:flex-center  flex flex-col gap-6 py-16 px-4  md:gap-28`}
+      } relative md:flex-center  flex flex-col gap-6 md:py-16 py-12 px-4  md:gap-28`}
     >
       <div className={`${property.id%2 !== 0 ? "right_imgclass" : "left_imgclass"} relative `}>
         <Image

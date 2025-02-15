@@ -64,15 +64,15 @@ text-transform: capitalize;
   .hero_heading_Sm{
 font-family: 'Raleway';
 font-style: normal;
-font-weight: 600;
-font-size: 28px;
-line-height: 30px;
+font-weight: 620;
+font-size: 32px;
+line-height: 35px;
 text-transform: capitalize;
   }
 
   .hero_subheading{
 width: 721px;
-height: 118px;
+/* height: 118px; */
 
 font-family: 'Sarala';
 font-style: normal;
