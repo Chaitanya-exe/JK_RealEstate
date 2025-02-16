@@ -19,7 +19,7 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
-
+  const date = new Date(row.createdAt)
   return (
     <React.Fragment>
       <TableRow
@@ -39,9 +39,9 @@ function Row(props) {
           {row.name}
         </TableCell>
         <TableCell>{row.email}</TableCell>
-        <TableCell>{row.phoneNumber}</TableCell>
+        <TableCell>{row.number}</TableCell>
         <TableCell align="right" sx={{ maxWidth: "40px", fontSize: "12px" }}>
-          {row.createdOn}
+          {date.toLocaleDateString()}
         </TableCell>
       </TableRow>
       <TableRow>
@@ -52,14 +52,14 @@ function Row(props) {
                 <h1 className="text-lg font-[550]">Type :-</h1>
                 <div className="flex gap-2 text-[15px] *:bg-cardBg/40 *:py-1 *:px-3  *:capitalize ">
                   {row.type.map((historyRow, i) => (
-                    <span key={i}>{historyRow}</span>
+                    <span key={i}>{historyRow.toLowerCase()}</span>
                   ))}
                 </div>
               </div>
               <div>
                 <h1 className="text-lg font-[550]">Inquiries :-</h1>
                 <div className="flex flex-col text-[15px] text-wrap gap-1 tracking-wide my-2 *:bg-cardBg/40 *:py-2 *:px-3  *:capitalize ">
-                  {row.Inquiry.map((historyRow, i) => (
+                  {row.inquiry.map((historyRow, i) => (
                     <p key={i}>{historyRow}</p>
                   ))}
                 </div>
@@ -72,56 +72,66 @@ function Row(props) {
   );
 }
 
+function getDate(value) {
+  const baseDate = new Date();
+  switch (value) {
+    case "today":
+      const today = new Date();
+      return today.toISOString();
+    case "yesterday":
+      const yesterday = new Date();
+      yesterday.setDate(baseDate.getDate() - 1);
+      console.log(yesterday.toISOString())
+      return yesterday.toISOString();
+    case "last7Days":
+      const last7Days = new Date();
+      last7Days.setDate(baseDate.getDate() - 7);
+      return last7Days.toISOString();
+    case "last30Days":
+      const last30Days = new Date();
+      last30Days.setDate(baseDate.getDate() - 30);
+      return last30Days.toISOString();
+    case "all":
+      return "ALL";
+  }
+}
+
 export default function Page() {
+
+  const [data, setData] = React.useState([]);
   const [filterValue, setFilterValue] = React.useState("all");
 
-  // Get today's date and other time ranges
-  const today = new Date();
-  const yesterday = new Date();
-  yesterday.setDate(today.getDate() - 1);
-
-  const last7Days = new Date();
-  last7Days.setDate(today.getDate() - 7);
-
-  const last30Days = new Date();
-  last30Days.setDate(today.getDate() - 30);
-
-  const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-
-  const startOfLastMonth = new Date(
-    today.getFullYear(),
-    today.getMonth() - 1,
-    1
-  );
-  const endOfLastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
-
-  // Function to filter queries
-  const filteredQueries = rows.filter((query) => {
-    const queryDate = new Date(query.createdOn);
-
-    switch (filterValue) {
-      case "today":
-        return queryDate.toDateString() === today.toDateString();
-      case "yesterday":
-        return queryDate.toDateString() === yesterday.toDateString();
-      case "last7days":
-        return queryDate >= last7Days;
-      case "last30days":
-        return queryDate >= last30Days;
-      case "thismonth":
-        return queryDate >= startOfMonth;
-      case "lastmonth":
-        return queryDate >= startOfLastMonth && queryDate <= endOfLastMonth;
-      case "all":
-        return true;
-      default:
-        return true;
+  React.useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(`http://localhost:3000/api/query/get?date=ALL`);
+        const resData = await response.json();
+        console.log(resData)
+        setData(resData.data);
+      } catch (err) {
+        alert("some error occured");
+      }
     }
-  });
+    fetchData();
+  }, [])
+
+  React.useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(`http://localhost:3000/api/query/get?date=${getDate(filterValue)}`);
+        const resData = await response.json();
+        setData(resData.data);
+      } catch (err) {
+        alert("some error occured");
+      }
+    }
+    fetchData();
+  }, [filterValue])
+  
   return (
     <section className="max-w-[70vw] mx-auto my-8">
       <div className="flex items-center gap-1 mb-3 float-right">
-         <FilterAltIcon className="text-prim_black/70 size-8" />
+        <FilterAltIcon className="text-prim_black/70 size-8" />
         <FormControl className="min-w-[150px]">
           <select
             className="h-[40px] px-1 border-prim_black/20 focus:border-prim_black rounded-sm focus:outline-none border bg-transparent"
@@ -133,8 +143,6 @@ export default function Page() {
             <option value="yesterday">Yesterday</option>
             <option value="last7days">Last 7 Days</option>
             <option value="last30days">Last 30 Days</option>
-            <option value="thismonth">This Month</option>
-            <option value="lastmonth">Last Month</option>
           </select>
         </FormControl>
       </div>
@@ -159,8 +167,8 @@ export default function Page() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredQueries.length > 0 ? (
-              filteredQueries.map((row) => <Row key={row.id} row={row} />)
+            {data.length > 0 ? (
+              data.map((row) => <Row key={row.id} row={row} />)
             ) : (
               <TableRow>
                 <TableCell colSpan="2" className="p-4 text-center">

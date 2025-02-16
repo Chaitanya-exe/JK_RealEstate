@@ -36,7 +36,7 @@ async function handler(req) {
     });
     console.log(response);
     return NextResponse.json(
-      { msg: "Succesful req", response },
+      { msg: "Query sent successfully", response },
       { status: 201 }
     );
   } catch (err) {

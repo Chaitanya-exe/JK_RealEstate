@@ -8,22 +8,36 @@ async function handler(req) {
   try {
     const url = new NextURL(req.url);
     const params = url.searchParams;
+    const date = params.get("date");
+    console.log(date);
+
+    if (date === "ALL") {
+      const queries = await userClient.query.findMany();
+      
+      if (!queries) {
+        throw new Error("Some error occured fetching the querires");
+      }
+
+      return NextResponse.json(
+        { msg: "successful req", data: queries },
+        { status: 200 }
+      );
+    }
 
     const queries = await userClient.query.findMany({
-      where:{
-        createdAt:{
-          lte: new Date()
+      where: {
+        createdAt: {
+          gte: date
         }
       },
-      take:10
     });
 
-    if (!queries){
+    if (!queries) {
       throw new Error("Some error occured fetching the querires");
     }
 
     return NextResponse.json(
-      { msg: "successful req", data: queries},
+      { msg: "successful req", data: queries },
       { status: 200 }
     );
   } catch (error) {
