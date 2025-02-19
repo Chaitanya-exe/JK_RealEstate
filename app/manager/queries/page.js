@@ -72,7 +72,7 @@ function Row(props) {
   );
 }
 
-function getDate(value) {
+function fetchDate(value) {
   const baseDate = new Date();
   switch (value) {
     case "today":
@@ -81,11 +81,11 @@ function getDate(value) {
     case "yesterday":
       const yesterday = new Date();
       yesterday.setDate(baseDate.getDate() - 1);
-      console.log(yesterday.toISOString())
       return yesterday.toISOString();
     case "last7Days":
       const last7Days = new Date();
       last7Days.setDate(baseDate.getDate() - 7);
+      console.log(last7Days)
       return last7Days.toISOString();
     case "last30Days":
       const last30Days = new Date();
@@ -99,16 +99,20 @@ function getDate(value) {
 export default function Page() {
 
   const [data, setData] = React.useState([]);
+  const [isLoading, setLoading] = React.useState(true);
   const [filterValue, setFilterValue] = React.useState("all");
 
   React.useEffect(() => {
     async function fetchData() {
+      setLoading(true)
       try {
         const response = await fetch(`http://localhost:3000/api/query/get?date=ALL`);
         const resData = await response.json();
+        setLoading(false);
         console.log(resData)
         setData(resData.data);
       } catch (err) {
+        setLoading(false)
         alert("some error occured");
       }
     }
@@ -117,17 +121,20 @@ export default function Page() {
 
   React.useEffect(() => {
     async function fetchData() {
+      setLoading(true)
       try {
-        const response = await fetch(`http://localhost:3000/api/query/get?date=${getDate(filterValue)}`);
+        const response = await fetch(`http://localhost:3000/api/query/get?date=${fetchDate(filterValue)}`);
         const resData = await response.json();
+        setLoading(false);
         setData(resData.data);
       } catch (err) {
+        setLoading(false)
         alert("some error occured");
       }
     }
     fetchData();
   }, [filterValue])
-  
+
   return (
     <section className="max-w-[70vw] mx-auto my-8">
       <div className="flex items-center gap-1 mb-3 float-right">
@@ -166,17 +173,26 @@ export default function Page() {
               </TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-            {data.length > 0 ? (
-              data.map((row) => <Row key={row.id} row={row} />)
-            ) : (
+          {isLoading ?
+            <TableBody>
               <TableRow>
                 <TableCell colSpan="2" className="p-4 text-center">
-                  No queries found
+                  Fetching data
                 </TableCell>
               </TableRow>
+            </TableBody> : (
+              <TableBody>
+                {data.length > 0 ? (
+                  data.map((row) => <Row key={row.id} row={row} />)
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan="2" className="p-4 text-center">
+                      No queries found
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
             )}
-          </TableBody>
         </Table>
       </TableContainer>
     </section>

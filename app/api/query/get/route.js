@@ -8,7 +8,7 @@ async function handler(req) {
   try {
     const url = new NextURL(req.url);
     const params = url.searchParams;
-    const date = params.get("date");
+    let date = params.get("date");
     console.log(date);
 
     if (date === "ALL") {
@@ -24,10 +24,13 @@ async function handler(req) {
       );
     }
 
+    date = new Date(date);
+    date.setHours(0,0,0,0);
+    console.log(date)
     const queries = await userClient.query.findMany({
       where: {
         createdAt: {
-          gte: date
+          gte: date.toISOString()
         }
       },
     });
