@@ -12,7 +12,6 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { rows } from "@/constants/dummydata";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
@@ -20,6 +19,9 @@ function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
   const date = new Date(row.createdAt)
+
+  console.log("date", date);
+  
   return (
     <React.Fragment>
       <TableRow
@@ -73,26 +75,33 @@ function Row(props) {
 }
 
 function fetchDate(value) {
-  const baseDate = new Date();
   switch (value) {
     case "today":
-      const today = new Date();
-      return today.toISOString();
+      return new Date().toISOString();
+
     case "yesterday":
       const yesterday = new Date();
-      yesterday.setDate(baseDate.getDate() - 1);
+      yesterday.setDate(yesterday.getDate() - 1);
+      yesterday.setHours(0, 0, 0, 0);
       return yesterday.toISOString();
+
     case "last7Days":
       const last7Days = new Date();
-      last7Days.setDate(baseDate.getDate() - 7);
-      console.log(last7Days)
+      last7Days.setDate(last7Days.getDate() - 7);
+      last7Days.setHours(0, 0, 0, 0);
       return last7Days.toISOString();
+
     case "last30Days":
       const last30Days = new Date();
-      last30Days.setDate(baseDate.getDate() - 30);
+      last30Days.setDate(last30Days.getDate() - 30);
+      last30Days.setHours(0, 0, 0, 0);
       return last30Days.toISOString();
+
     case "all":
       return "ALL";
+
+    default:
+      return new Date().toISOString(); // Return current date by default
   }
 }
 
@@ -100,30 +109,17 @@ export default function Page() {
 
   const [data, setData] = React.useState([]);
   const [isLoading, setLoading] = React.useState(true);
-  const [filterValue, setFilterValue] = React.useState("all");
+  const [filterValue, setFilterValue] = React.useState("ALL");
+
+  // console.log(data);
+  
 
   React.useEffect(() => {
     async function fetchData() {
       setLoading(true)
       try {
-        const response = await fetch(`http://localhost:3000/api/query/get?date=ALL`);
-        const resData = await response.json();
-        setLoading(false);
-        console.log(resData)
-        setData(resData.data);
-      } catch (err) {
-        setLoading(false)
-        alert("some error occured");
-      }
-    }
-    fetchData();
-  }, [])
-
-  React.useEffect(() => {
-    async function fetchData() {
-      setLoading(true)
-      try {
-        const response = await fetch(`http://localhost:3000/api/query/get?date=${fetchDate(filterValue)}`);
+        // const response = await fetch(`http://localhost:3000/api/query/get?date=${fetchDate(filterValue)}`);
+        const response = await fetch(`http://localhost:3000/api/query/get?date=${filterValue}`);
         const resData = await response.json();
         setLoading(false);
         setData(resData.data);
@@ -145,11 +141,11 @@ export default function Page() {
             value={filterValue}
             onChange={(e) => setFilterValue(e.target.value)}
           >
-            <option value="all">All</option>
+            <option value="ALL">All</option>
             <option value="today">Today</option>
             <option value="yesterday">Yesterday</option>
-            <option value="last7days">Last 7 Days</option>
-            <option value="last30days">Last 30 Days</option>
+            <option value="last7Days">Last 7 Days</option>
+            <option value="last30Days">Last 30 Days</option>
           </select>
         </FormControl>
       </div>
@@ -182,7 +178,7 @@ export default function Page() {
               </TableRow>
             </TableBody> : (
               <TableBody>
-                {data.length > 0 ? (
+                {data &&  data.length > 0 ? (
                   data.map((row) => <Row key={row.id} row={row} />)
                 ) : (
                   <TableRow>

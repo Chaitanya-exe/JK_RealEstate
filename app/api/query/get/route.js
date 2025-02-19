@@ -9,35 +9,74 @@ async function handler(req) {
     const url = new NextURL(req.url);
     const params = url.searchParams;
     let date = params.get("date");
-    console.log(date);
+    console.log("Date param:", date);
 
-    if (date === "ALL") {
-      const queries = await userClient.query.findMany();
-      
-      if (!queries) {
-        throw new Error("Some error occured fetching the querires");
-      }
+    let startDate;
+    let endDate;
 
-      return NextResponse.json(
-        { msg: "successful req", data: queries },
-        { status: 200 }
-      );
+    switch (date) {
+      case "ALL":
+        // Fetch all queries without any date filter
+        const allQueries = await userClient.query.findMany();
+        return NextResponse.json(
+          { msg: "successful req", data: allQueries },
+          { status: 200 }
+        );
+
+      case "today":
+        startDate = new Date();
+        startDate.setHours(0, 0, 0, 0);
+
+        endDate = new Date();
+        endDate.setHours(23, 59, 59, 999);
+        break;
+
+      case "yesterday":
+        startDate = new Date();
+        startDate.setDate(startDate.getDate() - 1);
+        startDate.setHours(0, 0, 0, 0);
+
+        endDate = new Date();
+        endDate.setDate(endDate.getDate() - 1);
+        endDate.setHours(23, 59, 59, 999);
+        break;
+
+      case "last7Days":
+        startDate = new Date();
+        startDate.setDate(startDate.getDate() - 6); 
+        startDate.setHours(0, 0, 0, 0);
+
+        endDate = new Date();
+        endDate.setHours(23, 59, 59, 999);
+        break;
+
+      case "last30Days":
+        startDate = new Date();
+        startDate.setDate(startDate.getDate() - 29); 
+        startDate.setHours(0, 0, 0, 0);
+
+        endDate = new Date();
+        endDate.setHours(23, 59, 59, 999);
+        break;
+
+      default:
+        return NextResponse.json(
+          { msg: "Invalid date filter" },
+          { status: 400 }
+        );
     }
 
-    date = new Date(date);
-    date.setHours(0,0,0,0);
-    console.log(date)
+    // console.log("Query Start Date:", startDate);
+    // console.log("Query End Date:", endDate);
+
     const queries = await userClient.query.findMany({
       where: {
         createdAt: {
-          gte: date.toISOString()
-        }
+          gte: startDate.toISOString(),
+          lt: endDate.toISOString(),
+        },
       },
     });
-
-    if (!queries) {
-      throw new Error("Some error occured fetching the querires");
-    }
 
     return NextResponse.json(
       { msg: "successful req", data: queries },
@@ -46,11 +85,11 @@ async function handler(req) {
   } catch (error) {
     console.error("Error fetching queries:", error.message);
     return NextResponse.json(
-      { msg: "some err occured in get" },
+      { msg: "Some error occurred in get" },
       { status: 500 }
     );
   } finally {
-    userClient.$disconnect();
+    await userClient.$disconnect();
   }
 }
 
