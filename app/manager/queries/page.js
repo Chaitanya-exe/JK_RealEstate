@@ -13,15 +13,16 @@ import Paper from "@mui/material/Paper";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { FormControl } from "@mui/material";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
-  const date = new Date(row.createdAt)
+  const date = new Date(row.createdAt);
 
   console.log("date", date);
-  
+
   return (
     <React.Fragment>
       <TableRow
@@ -74,62 +75,44 @@ function Row(props) {
   );
 }
 
-function fetchDate(value) {
-  switch (value) {
-    case "today":
-      return new Date().toISOString();
-
-    case "yesterday":
-      const yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
-      yesterday.setHours(0, 0, 0, 0);
-      return yesterday.toISOString();
-
-    case "last7Days":
-      const last7Days = new Date();
-      last7Days.setDate(last7Days.getDate() - 7);
-      last7Days.setHours(0, 0, 0, 0);
-      return last7Days.toISOString();
-
-    case "last30Days":
-      const last30Days = new Date();
-      last30Days.setDate(last30Days.getDate() - 30);
-      last30Days.setHours(0, 0, 0, 0);
-      return last30Days.toISOString();
-
-    case "all":
-      return "ALL";
-
-    default:
-      return new Date().toISOString(); // Return current date by default
-  }
-}
 
 export default function Page() {
-
   const [data, setData] = React.useState([]);
   const [isLoading, setLoading] = React.useState(true);
   const [filterValue, setFilterValue] = React.useState("ALL");
 
-  // console.log(data);
-  
+   const searchParams = useSearchParams();
+   const pathname = usePathname();
+   const router = useRouter();
+
+   React.useEffect(() => {
+     if (filterValue) {
+       const params = new URLSearchParams(searchParams.toString());
+
+       params.set("range", filterValue);
+
+       router.replace(`${pathname}?${params.toString()}`);
+     }
+   }, [filterValue, searchParams, pathname, router]);
+ 
 
   React.useEffect(() => {
     async function fetchData() {
-      setLoading(true)
+      setLoading(true);
       try {
-        // const response = await fetch(`http://localhost:3000/api/query/get?date=${fetchDate(filterValue)}`);
-        const response = await fetch(`http://localhost:3000/api/query/get?date=${filterValue}`);
+        const response = await fetch(
+          `http://localhost:3000/api/query/get?date=${filterValue}`
+        );
         const resData = await response.json();
         setLoading(false);
         setData(resData.data);
       } catch (err) {
-        setLoading(false)
+        setLoading(false);
         alert("some error occured");
       }
     }
     fetchData();
-  }, [filterValue])
+  }, [filterValue]);
 
   return (
     <section className="max-w-[70vw] mx-auto my-8">
@@ -169,26 +152,27 @@ export default function Page() {
               </TableCell>
             </TableRow>
           </TableHead>
-          {isLoading ?
+          {isLoading ? (
             <TableBody>
               <TableRow>
                 <TableCell colSpan="2" className="p-4 text-center">
                   Fetching data
                 </TableCell>
               </TableRow>
-            </TableBody> : (
-              <TableBody>
-                {data &&  data.length > 0 ? (
-                  data.map((row) => <Row key={row.id} row={row} />)
-                ) : (
-                  <TableRow>
-                    <TableCell colSpan="2" className="p-4 text-center">
-                      No queries found
-                    </TableCell>
-                  </TableRow>
-                )}
-              </TableBody>
-            )}
+            </TableBody>
+          ) : (
+            <TableBody>
+              {data && data.length > 0 ? (
+                data.map((row) => <Row key={row.id} row={row} />)
+              ) : (
+                <TableRow>
+                  <TableCell colSpan="2" className="p-4 text-center">
+                    No queries found
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          )}
         </Table>
       </TableContainer>
     </section>

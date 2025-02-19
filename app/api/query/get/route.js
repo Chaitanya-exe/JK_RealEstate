@@ -66,9 +66,6 @@ async function handler(req) {
         );
     }
 
-    // console.log("Query Start Date:", startDate);
-    // console.log("Query End Date:", endDate);
-
     const queries = await userClient.query.findMany({
       where: {
         createdAt: {

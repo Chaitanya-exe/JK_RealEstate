@@ -17,6 +17,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Image from "next/image";
 import SearchIcon from "@mui/icons-material/Search";
 import SortIcon from "@mui/icons-material/Sort";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -38,9 +39,46 @@ const Page = () => {
   const [openRows, setOpenRows] = React.useState({});
   const [search, setSearch] = React.useState("");
   const [sortSize, setSortSize] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
+  const [properties, setProperties] = React.useState([]);
 
-//   console.log(sortSize);
-// console.log("searchvalue :", search);
+  console.log(properties);
+  
+
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  React.useEffect(() => {
+    if (search || sortSize) {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("sortOrder", sortSize);
+
+      router.replace(`${pathname}?${params.toString()}`);
+    }
+  }, [searchParams, pathname, sortSize]);
+
+  async function fetchPropertiesData(params) {
+    // params.set("search", search);
+
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/estate/get?searchValue=${search}&sortOrder=${sortSize}`
+      );
+
+      const resData = await response.json();
+      setLoading(false);
+      setProperties(resData.data);
+    } catch (error) {
+      setLoading(false);
+      console.error("Error occured while fetching properties :-", error);
+    }
+  }
+
+  React.useEffect(() => {
+    fetchPropertiesData();
+  }, [search, sortSize]);
 
   const handleToggle = (index) => {
     setOpenRows((prev) => ({
@@ -70,13 +108,17 @@ const Page = () => {
             type="text"
             className="p-2 focus:outline-none min-w-[300px] bg-transparent rounded-r-full"
           />
-          <SearchIcon className="bg-blue-500 text-prim_white  w-16 py-2.5 size-11 hover:bg-blue-800" />
+          <SearchIcon onClick={()=> fetchPropertiesData()} className="bg-blue-500 text-prim_white  w-16 py-2.5 size-11 hover:bg-blue-800" />
         </div>
         <div className="w-fit px-2 overflow-hidden bg-transparent border rounded-r-full">
           <SortIcon />
-          <select value={sortSize} onChange={(e) => setSortSize(e.target.value)} className="p-3 focus:outline-none bg-transparent ">
-            <option value={"inc"}>Increasing size</option>
-            <option value={"dec"}>decreasing size</option>
+          <select
+            value={sortSize}
+            onChange={(e) => setSortSize(e.target.value)}
+            className="p-3 focus:outline-none bg-transparent "
+          >
+            <option value={"asc"}>Increasing size</option>
+            <option value={"desc"}>decreasing size</option>
           </select>
         </div>
       </div>
@@ -103,84 +145,95 @@ const Page = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {dummyPropertiesData
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, i) => (
-                  <React.Fragment key={row.id || i}>
-                    <TableRow className="bg-cardBg/50">
-                      <TableCell>
-                        <IconButton
-                          size="small"
-                          onClick={() => handleToggle(i)}
-                        >
-                          {openRows[i] ? (
-                            <KeyboardArrowUpIcon />
-                          ) : (
-                            <KeyboardArrowDownIcon />
-                          )}
-                        </IconButton>
-                        <IconButton size="small">
-                          <DeleteIcon />
-                        </IconButton>
-                      </TableCell>
+              {properties && properties.length > 0 ? (
+                properties
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row, i) => (
+                    <React.Fragment key={row.id || i}>
+                      <TableRow className="bg-cardBg/50">
+                        <TableCell>
+                          <IconButton
+                            size="small"
+                            onClick={() => handleToggle(i)}
+                          >
+                            {openRows[i] ? (
+                              <KeyboardArrowUpIcon />
+                            ) : (
+                              <KeyboardArrowDownIcon />
+                            )}
+                          </IconButton>
+                          <IconButton size="small">
+                            <DeleteIcon />
+                          </IconButton>
+                        </TableCell>
 
-                      <TableCell component="th" scope="row">
-                        {row.owner} -- {row.id}
-                      </TableCell>
-                      <TableCell>{row.location}</TableCell>
-                      <TableCell>{row.size}</TableCell>
-                      <TableCell className="max-w-[350px]">
-                        {row.address}
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell
-                        style={{ paddingBottom: 0, paddingTop: 0 }}
-                        colSpan={6}
-                      >
-                        <Collapse in={openRows[i]} timeout="auto" unmountOnExit>
-                          <div className="my-3  flex flex-wrap gap-3 *:rounded *:object-contain">
-                            <Image
-                              src={"/formBg.png"}
-                              alt="image"
-                              width={280}
-                              height={200}
-                              className="hover:scale-105"
-                            />
-                            <Image
-                              src={"/formBg.png"}
-                              alt="image"
-                              width={280}
-                              height={200}
-                              className="hover:scale-105 "
-                            />
-                            <Image
-                              src={"/formBg.png"}
-                              alt="image"
-                              width={280}
-                              height={200}
-                              className="hover:scale-105 "
-                            />
-                            <Image
-                              src={"/formBg.png"}
-                              alt="image"
-                              width={280}
-                              height={200}
-                              className="hover:scale-105"
-                            />
-                            <Image
-                              src={"/formBg.png"}
-                              alt="image"
-                              width={280}
-                              height={200}
-                              className="hover:scale-105"
-                            />
-                          </div>
-                        </Collapse>
-                      </TableCell>
-                    </TableRow>
-                  </React.Fragment>
-                ))}
+                        <TableCell component="th" scope="row">
+                          {row.owner} -- {row.id}
+                        </TableCell>
+                        <TableCell>{row.location}</TableCell>
+                        <TableCell>{row.size}</TableCell>
+                        <TableCell className="max-w-[350px]">
+                          {row.address}
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell
+                          style={{ paddingBottom: 0, paddingTop: 0 }}
+                          colSpan={6}
+                        >
+                          <Collapse
+                            in={openRows[i]}
+                            timeout="auto"
+                            unmountOnExit
+                          >
+                            <div className="my-3  flex flex-wrap gap-3 *:rounded *:object-contain">
+                              <Image
+                                src={"/formBg.png"}
+                                alt="image"
+                                width={280}
+                                height={200}
+                                className="hover:scale-105"
+                              />
+                              <Image
+                                src={"/formBg.png"}
+                                alt="image"
+                                width={280}
+                                height={200}
+                                className="hover:scale-105 "
+                              />
+                              <Image
+                                src={"/formBg.png"}
+                                alt="image"
+                                width={280}
+                                height={200}
+                                className="hover:scale-105 "
+                              />
+                              <Image
+                                src={"/formBg.png"}
+                                alt="image"
+                                width={280}
+                                height={200}
+                                className="hover:scale-105"
+                              />
+                              <Image
+                                src={"/formBg.png"}
+                                alt="image"
+                                width={280}
+                                height={200}
+                                className="hover:scale-105"
+                              />
+                            </div>
+                          </Collapse>
+                        </TableCell>
+                      </TableRow>
+                    </React.Fragment>
+                  ))
+              ) : (
+                <TableRow>
+
+                <TableCell>Loading...</TableCell>
+                </TableRow>
+              )}
             </TableBody>
           </Table>
         </TableContainer>
