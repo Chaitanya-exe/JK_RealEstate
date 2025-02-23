@@ -43,7 +43,7 @@ const Page = () => {
   const [properties, setProperties] = React.useState([]);
 
   console.log(properties);
-  
+
 
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -108,7 +108,7 @@ const Page = () => {
             type="text"
             className="p-2 focus:outline-none min-w-[300px] bg-transparent rounded-r-full"
           />
-          <SearchIcon onClick={()=> fetchPropertiesData()} className="bg-blue-500 text-prim_white  w-16 py-2.5 size-11 hover:bg-blue-800" />
+          <SearchIcon onClick={() => fetchPropertiesData()} className="bg-blue-500 text-prim_white  w-16 py-2.5 size-11 hover:bg-blue-800" />
         </div>
         <div className="w-fit px-2 overflow-hidden bg-transparent border rounded-r-full">
           <SortIcon />
@@ -168,7 +168,7 @@ const Page = () => {
                         </TableCell>
 
                         <TableCell component="th" scope="row">
-                          {row.owner} -- {row.id}
+                          {row.owner}
                         </TableCell>
                         <TableCell>{row.location}</TableCell>
                         <TableCell>{row.size}</TableCell>
@@ -187,41 +187,16 @@ const Page = () => {
                             unmountOnExit
                           >
                             <div className="my-3  flex flex-wrap gap-3 *:rounded *:object-contain">
-                              <Image
-                                src={"/formBg.png"}
-                                alt="image"
-                                width={280}
-                                height={200}
-                                className="hover:scale-105"
-                              />
-                              <Image
-                                src={"/formBg.png"}
-                                alt="image"
-                                width={280}
-                                height={200}
-                                className="hover:scale-105 "
-                              />
-                              <Image
-                                src={"/formBg.png"}
-                                alt="image"
-                                width={280}
-                                height={200}
-                                className="hover:scale-105 "
-                              />
-                              <Image
-                                src={"/formBg.png"}
-                                alt="image"
-                                width={280}
-                                height={200}
-                                className="hover:scale-105"
-                              />
-                              <Image
-                                src={"/formBg.png"}
-                                alt="image"
-                                width={280}
-                                height={200}
-                                className="hover:scale-105"
-                              />
+                              {row.images.map((image,index) => (
+                                <Image
+                                  id={index}
+                                  src={image.url}
+                                  alt="image"
+                                  width={280}
+                                  height={200}
+                                  className="hover:scale-105"
+                                />
+                              ))}
                             </div>
                           </Collapse>
                         </TableCell>
@@ -231,7 +206,7 @@ const Page = () => {
               ) : (
                 <TableRow>
 
-                <TableCell>Loading...</TableCell>
+                  <TableCell>No data found</TableCell>
                 </TableRow>
               )}
             </TableBody>
