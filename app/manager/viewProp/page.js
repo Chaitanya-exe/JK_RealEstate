@@ -117,6 +117,7 @@ const Page = () => {
             onChange={(e) => setSortSize(e.target.value)}
             className="p-3 focus:outline-none bg-transparent "
           >
+            <option ></option>
             <option value={"asc"}>Increasing size</option>
             <option value={"desc"}>decreasing size</option>
           </select>
@@ -187,9 +188,9 @@ const Page = () => {
                             unmountOnExit
                           >
                             <div className="my-3  flex flex-wrap gap-3 *:rounded *:object-contain">
-                              {row.images.map((image,index) => (
+                              {row.images.map((image, index) => (
                                 <Image
-                                  id={index}
+                                  key={image.id}
                                   src={image.url}
                                   alt="image"
                                   width={280}

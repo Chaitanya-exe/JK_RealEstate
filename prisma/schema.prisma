@@ -21,18 +21,20 @@ model Query {
   inquiry   String[]  @default([])
   type      Inquiry[] @default([])
   createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt @default(now())
+  updatedAt DateTime  @default(now()) @updatedAt
 }
 
 model Property {
-  id        String   @unique @default(uuid())
-  address   String   @unique
+  id        String       @unique @default(uuid())
+  address   String       @unique
   location  String
   size      Int
-  owner     String?  @default("")
+  owner     String?      @default("")
   images    Image[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt() @default(now())
+  type      PropertyType? @default(COMMERCIAL)
+  status    Status?       @default(RENT)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @default(now()) @updatedAt()
 }
 
 model Image {
@@ -41,6 +43,17 @@ model Image {
   publicId   String
   property   Property @relation(fields: [propertyId], references: [id])
   propertyId String
+}
+
+enum PropertyType {
+  COMMERCIAL
+  INDUSTRIAL
+  RESIDENCE
+}
+
+enum Status {
+  SALE
+  RENT
 }
 
 enum Inquiry {

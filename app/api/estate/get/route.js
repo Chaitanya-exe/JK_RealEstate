@@ -45,7 +45,7 @@ async function handler(req) {
 
     return NextResponse.json({ success: true, data: response });
   } catch (err) {
-    console.error("Error fetching properties:", err);
+    console.error(`Error fetching properties:${err}`);
     return NextResponse.json(
       { error: "An error occurred", success: false },
       { status: 500 }
