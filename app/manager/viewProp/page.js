@@ -104,7 +104,7 @@ const Page = () => {
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search here"
+            placeholder={`search by address, location or owner name`}
             type="text"
             className="p-2 focus:outline-none min-w-[300px] bg-transparent rounded-r-full"
           />
@@ -117,7 +117,7 @@ const Page = () => {
             onChange={(e) => setSortSize(e.target.value)}
             className="p-3 focus:outline-none bg-transparent "
           >
-            <option ></option>
+            <option value={""}></option>
             <option value={"asc"}>Increasing size</option>
             <option value={"desc"}>decreasing size</option>
           </select>
@@ -145,72 +145,82 @@ const Page = () => {
                 ))}
               </TableRow>
             </TableHead>
-            <TableBody>
-              {properties && properties.length > 0 ? (
-                properties
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row, i) => (
-                    <React.Fragment key={row.id || i}>
-                      <TableRow className="bg-cardBg/50">
-                        <TableCell>
-                          <IconButton
-                            size="small"
-                            onClick={() => handleToggle(i)}
-                          >
-                            {openRows[i] ? (
-                              <KeyboardArrowUpIcon />
-                            ) : (
-                              <KeyboardArrowDownIcon />
-                            )}
-                          </IconButton>
-                          <IconButton size="small">
-                            <DeleteIcon />
-                          </IconButton>
-                        </TableCell>
-
-                        <TableCell component="th" scope="row">
-                          {row.owner}
-                        </TableCell>
-                        <TableCell>{row.location}</TableCell>
-                        <TableCell>{row.size}</TableCell>
-                        <TableCell className="max-w-[350px]">
-                          {row.address}
-                        </TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell
-                          style={{ paddingBottom: 0, paddingTop: 0 }}
-                          colSpan={6}
-                        >
-                          <Collapse
-                            in={openRows[i]}
-                            timeout="auto"
-                            unmountOnExit
-                          >
-                            <div className="my-3  flex flex-wrap gap-3 *:rounded *:object-contain">
-                              {row.images.map((image, index) => (
-                                <Image
-                                  key={image.id}
-                                  src={image.url}
-                                  alt="image"
-                                  width={280}
-                                  height={200}
-                                  className="hover:scale-105"
-                                />
-                              ))}
-                            </div>
-                          </Collapse>
-                        </TableCell>
-                      </TableRow>
-                    </React.Fragment>
-                  ))
-              ) : (
+            {loading ? (
+              <TableBody>
                 <TableRow>
-
-                  <TableCell>No data found</TableCell>
+                  <TableCell colSpan="2" className="p-4 text-center">
+                    Fetching data
+                  </TableCell>
                 </TableRow>
-              )}
-            </TableBody>
+              </TableBody>
+            ) : (
+              <TableBody>
+                {properties && properties.length > 0 ? (
+                  properties
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row, i) => (
+                      <React.Fragment key={row.id || i}>
+                        <TableRow className="bg-cardBg/50">
+                          <TableCell>
+                            <IconButton
+                              size="small"
+                              onClick={() => handleToggle(i)}
+                            >
+                              {openRows[i] ? (
+                                <KeyboardArrowUpIcon />
+                              ) : (
+                                <KeyboardArrowDownIcon />
+                              )}
+                            </IconButton>
+                            <IconButton size="small">
+                              <DeleteIcon />
+                            </IconButton>
+                          </TableCell>
+
+                          <TableCell component="th" scope="row">
+                            {row.owner}
+                          </TableCell>
+                          <TableCell>{row.location}</TableCell>
+                          <TableCell>{row.size}</TableCell>
+                          <TableCell className="max-w-[350px]">
+                            {row.address}
+                          </TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell
+                            style={{ paddingBottom: 0, paddingTop: 0 }}
+                            colSpan={6}
+                          >
+                            <Collapse
+                              in={openRows[i]}
+                              timeout="auto"
+                              unmountOnExit
+                            >
+                              <div className="my-3  flex flex-wrap gap-3 *:rounded *:object-contain">
+                                {row.images.map((image, index) => (
+                                  <Image
+                                    key={image.id}
+                                    src={image.url}
+                                    alt="image"
+                                    width={280}
+                                    height={200}
+                                    className="hover:scale-105"
+                                  />
+                                ))}
+                              </div>
+                            </Collapse>
+                          </TableCell>
+                        </TableRow>
+                      </React.Fragment>
+                    ))
+                ) : (
+                  <TableRow>
+
+                    <TableCell>No data found</TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            )}
           </Table>
         </TableContainer>
         <TablePagination

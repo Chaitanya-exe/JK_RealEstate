@@ -18,7 +18,7 @@ async function handler(req) {
 
     if (searchValue.trim() === "") {
       response = await userClient.property.findMany({
-        include: { images: true },
+        include: { images: true }, 
         orderBy: { size: sortOrder === "desc" ? "desc" : "asc" }, 
       });
     } else {
@@ -31,7 +31,7 @@ async function handler(req) {
           ],
         },
         include: { images: true },
-        orderBy: { size: sortOrder === "desc" ? "desc" : "asc" },
+        orderBy: { size: searchBy === "desc" ? "desc" : "asc" },
       });
     }
 

@@ -2,6 +2,7 @@
 import { CldUploadWidget } from 'next-cloudinary';
 import React from 'react'
 import { useState } from 'react'
+import PropertyFilterRadios from '@/components/PropertyFilterRadios';
 
 const Page = () => {
     const [property, setProperty] = useState({
@@ -9,8 +10,14 @@ const Page = () => {
         location: "",
         size: 0,
         owner: "",
-        images: []
+        images: [],
+        type: "",
+        status: ""
     });
+    const handleFilterChange = (filters)=>{
+      setProperty({...property, type: filters.propertyType, status: filters.status})
+      console.log(property)
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -47,8 +54,8 @@ const Page = () => {
     }
 
     return (
-      <div className=" flex pt-20  justify-center min-h-screen bg-cardBg">
-        <form onSubmit={handleSubmit} className="md:min-w-[450px]">
+      <div className=" flex pt-20  justify-center bg-cardBg">
+        <form onSubmit={handleSubmit} className="md:min-w-[450px] bg-white shadow-md rounded-lg p-4 gap-6">
           <h2 className="capitalize text-lg">address :</h2>
           <input
             value={property.address}
@@ -90,6 +97,7 @@ const Page = () => {
             }
             className="p-2 border border-gray/40 rounded-sm w-full"
           />
+          <PropertyFilterRadios onFilterChange={handleFilterChange}/>
           <br></br>
           <CldUploadWidget
             uploadPreset="ogtUploadPreset"
