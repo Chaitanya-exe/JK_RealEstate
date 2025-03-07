@@ -23,9 +23,9 @@ const PropertyFilterRadios = ({ onFilterChange }) => {
   };
 
   return (
-    <div className="flex md:flex-row gap-4 p-4">
-      <div className="flex flex-col">
-        <h3 className="text-lg font-semibold mb-2 text-gray-800">Property Type</h3>
+    <div className="flex-row md:flex-row gap-4 p-4 align-middle">
+      <div className="flex flex-col py-3">
+        <h3 className="text-lg font-semibold mb-2 text-gray-800 ">Property Type</h3>
         <div className="flex space-x-4">
           {["Residential", "Commercial", "Industrial"].map((type) => (
             <div key={type} className="flex items-center">
@@ -67,7 +67,7 @@ const PropertyFilterRadios = ({ onFilterChange }) => {
                 htmlFor={`status-${option.replace(/\s+/g, "")}`}
                 className="ml-2 text-sm font-medium text-gray-700"
               >
-                {option}
+                {`For ${option}`}
               </label>
             </div>
           ))}

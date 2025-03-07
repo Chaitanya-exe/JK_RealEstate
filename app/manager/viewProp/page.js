@@ -31,6 +31,8 @@ const columns = [
   { id: "location", label: "Location", maxWidth: 200 },
   { id: "size", label: "Size", maxWidth: 150, align: "center" },
   { id: "address", label: "Address", maxWidth: 150, align: "center" },
+  { id: "type", label: "Property Type", maxWidth: 200, align: "center" },
+  { id: "status", label: "Status", maxWidth: 150, align: "center" },
 ];
 
 const Page = () => {
@@ -182,9 +184,11 @@ const Page = () => {
                           </TableCell>
                           <TableCell>{row.location}</TableCell>
                           <TableCell>{row.size}</TableCell>
-                          <TableCell className="max-w-[350px]">
+                          <TableCell >
                             {row.address}
                           </TableCell>
+                          <TableCell>{row.type.toLowerCase()}</TableCell>
+                          <TableCell className="max-w-[350px]">{`For ${row.status.toLowerCase()}`}</TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell

@@ -31,7 +31,7 @@ async function handler(req) {
           ],
         },
         include: { images: true },
-        orderBy: { size: searchBy === "desc" ? "desc" : "asc" },
+        orderBy: { size: sortOrder === "desc" ? "desc" : "asc" },
       });
     }
 
