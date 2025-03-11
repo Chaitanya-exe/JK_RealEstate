@@ -27,7 +27,7 @@ async function handler(req) {
           OR: [
             { address: { contains: searchValue, mode: "insensitive" } },
             { location: { contains: searchValue, mode: "insensitive" } },
-            { ownerName: { contains: searchValue, mode: "insensitive" } }, 
+            { owner: { contains: searchValue, mode: "insensitive" } }, 
           ],
         },
         include: { images: true },
