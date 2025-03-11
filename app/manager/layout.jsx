@@ -4,9 +4,13 @@
 import Button from '@/components/Button';
 import Link from 'next/link';
 import React from 'react'
+import { usePathname } from 'next/navigation';
 
 const layout = ({children}) => {
-
+  const path = usePathname();
+  if (path === "/manager/login") {
+    return (<></>)
+  }
 
   return (
     <div className='bg-prim_white min-h-screen'>
