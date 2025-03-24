@@ -1,13 +1,26 @@
+"use client";
+
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 
 const PropertyCard = ({ property }) => {
+
+    const [index, setIndex] = useState(0);
+
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setIndex((prevIndex) => (prevIndex + 1) % property.images.length);
+      }, 9000); 
+
+      return () => clearInterval(interval); 
+    }, []);
+
   useGSAP(() => {
     gsap.utils.toArray('.right_imgclass').forEach((el)=>{
 
@@ -59,17 +72,23 @@ const PropertyCard = ({ property }) => {
     >
       <div className={`${property.id%2 !== 0 ? "right_imgclass" : "left_imgclass"} relative `}>
         <Image
-          src={"/prop1.png"}
+          src={property.images[index]}
           width={545}
           height={340}
           alt="propertyImg"
-          className={` ${property.id % 2 !== 0 ? "md:-rotate-3" : "md:rotate-3"} `}
+          className={` ${property.id % 2 !== 0 ? "md:-rotate-" : "md:rotate-"} md:w-[545px] md:h-[350px] object-cover object-center transition-all delay-200 `}
         />
+
+        <div className="flex justify-center gap-2">
+        {property.images.map((_,idx) => (
+          <span key={idx} onClick={()=> setIndex(idx)} className={`${idx === index ? "bg-prim_black/90" : "bg-gray/50"} transition-all duration-150 w-3 h-3 rounded-full inline-block my-3`} />
+        ))}
+        </div>
 
         <div
           className={`${
             property.id % 2 !== 0
-              ? "md:-left-12 -left-3  rotate-12"
+              ? "md:-left-11 -left-3  rotate-12"
               : " md:-right-12 -right-3 -rotate-12"
           } absolute bg-bright_red rounded-full md:p-2 p-1 md:-top-5 -top-3 `}
         >
@@ -86,10 +105,10 @@ const PropertyCard = ({ property }) => {
         <h2 className="md:text-[34px] text-[28px] leading-snug md:leading-normal font-[550] text-[#003A47]">
           {property.title}
         </h2>
-        <h3 className="font-medium md:text-[28px] text-[23px] leading-tight md:leading-normal md:tracking-[0.5px] text-[#234E70]">
+        <h3 className="font-medium md:text-[28px] text-[23px] leading-tight m:leading-normal md:tracking-[0.5px] text-[#234E70]">
           {property.description}
         </h3>
-        <ul className="list-disc list-inside md:bodyText text-[#003A47]">
+        <ul className="list-disc list-outside pl-5 md:bodyText pt-2 space-y-1 text-[#003A47]">
           {property.features.map((feature, i) => (
             <li key={i}>{feature}</li>
           ))}
