@@ -16,7 +16,7 @@ const PropertyCard = ({ property }) => {
     useEffect(() => {
       const interval = setInterval(() => {
         setIndex((prevIndex) => (prevIndex + 1) % property.images.length);
-      }, 9000); 
+      }, 6000); 
 
       return () => clearInterval(interval); 
     }, []);

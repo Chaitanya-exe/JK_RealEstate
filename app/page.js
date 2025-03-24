@@ -17,12 +17,19 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import PhoneSlick from "@/components/PhoneSlick";
 import Link from "next/link";
 import { ArrowBack, ArrowForwardIos } from "@mui/icons-material";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const headingRef = useRef(null);
   const [activeTab, setActiveTab] = useState("1");
+
+  const {ref, inView} =  useInView({
+    threshold: 0.5,
+    triggerOnce: true
+  })
 
   let data;
 
@@ -245,36 +252,43 @@ export default function Home() {
         </div>
 
         <Link href={"/moreProperties"} className="flex justify-center">
-          <Button text={"View more"} type="deactive" icon={<ArrowForwardIos fontSize="smal" />} />
+          <Button
+            text={"View more"}
+            type="deactive"
+            icon={<ArrowForwardIos fontSize="smal" />}
+          />
         </Link>
-
       </section>
 
       {/* stats */}
       <section
+        ref={ref}
         id="stats"
         className="bg-bright_red 
        md:*:min-w-[250px] *:w-[200px] my-8 py-6 md:py-12 flex flex-col gap-5 md:flex-row justify-center items-center md:gap-16 md:*:space-y-3 text-center "
       >
         <div className="">
-          <p className="text-bright_red  bg-prim_white md:p-8 py-6 px-8 text-[65px]  md:text-[80px] font-[600] tracking-wide">
-            10+
+          <p className="text-bright_red min-w-[100px] h-[170px] flex items-center justify-center  bg-prim_white  text-[65px]  md:text-[80px] font-[600] tracking-wide">
+            {inView ? <CountUp delay={0.5} end={10} /> : 0}
+            <span>+</span>
           </p>
           <p className="text-prim_white text-[22px] mt-1 md:text-[28px] font-medium capitalize">
             years of experience
           </p>
         </div>
         <div>
-          <p className="text-bright_red  bg-prim_white md:p-8 py-6 px-8 text-[65px]  md:text-[80px] font-[600] tracking-wide">
-            100+
+          <p className="text-bright_red min-w-[100px] h-[170px] flex items-center justify-center  bg-prim_white  text-[65px]  md:text-[80px] font-[600] tracking-wide">
+            {inView ? <CountUp delay={0.5} end={100} /> : 0}
+            <span>+</span>
           </p>
           <p className="text-prim_white text-[22px] mt-1 md:text-[28px]  font-medium capitalize">
             Properties Sold{" "}
           </p>
         </div>
         <div>
-          <p className="text-bright_red  bg-prim_white md:p-8 py-6 px-8 text-[65px]  md:text-[80px] font-[600] tracking-wide">
-            200+
+          <p className="text-bright_red min-w-[100px] h-[170px] flex items-center justify-center  bg-prim_white  text-[65px]  md:text-[80px] font-[600] tracking-wide">
+            {inView ? <CountUp delay={0.5} end={200} /> : 0}
+            <span>+</span>
           </p>
 
           <p className="text-prim_white text-[22px] mt-1 md:text-[28px]  font-medium capitalize">
@@ -282,8 +296,9 @@ export default function Home() {
           </p>
         </div>
         <div>
-          <p className="text-bright_red  bg-prim_white md:p-8 py-6 px-8 text-[65px]  md:text-[80px] font-[600] tracking-wide">
-            10+
+          <p className="text-bright_red min-w-[100px] h-[170px] flex items-center justify-center  bg-prim_white  text-[65px]  md:text-[80px] font-[600] tracking-wide">
+            {inView ? <CountUp delay={0.5} end={10} /> : 0}
+            <span>+</span>
           </p>
 
           <p className="text-prim_white text-[22px] mt-1 md:text-[28px]  font-medium capitalize">
