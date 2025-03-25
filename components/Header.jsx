@@ -96,6 +96,7 @@ const Header = () => {
 
         <div className="flex-center">
           <Button
+          as="a"
             type={"primary"}
             text={"Schedule a consulatation"}
             classname={"md:p-6 p-1 max-sm:hidden max-sm:rounded-md  rounded-l-md"}
