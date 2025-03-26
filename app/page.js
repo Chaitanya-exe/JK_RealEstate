@@ -24,20 +24,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const headingRef = useRef(null);
+  const [data, setData] = useState(properties);
   const [activeTab, setActiveTab] = useState("1");
 
-  const {ref, inView} =  useInView({
+  const { ref, inView } = useInView({
     threshold: 0.5,
     triggerOnce: true
   })
 
-  let data;
-
-  if (activeTab === "1") {
-    data = properties;
-  } else {
-    data = secondProperties;
-  }
 
   // useEffect(() => {
   //   const tl = gsap.timeline();
@@ -176,13 +170,12 @@ export default function Home() {
                 ref={headingRef}
                 className="md:hero_heading hero_heading_Sm relative "
               >
-                Find Your Dream Property – Exclusive Listings Tailored for You
+                Premier Delhi-NCR Real Estate Consultancy - Find Your Dream Property in Delhi, Gurgaon, Noida 
               </h1>
               <p className="spanclass absolute md:left-56 left-20 w-6 h-6 md:w-10 md:h-10 inline-block"></p>
             </div>
             <h2 className="hr_subheading md:hero_subheading text-[23px] font-[550] text-prim_white/95">
-              Luxury Homes, Commercial Spaces, and Prime Investments – All in
-              One Place.
+            Luxury Homes, Commercial Spaces & Prime Investment Opportunities in Delhi-NCR Region | Expert Property Solutions Tailored for You
             </h2>
             <div className="flex justify-start items-center mt-5 gap-2 md:gap-6">
               <Button
@@ -227,16 +220,18 @@ export default function Home() {
           classname={"max-w-[630px] mx-auto text-center md:my-10 pt-16"}
         />
 
-        {/* toggle buttons */}
         <div className="flex items-center gap-3 justify-center">
-          <div onClick={() => setActiveTab("1")}>
+          <div onClick={() => { setActiveTab("1"); setData(properties); }}>
             <Button
               type={activeTab === "1" ? "active" : "deactive"}
               text={"Residential"}
               classname={activeTab === "1" ? "text-xl" : "rounded-3xl"}
             />
           </div>
-          <div onClick={() => setActiveTab("2")}>
+          <div onClick={() => {
+            setActiveTab("2");
+            setData(secondProperties);
+          }}>
             <Button
               type={activeTab === "2" ? "active" : "deactive"}
               text={"Commercial"}
