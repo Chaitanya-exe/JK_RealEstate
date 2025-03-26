@@ -7,19 +7,31 @@ import PropertyCard from "@/components/PropertyCard";
 import QueryForm from "@/components/QueryForm";
 import Slick from "@/components/Slick";
 import Top from "@/components/Top";
-import { properties } from "@/constants/dummydata";
+import { properties, secondProperties } from "@/constants/dummydata";
 import Image from "next/image";
 import { gsap } from "gsap";
 // import { SplitText } from "gsap/SplitText";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import PhoneSlick from "@/components/PhoneSlick";
+import Link from "next/link";
+import { ArrowBack, ArrowForwardIos } from "@mui/icons-material";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const headingRef = useRef(null);
+  const [data, setData] = useState(properties);
+  const [activeTab, setActiveTab] = useState("1");
+
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+    triggerOnce: true
+  })
+
 
   // useEffect(() => {
   //   const tl = gsap.timeline();
@@ -80,7 +92,7 @@ export default function Home() {
         (word) =>
           `<span style="display: inline-block; margin-right: 8px">${word}</span>`
       )
-      .join("");
+      .join(" ");
 
     gsap.fromTo(
       headingRef.current.children,
@@ -99,7 +111,7 @@ export default function Home() {
       {
         scale: "1.8",
         borderRadius: "100%",
-        x: 820,
+        x: 816,
         y: -70,
         backgroundColor: "#F43F5E",
       },
@@ -108,11 +120,10 @@ export default function Home() {
         scale: 0.3,
         duration: 2,
         delay: 1,
-        x: 0,
-        y: 0,
+        x: 10,
+        y: 2,
         backgroundColor: "white",
         borderRadius: "20%",
-        // clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)", // Triangle shape
       }
     );
 
@@ -144,7 +155,7 @@ export default function Home() {
     <div className="overflow-x-hidden">
       <section
         id="/"
-        className="relative w-screen overflow-hidden pt-24 md:pt-40 md:px-10  bg-gradient-to-b from-bright_red to-dark_red md:min-h-[720px] min-h-[450px]"
+        className="relative w-screen overflow-hidden pt-24 md:pt-40 md:px-14  bg-gradient-to-b from-bright_red to-dark_red md:min-h-[720px] min-h-[450px]"
       >
         {/* rectangles */}
         <div className="block -top-64 left-[0rem]" />
@@ -159,22 +170,23 @@ export default function Home() {
                 ref={headingRef}
                 className="md:hero_heading hero_heading_Sm relative "
               >
-                Find Your Dream Property – Exclusive Listings Tailored for You
+                Premier Delhi-NCR Real Estate Consultancy - Find Your Dream Property in Delhi, Gurgaon, Noida 
               </h1>
               <p className="spanclass absolute md:left-56 left-20 w-6 h-6 md:w-10 md:h-10 inline-block"></p>
             </div>
             <h2 className="hr_subheading md:hero_subheading text-[23px] font-[550] text-prim_white/95">
-              Luxury Homes, Commercial Spaces, and Prime Investments – All in
-              One Place.
+            Luxury Homes, Commercial Spaces & Prime Investment Opportunities in Delhi-NCR Region | Expert Property Solutions Tailored for You
             </h2>
             <div className="flex justify-start items-center mt-5 gap-2 md:gap-6">
               <Button
+                as="a"
                 type={"primary"}
                 text={"view properties"}
                 classname={"md:py-3 md:px-5 p-2 rounded-sm"}
                 hrefLink="properties"
               />
               <Button
+                as="a"
                 type={"sec"}
                 text={"schedule a consulatation"}
                 classname={"md:py-3 md:px-5 p-2 rounded-sm"}
@@ -184,7 +196,7 @@ export default function Home() {
           </div>
 
           {/* image */}
-          <div className="rounded-full max-sm:hidden flex-center min-w-[550px] min-h-[550px] overflow-hidden outline outline-prim_white md:-mt-14">
+          <div className="rounded-full max-sm:hidden flex-center min-w-[550px] min-h-[550px] overflow-hidden outline outline-prim_white/95 hover:scale-105 transition duration-500 delay-100 md:-mt-14">
             <Image
               src={"/heroImg.png"}
               width={510}
@@ -208,38 +220,70 @@ export default function Home() {
           classname={"max-w-[630px] mx-auto text-center md:my-10 pt-16"}
         />
 
+        <div className="flex items-center gap-3 justify-center">
+          <div onClick={() => { setActiveTab("1"); setData(properties); }}>
+            <Button
+              type={activeTab === "1" ? "active" : "deactive"}
+              text={"Residential"}
+              classname={activeTab === "1" ? "text-xl" : "rounded-3xl"}
+            />
+          </div>
+          <div onClick={() => {
+            setActiveTab("2");
+            setData(secondProperties);
+          }}>
+            <Button
+              type={activeTab === "2" ? "active" : "deactive"}
+              text={"Commercial"}
+              classname={activeTab === "2" ? "text-xl" : "rounded-3xl"}
+            />
+          </div>
+        </div>
+
         <div className="divide-y divide-[#D6DCE1]">
-          {properties.map((property) => (
+          {data.slice(2).map((property) => (
             <PropertyCard property={property} key={property.id} />
           ))}
         </div>
+
+        <Link href={"/moreProperties"} className="flex justify-center">
+          <Button
+            text={"View more"}
+            type="deactive"
+            icon={<ArrowForwardIos fontSize="smal" />}
+          />
+        </Link>
       </section>
 
       {/* stats */}
       <section
+        ref={ref}
         id="stats"
         className="bg-bright_red 
        md:*:min-w-[250px] *:w-[200px] my-8 py-6 md:py-12 flex flex-col gap-5 md:flex-row justify-center items-center md:gap-16 md:*:space-y-3 text-center "
       >
         <div className="">
-          <p className="text-bright_red  bg-prim_white md:p-8 py-6 px-8 text-[65px]  md:text-[80px] font-[600] tracking-wide">
-            10+
+          <p className="text-bright_red min-w-[100px] h-[170px] flex items-center justify-center  bg-prim_white  text-[65px]  md:text-[80px] font-[600] tracking-wide">
+            {inView ? <CountUp delay={0.5} end={10} /> : 0}
+            <span>+</span>
           </p>
           <p className="text-prim_white text-[22px] mt-1 md:text-[28px] font-medium capitalize">
             years of experience
           </p>
         </div>
         <div>
-          <p className="text-bright_red  bg-prim_white md:p-8 py-6 px-8 text-[65px]  md:text-[80px] font-[600] tracking-wide">
-            100+
+          <p className="text-bright_red min-w-[100px] h-[170px] flex items-center justify-center  bg-prim_white  text-[65px]  md:text-[80px] font-[600] tracking-wide">
+            {inView ? <CountUp delay={0.5} end={100} /> : 0}
+            <span>+</span>
           </p>
           <p className="text-prim_white text-[22px] mt-1 md:text-[28px]  font-medium capitalize">
             Properties Sold{" "}
           </p>
         </div>
         <div>
-          <p className="text-bright_red  bg-prim_white md:p-8 py-6 px-8 text-[65px]  md:text-[80px] font-[600] tracking-wide">
-            200+
+          <p className="text-bright_red min-w-[100px] h-[170px] flex items-center justify-center  bg-prim_white  text-[65px]  md:text-[80px] font-[600] tracking-wide">
+            {inView ? <CountUp delay={0.5} end={200} /> : 0}
+            <span>+</span>
           </p>
 
           <p className="text-prim_white text-[22px] mt-1 md:text-[28px]  font-medium capitalize">
@@ -247,8 +291,9 @@ export default function Home() {
           </p>
         </div>
         <div>
-          <p className="text-bright_red  bg-prim_white md:p-8 py-6 px-8 text-[65px]  md:text-[80px] font-[600] tracking-wide">
-            10+
+          <p className="text-bright_red min-w-[100px] h-[170px] flex items-center justify-center  bg-prim_white  text-[65px]  md:text-[80px] font-[600] tracking-wide">
+            {inView ? <CountUp delay={0.5} end={10} /> : 0}
+            <span>+</span>
           </p>
 
           <p className="text-prim_white text-[22px] mt-1 md:text-[28px]  font-medium capitalize">
@@ -330,17 +375,16 @@ export default function Home() {
           }
           classname={"max-w-[630px] mx-auto text-center my-10 md:pt-16"}
         />
-{/* desktop */}
+        {/* desktop */}
         <div className="opacity-0 md:opacity-100 absolute max-md:hidden md:relative">
           <Slick />
         </div>
-{/* phone */}
+        {/* phone */}
         <div className="relative md:hidden min-h-[400px]">
           <div className="opacity-100 md:opacity-0 *:my-2 absolute ">
             <PhoneSlick />
           </div>
         </div>
-
       </section>
 
       {/* form */}
@@ -355,9 +399,8 @@ export default function Home() {
           alt="svg"
           className="absolute max-md:w-[200px] w-[400px] -top-[12rem] md:-top-[18rem] -right-8"
         />
-         
-         <QueryForm />
-         
+
+        <QueryForm />
       </section>
 
       {/* faqs */}
@@ -374,7 +417,6 @@ export default function Home() {
         Have more questions? Contact us directly at +1 (123) 456-7890 or email
         us at contact@yourcompany.com. We’re here to help!
       </p>
-
     </div>
   );
 }
