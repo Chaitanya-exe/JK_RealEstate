@@ -277,7 +277,7 @@ export default function Home() {
             <span>+</span>
           </p>
           <p className="text-prim_white text-[22px] mt-1 md:text-[28px]  font-medium capitalize">
-            Properties Sold{" "}
+            Properties Leased{" "}
           </p>
         </div>
         <div>
@@ -308,7 +308,7 @@ export default function Home() {
           head1={
             <p>
               Your Trusted Partner in{" "}
-              <span className="text-bright_red">Real estate</span> Excellence
+              <span className="text-bright_red">Real Estate</span> Excellence
             </p>
           }
           classname={"max-w-[630px] mx-auto text-center my-10 pt-16"}
@@ -320,10 +320,9 @@ export default function Home() {
                 Who we are.
               </h1>
               <h2 className="font-medium leading-snug md:leading-normal md:text-[28px] text-[19px] md:tracking-[0.5px] text-[#234E70] group-hover:text-prim_white">
-                At [Your Company Name], we are more than just a real estate
-                agency. Our mission is to create meaningful connections between
-                people and properties. Established in [Year], we have proudly
-                served [Location/Market] with a commitment to excellence,
+                At J.K Estate, we are more than just a real estate
+                company. Our mission is to bring out the best that exists in the market. Established in 2013, we have proudly
+                served in Delhi/NCR region with a commitment to excellence,
                 integrity, and personalized service.
               </h2>
             </div>
@@ -350,14 +349,10 @@ export default function Home() {
             />
             <div className="md:px-14 p-3 md:py-12 w-full md:w-1/2 bg-[#EDF2F7] group hover:bg-gray hover:text-prim_white">
               <h1 className="md:text-[34px] text-[24px] font-[550] text-[#003A47] group-hover:text-prim_white">
-                Who we are.
+                What we do.
               </h1>
               <h2 className="font-medium leading-snug md:leading-normal md:text-[28px] text-[19px] md:tracking-[0.5px] text-[#234E70] group-hover:text-prim_white">
-                At [Your Company Name], we are more than just a real estate
-                agency. Our mission is to create meaningful connections between
-                people and properties. Established in [Year], we have proudly
-                served [Location/Market] with a commitment to excellence,
-                integrity, and personalized service.
+              To help you discover your ideal commercial property with our expert consultancy services. We specialize in keeping up to date with latest market state and trends that helps us to provide the solutions specific to your requirements and business objectives.
               </h2>
             </div>
           </div>
@@ -369,8 +364,8 @@ export default function Home() {
         <Top
           head1={
             <p>
-              Success Stories from{" "}
-              <span className="text-bright_red">Industry leaders.</span>
+              Companies that trusted{" "}
+              <span className="text-bright_red">Our Services</span>
             </p>
           }
           classname={"max-w-[630px] mx-auto text-center my-10 md:pt-16"}
@@ -414,8 +409,8 @@ export default function Home() {
       </section>
 
       <p className="md:mx-44 mx-12 py-6 md:text-[19px] text-sm  leading-tight md:leading-normal text-[#234E70] text-center  ">
-        Have more questions? Contact us directly at +1 (123) 456-7890 or email
-        us at contact@yourcompany.com. We’re here to help!
+        Want personalized communication? Contact us directly at <span className="font-bold">+91 7982500442</span> or email
+        us at <span className="font-bold">jkestate99@gmail.com</span> We’re happy to help!
       </p>
     </div>
   );

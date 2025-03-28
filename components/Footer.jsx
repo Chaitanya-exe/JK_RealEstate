@@ -13,7 +13,7 @@ const Footer = () => {
         <div className="">
           <h2 className="text-[26px] font-[550]">About us</h2>
           <p className="bodyText ">
-            RSMI is a trusted name in real estate, providing tailored solutions
+            J.K Estate is a trusted name in real estate, providing tailored solutions
             for businesses, investors, and individuals. Our mission is to help
             you find properties that meet your goals with unmatched
             professionalism and expertise.
@@ -39,11 +39,11 @@ const Footer = () => {
           <div className="-space-y-1">
             <h3 className="text-[20px] capitalize">
               Phone number :{" "}
-              <span className="text-[18px]">+1 (123) 456-7890</span>
+              <span className="text-[18px]">+91 7982500442</span>
             </h3>
             <h3 className="text-[20px] capitalize">
               email:{" "}
-              <span className="text-[18px]">contact@yourcompany.com</span>
+              <span className="text-[18px]">jkestate99@gmail.com</span>
             </h3>
             <h3 className="text-[20px]  capitalize">
               address:{" "}

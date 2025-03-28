@@ -98,7 +98,7 @@ const Header = () => {
           <Button
           as="a"
             type={"primary"}
-            text={"Schedule a consulatation"}
+            text={"schedule a consulatation"}
             classname={"md:p-6 p-1 max-sm:hidden max-sm:rounded-md  rounded-l-md"}
             hrefLink="form"
           />
