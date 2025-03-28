@@ -48,13 +48,7 @@ const Footer = () => {
             <h3 className="text-[20px]  capitalize">
               address:{" "}
               <span className="text-[18px]">
-                123 Real Estate Avenue Business City, State,ZIP
-              </span>
-            </h3>
-            <h3 className="text-[20px] capitalize">
-              address:{" "}
-              <span className="text-[18px]">
-                123 Real Estate Avenue Business City, State,ZIP
+                Block M, Lajpat Nagar, New Delhi, 110024
               </span>
             </h3>
           </div>
@@ -62,11 +56,10 @@ const Footer = () => {
       </div>
       <div className="md:flex-row md:justify-center md:items-center flex flex-col gap-5 max-md:text-center mt-14 md:gap-56">
         <p>
-          © [Year] [Your Company Name]. All Rights Reserved. Terms of Service |
-          Privacy Policy
+          © 2025 J.K Estate. All Rights Reserved.
         </p>
         <div className="">
-          <h4> Follow us for updates and inspiration!</h4>
+          <h4> Follow us for more about Property Market!</h4>
           <div className="flex my-1 md:my-3 gap-6 justify-center items-center ">
             <InstagramIcon sx={{ fontSize: 34 }} className="hover:scale-110" />
             <FacebookRoundedIcon
