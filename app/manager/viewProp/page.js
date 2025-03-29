@@ -9,7 +9,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Collapse, IconButton, TablePagination } from "@mui/material";
+import { Alert, Collapse, IconButton, TablePagination } from "@mui/material";
 import { dummyPropertiesData } from "@/constants/dummydata";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -45,7 +45,6 @@ const Page = () => {
   const [properties, setProperties] = React.useState([]);
 
   console.log(properties);
-
 
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -99,6 +98,8 @@ const Page = () => {
     setPage(0);
   };
 
+  const handleDelete=() =>{};
+
   return (
     <section className="max-w-[80vw] mx-auto my-8">
       <div className="flex gap-4 items-center justify-end">
@@ -106,11 +107,16 @@ const Page = () => {
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder={`search by address, location or owner name`}
+            placeholder={`Search by address, location or owner name`}
             type="text"
             className="p-2 focus:outline-none min-w-[300px] bg-transparent rounded-r-full"
           />
-          <SearchIcon onClick={() => fetchPropertiesData()} className="bg-blue-500 text-prim_white  w-16 py-2.5 size-11 hover:bg-blue-800" />
+          <button className="bg-blue-500 hover:bg-blue-800  p-3">
+            <SearchIcon
+              onClick={() => fetchPropertiesData()}
+              className="text-prim_white "
+            />
+          </button>
         </div>
         <div className="w-fit px-2 overflow-hidden bg-transparent border rounded-r-full">
           <SortIcon />
@@ -174,7 +180,18 @@ const Page = () => {
                                 <KeyboardArrowDownIcon />
                               )}
                             </IconButton>
-                            <IconButton size="small">
+                            <IconButton
+                              size="small"
+                              onClick={() => {
+                                if (
+                                  window.confirm(
+                                    "Are you sure you want to delete this item?"
+                                  )
+                                ) {
+                                  handleDelete(); // Call your delete function
+                                }
+                              }}
+                            >
                               <DeleteIcon />
                             </IconButton>
                           </TableCell>
@@ -184,11 +201,9 @@ const Page = () => {
                           </TableCell>
                           <TableCell>{row.location}</TableCell>
                           <TableCell>{row.size}</TableCell>
-                          <TableCell >
-                            {row.address}
-                          </TableCell>
-                          <TableCell>{row.type.toLowerCase()}</TableCell>
-                          <TableCell className="max-w-[350px]">{`For ${row.status.toLowerCase()}`}</TableCell>
+                          <TableCell>{row.address}</TableCell>
+                          <TableCell>{row.type}</TableCell>
+                          <TableCell className="max-w-[350px]">{`For ${row.status}`}</TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell
@@ -219,7 +234,6 @@ const Page = () => {
                     ))
                 ) : (
                   <TableRow>
-
                     <TableCell>No data found</TableCell>
                   </TableRow>
                 )}

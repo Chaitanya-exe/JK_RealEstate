@@ -115,18 +115,18 @@ export default function Home() {
         scale: "1.8",
         borderRadius: "100%",
         x: 816,
-        y: -70,
+        y: -140,
         backgroundColor: "#F43F5E",
       },
       {
         ease: "power2.inOut",
         scale: 0.3,
-        duration: 2,
+        duration: 2.4,
         delay: 1,
-        x: 10,
+        x: -45,
         y: 2,
         backgroundColor: "white",
-        borderRadius: "20%",
+        borderRadius: "15%",
       }
     );
 
@@ -158,16 +158,16 @@ export default function Home() {
     <div className="overflow-x-hidden">
       <section
         id="/"
-        className="relative w-screen overflow-hidden pt-24 md:pt-40 md:px-14  bg-gradient-to-b from-bright_red to-dark_red md:min-h-[720px] min-h-[450px]"
+        className="relative w-screen overflow-hidden pt-20 md:pt-40 md:px-14  bg-gradient-to-b from-bright_red to-dark_red md:min-h-[720px] min-h-[450px]"
       >
         {/* rectangles */}
         <div className="block -top-64 left-[0rem]" />
         <div className="block -top-[260px] left-[13rem]" />
         <div className="block -top-[517px] left-[13rem]" />
 
-        <div className="flex justify-center md:justify-between">
+        <div className="flex gap-28 justify-center md:justify-between">
           {/* content */}
-          <div className="relative px-6 md:px-16 capitalize text-prim_white">
+          <div className="relative px-6 md:pl-14 md:pr-36 capitalize text-prim_white">
             <div className="flex max-sm:mt-6 items-end">
               <h1
                 ref={headingRef}
@@ -199,7 +199,7 @@ export default function Home() {
           </div>
 
           {/* image */}
-          <div className="rounded-full max-sm:hidden flex-center min-w-[550px] min-h-[550px] overflow-hidden outline outline-prim_white/95 hover:scale-105 transition duration-500 delay-100 md:-mt-14">
+          <div className="rounded-full max-sm:hidden flex-center min-w-[540px] min-h-[540px] overflow-hidden outline outline-prim_white/95 hover:scale-105 transition duration-500 delay-100 md:-mt-14">
             <Image
               src={"/heroImg.png"}
               width={510}

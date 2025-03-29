@@ -14,28 +14,28 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
 
- const handleSectionScroll = (e, targetId) => {
-   e.preventDefault();
-   setOpenMenu(false);
+  const handleSectionScroll = (e, targetId) => {
+    e.preventDefault();
+    setOpenMenu(false);
 
-   if (
-     window.location.pathname !== "/" &&
-     targetId !== "form" &&
-     targetId !== "faqs"
-   ) {
-     window.location.href = `/#${targetId}`;
-     return;
-   }
+    if (
+      window.location.pathname !== "/" &&
+      targetId !== "form" &&
+      targetId !== "faqs"
+    ) {
+      window.location.href = `/#${targetId}`;
+      return;
+    }
 
-   const targetEle = document.getElementById(targetId);
-   if (targetEle) {
-     const offsetPosition = targetEle.offsetTop - window.innerHeight * 0.1;
-     window.scrollTo({
-       top: offsetPosition,
-       behavior: "smooth",
-     });
-   }
- };
+    const targetEle = document.getElementById(targetId);
+    if (targetEle) {
+      const offsetPosition = targetEle.offsetTop - window.innerHeight * 0.1;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,7 +50,6 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
 
   return (
     <nav
@@ -91,31 +90,31 @@ const Header = () => {
           ))}
 
           <MenuCom setOpenMenu={setOpenMenu} />
-
         </div>
 
         <div className="flex-center">
           <Button
-          as="a"
+            as="a"
             type={"primary"}
             text={"schedule a consulatation"}
-            classname={"md:p-6 p-1 max-sm:hidden max-sm:rounded-md  rounded-l-md"}
+            classname={"md:p-4 md:mr-5 max-sm:hidden rounded-md"}
             hrefLink="form"
           />
-          <IconButton
-            onClick={() => setOpenMenu(!openMenu)}
-            className="max-sm:inline-flex hidden"
-          >
-            <MenuTwoToneIcon
-              sx={{
-                fontSize: 36,
-                color: "black",
-                backgroundColor: "white",
-                paddingY: 1,
-                borderRadius: "100%",
-              }}
-            />
-          </IconButton>
+          <div className=" md:hidden inline-flex ">
+            <IconButton
+              onClick={() => setOpenMenu(!openMenu)}
+            >
+              <MenuTwoToneIcon
+                sx={{
+                  fontSize: 36,
+                  color: "black",
+                  backgroundColor: "white",
+                  paddingY: 1,
+                  borderRadius: "100%",
+                }}
+              />
+            </IconButton>
+          </div>
         </div>
       </div>
     </nav>
