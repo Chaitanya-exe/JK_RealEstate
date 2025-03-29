@@ -39,6 +39,9 @@ export default function Home() {
     data = secondProperties;
   }
 
+  console.log(data);
+  
+
   // useEffect(() => {
   //   const tl = gsap.timeline();
 
@@ -246,7 +249,7 @@ export default function Home() {
         </div>
 
         <div className="divide-y divide-[#D6DCE1]">
-          {data.slice(2).map((property) => (
+          {data.slice(0,3).map((property) => (
             <PropertyCard property={property} key={property.id} />
           ))}
         </div>

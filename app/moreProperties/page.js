@@ -24,7 +24,7 @@ export default function MoreProperties() {
               width={800}
               height={400}
               alt="img"
-              className="h-[240px] w-full hover:scale-[1.02] transition duration-200 object-cover object-center"
+              className="h-[240px] rounded w-full hover:scale-[1.02] transition duration-200 object-cover object-center"
             />
             <p className="text-lg leading-tight py-2">{property.title}</p>
             {/* <p className="text-ellipsis ext-nowrap">{property.description}</p> */}
