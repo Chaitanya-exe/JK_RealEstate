@@ -11,6 +11,8 @@ async function handler(req) {
                 location: body.location,
                 size: body.size,
                 owner: body.owner,
+                type:body.type.toUpperCase(),
+                status: body.status.toUpperCase(),
                 images: {
                     create: body.images
                 }

@@ -18,7 +18,7 @@ async function handler(req) {
 
     if (searchValue.trim() === "") {
       response = await userClient.property.findMany({
-        include: { images: true },
+        include: { images: true }, 
         orderBy: { size: sortOrder === "desc" ? "desc" : "asc" }, 
       });
     } else {
@@ -27,7 +27,7 @@ async function handler(req) {
           OR: [
             { address: { contains: searchValue, mode: "insensitive" } },
             { location: { contains: searchValue, mode: "insensitive" } },
-            { ownerName: { contains: searchValue, mode: "insensitive" } }, 
+            { owner: { contains: searchValue, mode: "insensitive" } }, 
           ],
         },
         include: { images: true },
@@ -45,7 +45,7 @@ async function handler(req) {
 
     return NextResponse.json({ success: true, data: response });
   } catch (err) {
-    console.error("Error fetching properties:", err);
+    console.error(`Error fetching properties:${err}`);
     return NextResponse.json(
       { error: "An error occurred", success: false },
       { status: 500 }
