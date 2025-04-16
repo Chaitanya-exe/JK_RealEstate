@@ -6,21 +6,22 @@ import { useRouter } from 'next/navigation';
 
 const page = () => {
     const [credentials, setCredentials] = useState({
-        email: "",
+        username: "",
         password: ""
     });
     const [error, setError] = useState(false)
 
     const router = useRouter();
 
-    const handleClick = async () => {
+    const handleClick = async (e) => {
+        e.preventDefault();
         try {
             const response = await fetch('/api/auth', {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 redirect: "follow",
                 body: JSON.stringify({
-                    email: credentials.email,
+                    username: credentials.username,
                     password: credentials.password
                 })
             });
@@ -28,8 +29,9 @@ const page = () => {
             const result = data.ok;
             console.log(result)
             if (result === true) {
-                router.replace("/admin/dashboard")
+                router.replace("/manager/queries")
             } else {
+                alert(data.msg)
                 setError(true)
             }
         } catch (err) {
@@ -38,14 +40,14 @@ const page = () => {
     }
     return (
         <div className=" flex pt-20  justify-center bg-cardBg">
-            <form className="md:min-w-[450px] bg-white shadow-md rounded-lg p-4 gap-6">
-                <h2 className="capitalize text-lg">email :</h2>
+            <form className="md:min-w-[450px] bg-white shadow-md rounded-lg p-4 gap-6" onSubmit={handleClick}>
+                <h2 className="capitalize text-lg">username :</h2>
                 <input
-                    value={credentials.email}
+                    value={credentials.username}
                     type="text"
-                    name="email"
+                    name="username"
                     onChange={(e) =>
-                        setCredentials({ ...credentials, email: e.target.value })
+                        setCredentials({ ...credentials, username: e.target.value })
                     }
                     className="p-2 border border-gray/40 rounded-sm w-full"
                 />
@@ -67,6 +69,7 @@ const page = () => {
                 >
                     submit
                 </button>
+
             </form>
         </div>
     )

@@ -14,12 +14,12 @@ export function middleware(req) {
             const token = req.headers.get('cookie')?.split(" ")[1];
             console.log(token)
             if (!token) {
-                url.pathname = '/admin/login'
+                url.pathname = '/manager/login'
                 return NextResponse.rewrite(url);
             } else {
                 const verified = jwt.verify(token, process.env.JWT_SECRET);
                 console.log(verified)
-                url.pathname = '/admin/dashboard'
+                url.pathname = '/manager/queries'
                 return NextResponse.rewrite(url);
             }
         }

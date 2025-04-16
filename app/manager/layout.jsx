@@ -8,7 +8,8 @@ import { usePathname } from 'next/navigation';
 
 const layout = ({children}) => {
   const path = usePathname();
-  if (path === "/manager/login") {
+  const pathArr = path.split("/")
+  if (pathArr.includes("login")) {
     return (<></>)
   }
 
