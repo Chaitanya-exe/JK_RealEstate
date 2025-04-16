@@ -216,8 +216,8 @@ export default function Home() {
         <Top
           head1={
             <p>
-              <span className="text-bright_red">Affordable Homes</span>
-              {"  "} with Unmatched Value
+              <span className="text-bright_red">Top Properties</span>
+              {"  "} in Delhi/NCR region
             </p>
           }
           classname={"max-w-[630px] mx-auto text-center md:my-10 pt-16"}
