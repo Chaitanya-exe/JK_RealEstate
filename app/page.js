@@ -158,7 +158,7 @@ export default function Home() {
     {/* HOME */}
       <section
         id="/"
-        className="relative w-screen overflow-hidden pt-20 md:pt-40 md:px-14  bg-gradient-to-b from-bright_red to-dark_red md:min-h-[720px] min-h-[450px]"
+        className="relative w-screen overflow-hidden pt-20 md:pt-40 md:px-14  bg-gradient-to-b from-bright_red to-dark_red md:min-h-[720px] min-h-[590px]"
       >
         {/* rectangles */}
         <div className="block -top-64 left-[0rem]" />
@@ -167,7 +167,7 @@ export default function Home() {
 
         <div className="flex gap-28 justify-center md:justify-between">
           {/* content */}
-          <div className="relative px-6 md:pl-14 md:pr-36 capitalize text-prim_white">
+          <div className="relative px-4 md:pl-14 md:pr-36 capitalize text-prim_white">
             <div className="flex max-sm:mt-6 items-end">
               <h1
                 ref={headingRef}
@@ -360,6 +360,13 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* LOGOS */}
+
+      <section id="logos">
+
+        
       </section>
 
       {/* TESTIMONIALS */}
