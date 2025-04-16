@@ -50,13 +50,13 @@ transform: rotate(-40deg);
   .hero_heading{
     /* Find Your Dream Property – Exclusive Listings Tailored for You */
 
-width: 658px;
-height: 168px;
+/* width: 658px;
+height: 168px; */
 
 font-family: 'Raleway';
 font-style: normal;
 font-weight: 900;
-font-size: 48px;
+font-size: 46px;
 line-height: 56px;
 letter-spacing: 0.02em;
 text-transform: capitalize;
@@ -71,14 +71,14 @@ text-transform: capitalize;
   }
 
   .hero_subheading{
-width: 721px;
+/* width: 721px; */
 /* height: 118px; */
 
 font-family: 'Sarala';
 font-style: normal;
 font-weight: 700;
-font-size: 36px;
-line-height: 59px;
+font-size: 32px;
+line-height: 50px;
 letter-spacing: 0.02em;
   }
 

@@ -2,7 +2,6 @@
 
 import AccordianComp from "@/components/AccordianComp";
 import Button from "@/components/Button";
-import Footer from "@/components/Footer";
 import PropertyCard from "@/components/PropertyCard";
 import QueryForm from "@/components/QueryForm";
 import Slick from "@/components/Slick";
@@ -10,13 +9,12 @@ import Top from "@/components/Top";
 import { properties, secondProperties } from "@/constants/dummydata";
 import Image from "next/image";
 import { gsap } from "gsap";
-// import { SplitText } from "gsap/SplitText";
 import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import PhoneSlick from "@/components/PhoneSlick";
 import Link from "next/link";
-import { ArrowBack, ArrowForwardIos } from "@mui/icons-material";
+import { ArrowForwardIos } from "@mui/icons-material";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 
@@ -32,6 +30,9 @@ export default function Home() {
     triggerOnce: true
   })
 
+
+  console.log(data);
+  
 
   // useEffect(() => {
   //   const tl = gsap.timeline();
@@ -112,18 +113,18 @@ export default function Home() {
         scale: "1.8",
         borderRadius: "100%",
         x: 816,
-        y: -70,
+        y: -140,
         backgroundColor: "#F43F5E",
       },
       {
         ease: "power2.inOut",
         scale: 0.3,
-        duration: 2,
+        duration: 2.4,
         delay: 1,
-        x: 10,
+        x: -45,
         y: 2,
         backgroundColor: "white",
-        borderRadius: "20%",
+        borderRadius: "15%",
       }
     );
 
@@ -153,18 +154,20 @@ export default function Home() {
 
   return (
     <div className="overflow-x-hidden">
+
+    {/* HOME */}
       <section
         id="/"
-        className="relative w-screen overflow-hidden pt-24 md:pt-40 md:px-14  bg-gradient-to-b from-bright_red to-dark_red md:min-h-[720px] min-h-[450px]"
+        className="relative w-screen overflow-hidden pt-20 md:pt-40 md:px-14  bg-gradient-to-b from-bright_red to-dark_red md:min-h-[720px] min-h-[450px]"
       >
         {/* rectangles */}
         <div className="block -top-64 left-[0rem]" />
         <div className="block -top-[260px] left-[13rem]" />
         <div className="block -top-[517px] left-[13rem]" />
 
-        <div className="flex justify-center md:justify-between">
+        <div className="flex gap-28 justify-center md:justify-between">
           {/* content */}
-          <div className="relative px-6 md:px-16 capitalize text-prim_white">
+          <div className="relative px-6 md:pl-14 md:pr-36 capitalize text-prim_white">
             <div className="flex max-sm:mt-6 items-end">
               <h1
                 ref={headingRef}
@@ -196,7 +199,7 @@ export default function Home() {
           </div>
 
           {/* image */}
-          <div className="rounded-full max-sm:hidden flex-center min-w-[550px] min-h-[550px] overflow-hidden outline outline-prim_white/95 hover:scale-105 transition duration-500 delay-100 md:-mt-14">
+          <div className="rounded-full max-sm:hidden flex-center min-w-[540px] min-h-[540px] overflow-hidden outline outline-prim_white/95 hover:scale-105 transition duration-500 delay-100 md:-mt-14">
             <Image
               src={"/heroImg.png"}
               width={510}
@@ -208,13 +211,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* properties */}
+      {/* PROPERTIES */}
       <section id="properties" className="md:px-28 pb-6">
         <Top
           head1={
             <p>
-              <span className="text-bright_red">Affordable Homes</span>
-              {"  "} with Unmatched Value
+              <span className="text-bright_red">Top Properties</span>
+              {"  "} in Delhi/NCR region
             </p>
           }
           classname={"max-w-[630px] mx-auto text-center md:my-10 pt-16"}
@@ -241,7 +244,7 @@ export default function Home() {
         </div>
 
         <div className="divide-y divide-[#D6DCE1]">
-          {data.slice(2).map((property) => (
+          {data.slice(0,3).map((property) => (
             <PropertyCard property={property} key={property.id} />
           ))}
         </div>
@@ -255,7 +258,7 @@ export default function Home() {
         </Link>
       </section>
 
-      {/* stats */}
+      {/* STATICTICS */}
       <section
         ref={ref}
         id="stats"
@@ -302,7 +305,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* work */}
+      {/* WORK FLOW */}
       <section id="aboutUs">
         <Top
           head1={
@@ -359,7 +362,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* testimonial */}
+      {/* TESTIMONIALS */}
       <section id="testimonials" className="">
         <Top
           head1={
@@ -382,7 +385,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* form */}
+      {/* FORM */}
       <section
         id="form"
         className="h-[690px] py-10 mb-12 mt-36 relative w-full bg-[url('/formBg.png')] bg-cover bg-center"
@@ -398,7 +401,7 @@ export default function Home() {
         <QueryForm />
       </section>
 
-      {/* faqs */}
+      {/* FAQS */}
       <section id="faqs">
         <Top
           head1={<p>Your Questions, Answered</p>}
@@ -408,10 +411,17 @@ export default function Home() {
         <AccordianComp />
       </section>
 
+      {/* COMPANY LOGOS CAROUSEL */}
+
+
+
+{/* BOTTOM CONTENT/ */}
       <p className="md:mx-44 mx-12 py-6 md:text-[19px] text-sm  leading-tight md:leading-normal text-[#234E70] text-center  ">
         Want personalized communication? Contact us directly at <span className="font-bold">+91 7982500442</span> or email
         us at <span className="font-bold">jkestate99@gmail.com</span> We’re happy to help!
       </p>
+
+
     </div>
   );
 }
