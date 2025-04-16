@@ -54,16 +54,13 @@ const MenuCom = ({ setOpenMenu }) => {
             setAnchorEl(null);
           }}
         >
-          Property Sales & Acquisitions
+          Property Sales & Purchase
         </MenuItem>
         <MenuItem onClick={() => handleClose("2")}>
           {" "}
-          Property Management
+          Property Leasing
         </MenuItem>
         <MenuItem onClick={() => handleClose("3")}>
-          Investment Consulting
-        </MenuItem>
-        <MenuItem onClick={() => handleClose("4")}>
           Market Research & Property Valuations
         </MenuItem>
       </Menu>
