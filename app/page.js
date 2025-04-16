@@ -17,6 +17,8 @@ import Link from "next/link";
 import { ArrowForwardIos } from "@mui/icons-material";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
+import { CarouselRow } from "@/components/CarouselRow";
+import { cafeLogos, rentalLogos } from "@/constants/logos";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,12 +29,10 @@ export default function Home() {
 
   const { ref, inView } = useInView({
     threshold: 0.5,
-    triggerOnce: true
-  })
+    triggerOnce: true,
+  });
 
-
-  console.log(data);
-  
+  // console.log(data);
 
   // useEffect(() => {
   //   const tl = gsap.timeline();
@@ -154,8 +154,7 @@ export default function Home() {
 
   return (
     <div className="overflow-x-hidden">
-
-    {/* HOME */}
+      {/* HOME */}
       <section
         id="/"
         className="relative w-screen overflow-hidden pt-20 md:pt-40 md:px-14  bg-gradient-to-b from-bright_red to-dark_red md:min-h-[720px] min-h-[590px]"
@@ -173,12 +172,14 @@ export default function Home() {
                 ref={headingRef}
                 className="md:hero_heading hero_heading_Sm relative "
               >
-                Premier Delhi-NCR Real Estate Consultancy - Find Your Dream Property in Delhi, Gurgaon, Noida 
+                Premier Delhi-NCR Real Estate Consultancy - Find Your Dream
+                Property in Delhi, Gurgaon, Noida
               </h1>
               <p className="spanclass absolute md:left-56 left-20 w-6 h-6 md:w-10 md:h-10 inline-block"></p>
             </div>
             <h2 className="hr_subheading md:hero_subheading text-[23px] font-[550] text-prim_white/95">
-            Luxury Homes, Commercial Spaces & Prime Investment Opportunities in Delhi-NCR Region | Expert Property Solutions Tailored for You
+              Luxury Homes, Commercial Spaces & Prime Investment Opportunities
+              in Delhi-NCR Region | Expert Property Solutions Tailored for You
             </h2>
             <div className="flex justify-start items-center mt-5 gap-2 md:gap-6">
               <Button
@@ -224,17 +225,24 @@ export default function Home() {
         />
 
         <div className="flex items-center gap-3 justify-center">
-          <div onClick={() => { setActiveTab("1"); setData(properties); }}>
+          <div
+            onClick={() => {
+              setActiveTab("1");
+              setData(properties);
+            }}
+          >
             <Button
               type={activeTab === "1" ? "active" : "deactive"}
               text={"Residential"}
               classname={activeTab === "1" ? "text-xl" : "rounded-3xl"}
             />
           </div>
-          <div onClick={() => {
-            setActiveTab("2");
-            setData(secondProperties);
-          }}>
+          <div
+            onClick={() => {
+              setActiveTab("2");
+              setData(secondProperties);
+            }}
+          >
             <Button
               type={activeTab === "2" ? "active" : "deactive"}
               text={"Commercial"}
@@ -244,7 +252,7 @@ export default function Home() {
         </div>
 
         <div className="divide-y divide-[#D6DCE1]">
-          {data.slice(0,3).map((property) => (
+          {data.slice(0, 3).map((property) => (
             <PropertyCard property={property} key={property.id} />
           ))}
         </div>
@@ -323,10 +331,11 @@ export default function Home() {
                 Who we are.
               </h1>
               <h2 className="font-medium leading-snug md:leading-normal md:text-[28px] text-[19px] md:tracking-[0.5px] text-[#234E70] group-hover:text-prim_white">
-                At J.K Estate, we are more than just a real estate
-                company. Our mission is to bring out the best that exists in the market. Established in 2013, we have proudly
-                served in Delhi/NCR region with a commitment to excellence,
-                integrity, and personalized service.
+                At J.K Estate, we are more than just a real estate company. Our
+                mission is to bring out the best that exists in the market.
+                Established in 2013, we have proudly served in Delhi/NCR region
+                with a commitment to excellence, integrity, and personalized
+                service.
               </h2>
             </div>
             <Image
@@ -355,7 +364,10 @@ export default function Home() {
                 What we do.
               </h1>
               <h2 className="font-medium leading-snug md:leading-normal md:text-[28px] text-[19px] md:tracking-[0.5px] text-[#234E70] group-hover:text-prim_white">
-              To help you discover your ideal commercial property with our expert consultancy services. We specialize in keeping up to date with latest market state and trends that helps us to provide the solutions specific to your requirements and business objectives.
+                To help you discover your ideal commercial property with our
+                expert consultancy services. We specialize in keeping up to date
+                with latest market state and trends that helps us to provide the
+                solutions specific to your requirements and business objectives.
               </h2>
             </div>
           </div>
@@ -365,8 +377,22 @@ export default function Home() {
       {/* LOGOS */}
 
       <section id="logos">
+        {/* COMPANY LOGOS CAROUSEL */}
 
-        
+        <Top
+          head1={
+            <p>
+              Brands that <span className="text-bright_red">Trusted us</span>
+            </p>
+          }
+          classname={"max-w-[630px] mx-auto text-center my-10 pt-16"}
+        />
+
+        <div className="space-y-4 my-16">
+          <CarouselRow images={cafeLogos} direction="left" />
+          <CarouselRow images={rentalLogos} direction="right" />
+          <CarouselRow images={cafeLogos} direction="left" />
+        </div>
       </section>
 
       {/* TESTIMONIALS */}
@@ -418,17 +444,13 @@ export default function Home() {
         <AccordianComp />
       </section>
 
-      {/* COMPANY LOGOS CAROUSEL */}
-
-
-
-{/* BOTTOM CONTENT/ */}
+      {/* BOTTOM CONTENT/ */}
       <p className="md:mx-44 mx-12 py-6 md:text-[19px] text-sm  leading-tight md:leading-normal text-[#234E70] text-center  ">
-        Want personalized communication? Contact us directly at <span className="font-bold">+91 7982500442</span> or email
-        us at <span className="font-bold">jkestate99@gmail.com</span> We’re happy to help!
+        Want personalized communication? Contact us directly at{" "}
+        <span className="font-bold">+91 7982500442</span> or email us at{" "}
+        <span className="font-bold">jkestate99@gmail.com</span> We’re happy to
+        help!
       </p>
-
-
     </div>
   );
 }
