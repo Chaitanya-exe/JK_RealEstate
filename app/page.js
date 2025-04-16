@@ -2,7 +2,6 @@
 
 import AccordianComp from "@/components/AccordianComp";
 import Button from "@/components/Button";
-import Footer from "@/components/Footer";
 import PropertyCard from "@/components/PropertyCard";
 import QueryForm from "@/components/QueryForm";
 import Slick from "@/components/Slick";
@@ -10,13 +9,12 @@ import Top from "@/components/Top";
 import { properties, secondProperties } from "@/constants/dummydata";
 import Image from "next/image";
 import { gsap } from "gsap";
-// import { SplitText } from "gsap/SplitText";
 import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import PhoneSlick from "@/components/PhoneSlick";
 import Link from "next/link";
-import { ArrowBack, ArrowForwardIos } from "@mui/icons-material";
+import { ArrowForwardIos } from "@mui/icons-material";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 
@@ -156,6 +154,8 @@ export default function Home() {
 
   return (
     <div className="overflow-x-hidden">
+
+    {/* HOME */}
       <section
         id="/"
         className="relative w-screen overflow-hidden pt-20 md:pt-40 md:px-14  bg-gradient-to-b from-bright_red to-dark_red md:min-h-[720px] min-h-[450px]"
@@ -211,7 +211,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* properties */}
+      {/* PROPERTIES */}
       <section id="properties" className="md:px-28 pb-6">
         <Top
           head1={
@@ -258,7 +258,7 @@ export default function Home() {
         </Link>
       </section>
 
-      {/* stats */}
+      {/* STATICTICS */}
       <section
         ref={ref}
         id="stats"
@@ -305,7 +305,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* work */}
+      {/* WORK FLOW */}
       <section id="aboutUs">
         <Top
           head1={
@@ -362,7 +362,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* testimonial */}
+      {/* TESTIMONIALS */}
       <section id="testimonials" className="">
         <Top
           head1={
@@ -385,7 +385,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* form */}
+      {/* FORM */}
       <section
         id="form"
         className="h-[690px] py-10 mb-12 mt-36 relative w-full bg-[url('/formBg.png')] bg-cover bg-center"
@@ -401,7 +401,7 @@ export default function Home() {
         <QueryForm />
       </section>
 
-      {/* faqs */}
+      {/* FAQS */}
       <section id="faqs">
         <Top
           head1={<p>Your Questions, Answered</p>}
@@ -411,10 +411,17 @@ export default function Home() {
         <AccordianComp />
       </section>
 
+      {/* COMPANY LOGOS CAROUSEL */}
+
+
+
+{/* BOTTOM CONTENT/ */}
       <p className="md:mx-44 mx-12 py-6 md:text-[19px] text-sm  leading-tight md:leading-normal text-[#234E70] text-center  ">
         Want personalized communication? Contact us directly at <span className="font-bold">+91 7982500442</span> or email
         us at <span className="font-bold">jkestate99@gmail.com</span> We’re happy to help!
       </p>
+
+
     </div>
   );
 }
