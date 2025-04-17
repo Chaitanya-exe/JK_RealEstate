@@ -12,7 +12,7 @@ async function handler(req){
                 expiresIn: '5 days'
             });
             let response = NextResponse.json({ok:true},{status:200});
-            response.cookies.set('Autorization',`Bearer ${token}`,{
+            response.cookies.set('Authorization',`Bearer ${token}`,{
                 httpOnly: true,
                 secure: false,
                 path: "/manager"
