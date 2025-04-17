@@ -217,7 +217,7 @@ export const services = [
         ],
       },
     ],
-processHeading:"Our Process",
+    processHeading: "Our Process",
     processList: [
       {
         key: "Initial Consultation:",
@@ -244,9 +244,9 @@ processHeading:"Our Process",
           " We ensure all requirements are met for a smooth transfer of ownership.",
       },
     ],
-    h2: " The [Company Name] Advantage",
-    h2SubText:
-      "What sets us apart is our commitment to truly understanding both sides of the transaction. We don't just match properties with buyers—we create strategic connections that benefit everyone involved.Our extensive network of industry professionals, including legal experts, inspectors, and financial advisors, ensures that every aspect of your transaction is handled with the utmost care and attention to detail",
+    // h2: " The [Company Name] Advantage",
+    // h2SubText:
+    //   "What sets us apart is our commitment to truly understanding both sides of the transaction. We don't just match properties with buyers—we create strategic connections that benefit everyone involved.Our extensive network of industry professionals, including legal experts, inspectors, and financial advisors, ensures that every aspect of your transaction is handled with the utmost care and attention to detail",
     h3: " Client Success Stories",
     h3SubText:
       " Our track record speaks for itself. From helping growing families find their forever homes to assisting businesses in securing strategic real estate investments, we've facilitated countless successful transactions across [Location]. Our clients consistently praise our attention to detail, market knowledge, and commitment to exceeding expectations.",
@@ -257,107 +257,154 @@ processHeading:"Our Process",
   },
   {
     id: 2,
-    name: "Property Sales & Purchase",
-    title: "Your Trusted Partner in Real Estate Transactions",
+    name: "Commercial Property Leasing",
+    title: " Expert Commercial Leasing Solutions for Businesses",
     subtitle:
-      " At [Company Name], we specialize in streamlining the property sales and purchase process, ensuring a seamless experience for buyers and sellers alike. Our expert team navigates the complex real estate market, connecting clients with opportunities that perfectly match their needs and expectations.",
+      " At [Company Name], we specialize in commercial property leasing services designed to match business owners with ideal spaces and property owners with qualified tenants.Our comprehensive approach ensures that all legal requirements and lease terms are meticulously handled, creating secure, beneficial arrangements for all parties involved",
+    processHeading: "The Commercial Leasing Process",
 
     processList: [
       {
         key: "Initial Consultation:",
         value:
-          " We begin with a detailed discussion of your goals, whether you're buying or selling",
+          " We begin by understanding your specific requirements, whether you're aproperty owner or business tenant",
       },
       {
-        key: "Market Analysis:",
+        key: "Property Matching",
         value:
-          " Our team conducts comprehensive research to identify optimal opportunities.",
+          "Our team identifies optimal matches between available properties and qualified businesses",
       },
       {
-        key: "Strategic Matching:",
+        key: "Due Diligence:",
+        value: "We conduct thorough background checks and property inspections",
+      },
+      {
+        key: "Lease Negotiation:  ",
+        value: " Our experts negotiate terms beneficial to both parties.",
+      },
+      {
+        key: " Documentation: ",
         value:
-          "We connect sellers with qualified buyers or help buyers find their ideal properties.",
+          " We prepare comprehensive lease agreements with all necessary legal provisions.",
       },
       {
-        key: "Transaction Management: ",
-        value: " From negotiation to paperwork, we oversee every detail.",
-      },
-      {
-        key: " Successful Closing:",
+        key: " Lease Execution:",
         value:
-          " We ensure all requirements are met for a smooth transfer of ownership.",
+          "We oversee the signing process, ensuring all requirements are met",
+      },
+      {
+        key: "  Transition Support: ",
+        value: "We facilitate smooth property handover and occupancy",
       },
     ],
-    h1: "How We Guide Your Property Journey",
+    h1: " Comprehensive Commercial Leasing Services",
     h1SubText: [
       {
-        part: "For Property Sellers",
-        partDesc: " When you entrust us with selling your property, we:",
+        part: " For Property Owner",
+        partDesc:
+          " When you entrust your commercial property to our leasing services, we:",
         points: [
           "Conduct thorough market analysis to determine optimal pricing strategies",
-          "Connect you with qualified buyers, including established companies seeking investment opportunities",
-          " Handle negotiations to secure the best possible terms",
-          "Oversee all paperwork and legal requirements",
-          " Guide you through each step until final closing",
+          "Identify qualified business tenants with strong financial credentials",
+          " Perform detailed background and credit checks on potential lessees",
+          "Negotiate favorable lease terms that protect your investment",
+          "Prepare comprehensive lease documentation that complies with all regulations",
+          " Facilitate property inspections and condition reporting",
+          " Manage the entire execution process with attention to all legal requirements",
+        ],
+      },
+      {
+        part: "For Business Tenants",
+        partDesc:
+          " Looking for the perfect commercial space? Our tenant services include:",
+        points: [
+          " Customized property searches based on your specific business needs",
+          " Access to exclusive commercial listings not widely advertised",
+          " Strategic location analysis for maximum business advantage",
+          "Lease term negotiation to secure favorable conditions",
+          " Expert guidance on commercial zoning and usage requirements",
+          " Complete transparency regarding all fees and obligations",
+          " Full support throughout the lease execution process",
         ],
       },
     ],
 
-    h2: " The [Company Name] Advantage",
-    h2SubText:
-      "What sets us apart is our commitment to truly understanding both sides of the transaction. We don't just match properties with buyers—we create strategic connections that benefit everyone involved.Our extensive network of industry professionals, including legal experts, inspectors, and financial advisors, ensures that every aspect of your transaction is handled with the utmost care and attention to detail",
+    // h2: " The [Company Name] Advantage",
+    // h2SubText:
+    //   "What sets us apart is our commitment to truly understanding both sides of the transaction. We don't just match properties with buyers—we create strategic connections that benefit everyone involved.Our extensive network of industry professionals, including legal experts, inspectors, and financial advisors, ensures that every aspect of your transaction is handled with the utmost care and attention to detail",
     h3: " Client Success Stories",
     h3SubText:
       " Our track record speaks for itself. From helping growing families find their forever homes to assisting businesses in securing strategic real estate investments, we've facilitated countless successful transactions across [Location]. Our clients consistently praise our attention to detail, market knowledge, and commitment to exceeding expectations.",
-    h4: " Ready to Make Your Move?",
+    h4: "Start Your Commercial Leasing Journey",
     h4SubText:
-      " Whether you're looking to sell your property or find the perfect new location, our dedicated team is here to make it happen. Contact us today for a confidential consultation and discover how we can transform your real estate experience",
+      " Whether you're a property owner seeking qualified business tenants or a company searching for the ideal commercial space, our dedicated team is ready to guide you through the entire leasing process.Contact us today to schedule a consultation and discover how our commercial leasing expertise can benefit your business objectives.",
     imagePath: "/formBg.png",
   },
   {
     id: 3,
-    name: "Property Sales & Purchase",
-    title: "Your Trusted Partner in Real Estate Transactions",
+    name: "Market Research & Property Valuations",
+    title: " Expert Commercial Property Intelligence for Informed Decisions",
     subtitle:
-      " At [Company Name], we specialize in streamlining the property sales and purchase process, ensuring a seamless experience for buyers and sellers alike. Our expert team navigates the complex real estate market, connecting clients with opportunities that perfectly match their needs and expectations.",
+      " At [Company Name], our specialized market research and property valuation services provide crucial intelligence that drives successful commercial real estate decisions. Our team's deep knowledge of local market dynamics and extensive research capabilities ensure you receive accurate, timely information that creates true competitive advantage",
+    processHeading: "Customized Research Solutions",
 
     processList: [
       {
-        key: "Initial Consultation:",
+        key: " Site Selection Analysis:",
         value:
-          " We begin with a detailed discussion of your goals, whether you're buying or selling",
+          "Identifying optimal locations based on your unique business requirements",
       },
       {
-        key: "Market Analysis:",
+        key: "Highest and Best Use Studies:",
         value:
-          " Our team conducts comprehensive research to identify optimal opportunities.",
+          " Determining the most profitable legally permissible use of a property",
       },
       {
-        key: "Strategic Matching:",
+        key: " Market Feasibility Reports:",
         value:
-          "We connect sellers with qualified buyers or help buyers find their ideal properties.",
+          "Assessing the viability of proposed developments or business concepts",
       },
       {
-        key: "Transaction Management: ",
-        value: " From negotiation to paperwork, we oversee every detail.",
+        key: " Competitive Property Analysis: ",
+        value:
+          " Evaluating how specific properties compare to market alternatives",
       },
       {
-        key: " Successful Closing:",
+        key: "Investment Performance Forecasting: ",
         value:
-          " We ensure all requirements are met for a smooth transfer of ownership.",
+          " Projecting future returns based on comprehensive market factors",
       },
     ],
-    h1: "How We Guide Your Property Journey",
+    h1: "Services",
     h1SubText: [
       {
-        part: "For Property Sellers",
-        partDesc: " When you entrust us with selling your property, we:",
+        part: " Comprehensive Market Research Services",
+        partDesc:
+          "Our dedicated research team continuously monitors and analyzes commercial real estate trends across [Region], giving our clients access to valuable insights including:",
         points: [
-          "Conduct thorough market analysis to determine optimal pricing strategies",
-          "Connect you with qualified buyers, including established companies seeking investment opportunities",
-          " Handle negotiations to secure the best possible terms",
-          "Oversee all paperwork and legal requirements",
-          " Guide you through each step until final closing",
+          " Emerging market opportunities and development forecasts",
+          " Sector-specific performance metrics and growth patterns",
+          " Supply and demand dynamics across commercial property categories",
+          " Rental rate trends and vacancy statistics",
+          "Investment yield comparisons and capital value movements",
+          " Regulatory changes affecting commercial properties",
+          " New developments and upcoming property releases",
+          " Economic factors influencing the commercial real estate landscape",
+        ],
+      },
+      {
+        part: " Professional Property Valuation Services",
+        partDesc:
+          " Our valuation experts utilize advanced methodologies combined with extensive market knowledge to deliver accurate, defensible commercial property valuations that serve multiple purposes:",
+        points: [
+          " Investment acquisition and disposition decisions",
+          " Loan security and financing applications",
+          " Financial reporting and accounting requirements",
+          " Insurance coverage assessments",
+          " Partnership restructuring and portfolio reviews",
+          "Tax planning and appeals",
+          "Lease renewal negotiations",
+          " Litigation support and dispute resolution",
         ],
       },
     ],
@@ -368,9 +415,9 @@ processHeading:"Our Process",
     h3: " Client Success Stories",
     h3SubText:
       " Our track record speaks for itself. From helping growing families find their forever homes to assisting businesses in securing strategic real estate investments, we've facilitated countless successful transactions across [Location]. Our clients consistently praise our attention to detail, market knowledge, and commitment to exceeding expectations.",
-    h4: " Ready to Make Your Move?",
+    h4: " Start With Expert Market Intelligence",
     h4SubText:
-      " Whether you're looking to sell your property or find the perfect new location, our dedicated team is here to make it happen. Contact us today for a confidential consultation and discover how we can transform your real estate experience",
+      " Whether you're considering a property investment, planning a corporate relocation, or need an accurate valuation for your commercial asset, our research team provides the market intelligence necessary for success. Contact us today to discuss how our detailed market research and valuation services can support your commercial real estate objectives.",
     imagePath: "/formBg.png",
   },
 ];
