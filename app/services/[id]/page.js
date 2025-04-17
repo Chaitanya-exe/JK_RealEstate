@@ -26,7 +26,8 @@ const Page = () => {
   return (
     <div>
       <ServiceDetail serviceData={serviceData} />
-      
+
+      {/* QUERY FORM */}
       <section
         id="form"
         className="h-[690px] py-10 mb-12 mt-36 relative w-full bg-[url('/formBg.png')] bg-cover bg-center"
@@ -34,7 +35,7 @@ const Page = () => {
         <QueryForm />
       </section>
 
-      {/* faqs */}
+      {/* FAQS */}
       <section id="faqs" className="my-24">
         <Top
           head1={<p>Your Questions, Answered</p>}

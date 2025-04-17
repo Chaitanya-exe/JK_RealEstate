@@ -21,6 +21,34 @@ body {
 
 
 @layer utilities {
+
+   @keyframes scroll {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-20%);
+    }
+  }
+
+  @keyframes scroll-reverse {
+    0% {
+      transform: translateX(-20%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+.animate-scroll {
+  animation: scroll 20s linear infinite alternate;
+  /* alternate makes it go back and forth like yoyo */
+}
+
+.animate-scroll-reverse {
+  animation: scroll-reverse 20s linear infinite alternate;
+}
+
+
   .flex-center {
     display: flex;
     justify-items: center;
