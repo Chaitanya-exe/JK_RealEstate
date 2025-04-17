@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
 import * as jose from "jose";
 
 export async function middleware(req) {
@@ -17,20 +16,16 @@ export async function middleware(req) {
                 url.pathname = '/manager/login'
                 return NextResponse.rewrite(url);
             } else {
-                try {
-                    const encoder = new TextEncoder();
-                    const secret = encoder.encode(process.env.JWT_SECRET);
-                    const {payload} = await jose.jwtVerify(token, secret);
-                    console.log(payload)
-                    if (payload){
-                        return NextResponse.next();
-                    }    
-                } catch (e) {
-                    console.log(e)
+                const encoder = new TextEncoder();
+                const secret = encoder.encode(process.env.JWT_SECRET);
+                const { payload } = await jose.jwtVerify(token, secret);
+                console.log(payload)
+                if (payload) {
+                    return NextResponse.next();
                 }
             }
-        } else{
-            if (url.pathname.startsWith("/manager")){
+        } else {
+            if (url.pathname.startsWith("/manager")) {
                 url.pathname = '/not_found'
                 return NextResponse.rewrite(url)
             }
