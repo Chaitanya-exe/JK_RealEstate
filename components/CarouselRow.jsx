@@ -4,8 +4,6 @@ import React from "react";
 
 
 export const CarouselRow = ({ images, direction = "left" }) => {
-    
-    console.log(images);
 
   return (
     <div className="overflow-hidden w-full py-4 bg-white">

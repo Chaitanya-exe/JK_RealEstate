@@ -32,59 +32,20 @@ export default function Home() {
     triggerOnce: true,
   });
 
-  // console.log(data);
+  
 
-  // useEffect(() => {
-  //   const tl = gsap.timeline();
-
-  //   // Fade-in with scale
-  //   tl.from(headingRef.current, {
-  //     opacity: 0,
-  //     scale: 0.8,
-  //     y: 50,
-  //     duration: 1.5,
-  //     ease: "power4.out",
-  //   });
-
-  //   // Text wobble effect
-  //   tl.to(headingRef.current, {
-  //     rotate: 2,
-  //     duration: 0.3,
-  //     yoyo: true,
-  //     repeat: 1,
-  //     ease: "elastic.out(1, 0.5)",
-  //   });
-
-  //   // Subtle infinite glow effect
-  //   tl.to(headingRef.current, {
-  //     textShadow: "0px 0px 15px rgba(255, 255, 255, 0.8)",
-  //     duration: 2.5,
-  //     repeat: -1,
-  //     yoyo: true,
-  //     ease: "power1.inOut",
-  //   });
-  // }, []);
-
-  //  useEffect(() => {
-  //    // Split the text into characters
-  //    const chars = headingRef.current.textContent.split("");
-  //    headingRef.current.innerHTML = chars
-  //      .map((char) => `<span style="display: inline-block">${char}</span>`)
-  //      .join("");
-
-  //    // Animate each character
-  //    gsap.fromTo(
-  //      headingRef.current.children,
-  //      { opacity: 0, y: 50 },
-  //      {
-  //        opacity: 1,
-  //        y: 0,
-  //        stagger: 0.05,
-  //        ease: "power2.out",
-  //        duration: 1.5,
-  //      }
-  //    );
-  //  }, []);
+  useEffect(()=>{
+    async function fetchProperties(){
+      try {
+        const response = await fetch(`/api/estate/client`);
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchProperties();
+  },[]);
 
   useGSAP(() => {
     const words = headingRef.current.textContent.split(" ");

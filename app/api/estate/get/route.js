@@ -11,9 +11,6 @@ async function handler(req) {
 
     let searchValue = params.get("searchValue") || "";
     let sortOrder = params.get("sortOrder") || "asc"; 
-    console.log("Search:", searchValue);
-    console.log("Sort:", sortOrder);
-
     let response;
 
     if (searchValue.trim() === "") {
