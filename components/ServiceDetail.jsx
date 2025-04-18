@@ -30,7 +30,6 @@ const serviceDataDetail = ({ serviceData }) => {
     gsap.from(".progress-line", {
       scaleY: 0,
       transformOrigin: "top center",
-      //  height: 0,
       duration: 1,
       ease: "power2.out",
       scrollTrigger: {
