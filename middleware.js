@@ -19,7 +19,6 @@ export async function middleware(req) {
                 const encoder = new TextEncoder();
                 const secret = encoder.encode(process.env.JWT_SECRET);
                 const { payload } = await jose.jwtVerify(token, secret);
-                console.log(payload)
                 if (payload) {
                     return NextResponse.next();
                 }
