@@ -42,3 +42,4 @@ next-env.d.ts
 
 #migrations
 prisma/
+jk_estate_content.txt

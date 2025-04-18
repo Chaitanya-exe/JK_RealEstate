@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
+import * as jose from "jose";
 
-export function middleware(req) {
+export async function middleware(req) {
     const url = req.nextUrl;
     const host = req.headers.get('host').split('.')[0];
 
@@ -11,16 +11,22 @@ export function middleware(req) {
 
     try {
         if (host == 'admin') {
-            const token = req.headers.get('cookie')?.split(" ")[1];
-            console.log(token)
+            const token = req.cookies.get('Authorization')?.value.split(" ")[1];
             if (!token) {
-                url.pathname = '/admin/login'
+                url.pathname = '/manager/login'
                 return NextResponse.rewrite(url);
             } else {
-                const verified = jwt.verify(token, process.env.JWT_SECRET);
-                console.log(verified)
-                url.pathname = '/admin/dashboard'
-                return NextResponse.rewrite(url);
+                const encoder = new TextEncoder();
+                const secret = encoder.encode(process.env.JWT_SECRET);
+                const { payload } = await jose.jwtVerify(token, secret);
+                if (payload) {
+                    return NextResponse.next();
+                }
+            }
+        } else {
+            if (url.pathname.startsWith("/manager")) {
+                url.pathname = '/not_found'
+                return NextResponse.rewrite(url)
             }
         }
     } catch (err) {

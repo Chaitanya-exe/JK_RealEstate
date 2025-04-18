@@ -13,6 +13,19 @@ export default function MoreProperties() {
   const [openModal, setOpenModal] = useState(false);
   const [modal, setModal] = useState(null);
 
+  React.useEffect(()=>{
+    async function fetchProperties(){
+      try {
+        const response = await fetch(`/api/estate/client`);
+        const data = await response.json();
+        console.log(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchProperties();
+  });
+
   const renderModal = () => {
     return (
       <div className="bg-prim_black/20 z-20 h-screen w-screen fixed bottom-0 right-0 left-0 flex items-center justify-center">
