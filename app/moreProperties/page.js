@@ -8,6 +8,7 @@ import SquareFootIcon from "@mui/icons-material/SquareFoot";
 import PushPinIcon from "@mui/icons-material/PushPin";
 import { IconButton } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import Modal from "@/components/Modal";
 
 export default function MoreProperties() {
   const [openModal, setOpenModal] = useState(false);
@@ -28,8 +29,10 @@ export default function MoreProperties() {
 
   const renderModal = () => {
     return (
-      <div className="bg-prim_black/20 z-20 h-screen w-screen fixed bottom-0 right-0 left-0 flex items-center justify-center">
-        <div className="bg-prim_white rounded-md relative max-w-[65vw] max-h-[80vh] w-full p-4 overflow-y-auto">
+      // <div className="bg-prim_black/20 z-20 h-screen w-screen fixed bottom-0 right-0 left-0 flex items-center justify-center">
+      //   <div className="bg-prim_white rounded-md relative max-w-[65vw] max-h-[80vh] w-full p-4 overflow-y-auto">
+          <Modal>
+
           <span className="absolute right-2 top-2">
             <IconButton onClick={() => setOpenModal(false)}>
               <Close />
@@ -43,7 +46,7 @@ export default function MoreProperties() {
                 <PushPinIcon
                   className="rotate-45 mr-2 text-bright_red/80"
                   fontSize="small"
-                />
+                  />
                 <span className="bodyText">{item}</span>
               </li>
             ))}
@@ -51,17 +54,18 @@ export default function MoreProperties() {
           <div className="flex flex-wrap gap-4 my-6">
             {modal?.images.map((imgsrc) => (
               <Image
-                key={imgsrc}
-                src={imgsrc}
-                width={400}
-                height={300}
-                alt="image"
-                className="rounded"
+              key={imgsrc}
+              src={imgsrc}
+              width={400}
+              height={300}
+              alt="image"
+              className="rounded"
               />
             ))}
           </div>
-        </div>
-      </div>
+            </Modal>
+        {/* </div>
+      </div> */}
     );
   };
 
