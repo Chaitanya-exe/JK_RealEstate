@@ -148,7 +148,7 @@ export default function Home() {
                 Premier Delhi-NCR Real Estate Consultancy - Find Your Dream
                 Property in Delhi, Gurgaon, Noida
               </h1>
-              <p className="spanclass absolute md:left-56 left-20 w-6 h-6 md:w-10 md:h-10 inline-block"></p>
+              <p className="spanclass absolute md:left-56 right-24 w-6 h-6 md:w-10 md:h-10 inline-block"></p>
             </div>
             <h2 className="hr_subheading md:hero_subheading text-[23px] font-[550] text-prim_white/95">
               Luxury Homes, Commercial Spaces & Prime Investment Opportunities
