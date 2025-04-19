@@ -64,9 +64,7 @@ const Page = () => {
 
     setLoading(true);
     try {
-      const response = await fetch(
-        `http://localhost:3000/api/estate/get?searchValue=${search}&sortOrder=${sortSize}`
-      );
+      const response = await fetch(`/api/estate/get?searchValue=${search}&sortOrder=${sortSize}`);
 
       const resData = await response.json();
       setLoading(false);
