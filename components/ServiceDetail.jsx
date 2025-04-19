@@ -49,7 +49,7 @@ const serviceDataDetail = ({ serviceData }) => {
   }, []);
 
   if (!serviceData) {
-    return <div>Loading...</div>;
+    return <div className="flex justify-center items-center h-full w-full">Loading...</div>;
   }
 
   return (
@@ -59,32 +59,34 @@ const serviceDataDetail = ({ serviceData }) => {
         style={{ backgroundImage: `url(${serviceData.imagePath})` }}
       >
         <h1
-          className={`tophead md:tophead1 tophead1_Sm  bg-white/50 backdrop-blur-sm rounded-md shadow-lg p-4`}
+          className={`tophead md:tophead1 tophead1_Sm  bg-white/50 backdrop-blur-sm rounded-md shadow-lg mx-6 p-4`}
         >
           {serviceData.name}
         </h1>
       </div>
-      <div className="bounce-animation -mt-28 bg-white/30 border border-gray/10 backdrop-blur-sm  p-4 max-w-[900px] mx-auto">
+      <div className="bounce-animation m-4 -mt-28 bg-white/30 border border-gray/10 backdrop-blur-sm  p-4 max-w-[900px] mx-auto">
         <h2 className="hr_subheading md:hero_subheading text-[22px] font-[550] leading-tight mx-auto">
           {serviceData.title}
         </h2>
-        <h2 className="text-[24px] ">{serviceData.subtitle}</h2>
+        <h2 className="md:text-[24px] text-[18px] ">{serviceData.subtitle}</h2>
       </div>
 
-      <div className="my-20 mx-44 space-y-8">
-        <h2 className="hr_subheading md:hero_subheading text-[22px] font-[550] leading-tight mx-auto">
+      <div className="md:my-20 my-6 space-y-8 mx-4">
+        <h2 className="hr_subheading md:hero_subheading text-2xl font-[550] leading-tight mx-auto">
           {serviceData.h1}
         </h2>
-        <div className="flex text-start justify-center   *:shadow-sm  *:p-16  *:w-[800px] divide-gray/10 divide-x">
+        <div className="flex max-sm:flex-col gap-2.5 md:gap-0 flex-row text-wrap text-start justify-center   *:shadow-sm  md:*:p-16 *:p-4   md:*:w-[800px] divide-gray/10 divide-x">
           {serviceData.h1SubText.map((item, i) => (
             <div
               key={i}
               className="bg-gradient-to-t hover:bg-gradient-to-b from-bright_red/20 to-white"
             >
-              <h3 className="text-[24px] font-[550] leading-tight">
+              <h3 className="md:text-[24px] text-[20px] font-[550] leading-tight">
                 {item.part}
               </h3>
-              <h3 className="text-[19px]">{item.partDesc}</h3>
+              <h3 className="md:text-[19px] text-[18px] py-1">
+                {item.partDesc}
+              </h3>
               <ul className="list-disc list-inside  py-3 ">
                 {item.points.map((point, j) => (
                   <li key={j}>
@@ -97,8 +99,10 @@ const serviceDataDetail = ({ serviceData }) => {
         </div>
       </div>
 
-      <div className="process-container py-16 px-4 max-w-4xl mx-auto relative">
-        <h2 className="text-4xl font-bold text-center mb-12">Our Process</h2>
+      {/* //PROCESS */}
+
+      <div className="process-container px-4 max-w-4xl mx-auto relative">
+        <h2 className="text-2xl font-bold text-center mb-5">Our Process</h2>
 
         <div className="relative">
           <div className="progress-line absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-bright_red/50" />
@@ -106,7 +110,7 @@ const serviceDataDetail = ({ serviceData }) => {
           {serviceData.processList.map((step, i) => (
             <div
               key={i}
-              className={`process-step mb-16 flex items-start gap-4 w-full ${
+              className={`process-step mb-16 w-full ${
                 i % 2 === 0 ? "justify-start pr-10" : "justify-end pl-10"
               }`}
             >
@@ -123,8 +127,8 @@ const serviceDataDetail = ({ serviceData }) => {
         </div>
       </div>
 
-      <div className="max-w-4xl  mx-auto text-center">
-        <h2 className="hr_subheading md:hero_subheading text-[22px] font-[550] leading-tight">
+      <div className="max-w-4xl  mx-4 md:mx-auto text-center">
+        <h2 className="hr_subheading md:hero_subheading text-2xl font-[550] leading-tight">
           {serviceData.h4}
         </h2>
         <span className="text-[18px]">{serviceData.h4SubText}</span>

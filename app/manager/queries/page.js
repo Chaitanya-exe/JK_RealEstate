@@ -26,7 +26,7 @@ function Row(props) {
   return (
     <React.Fragment>
       <TableRow
-        className="min-h-screen bg-cardBg/50 text-nowrap"
+        className="min-h-screen bg-cardBg/ w-full text-nowrap"
         sx={{ "& > *": { borderBottom: "unset" } }}
       >
         <TableCell>
@@ -52,18 +52,18 @@ function Row(props) {
           <Collapse in={open} timeout="auto" unmountOnExit>
             <div className="my-3 text-nowrap">
               <div className="flex gap-4  mb-4">
-                <h1 className="text-lg font-[550]">Type :-</h1>
-                <div className="flex gap-2 text-[15px] *:bg-cardBg/40 *:py-1 *:px-3  *:capitalize ">
+                <h1 className="md:text-lg font-[550]">Type :-</h1>
+                <div className="flex gap-2 md:text-[15px] *:bg-cardBg/40 *:py-1 *:px-3  *:capitalize ">
                   {row.type.map((historyRow, i) => (
                     <span key={i}>{historyRow.toLowerCase()}</span>
                   ))}
                 </div>
               </div>
               <div>
-                <h1 className="text-lg font-[550]">Inquiries :-</h1>
-                <div className="flex flex-col text-[15px] text-wrap gap-1 tracking-wide my-2 *:bg-cardBg/40 *:py-2 *:px-3  *:capitalize ">
+                <h1 className="md:text-lg font-[550]">Inquiries :-</h1>
+                <div className="flex flex-col md:text-[15px] text-wrap gap-1 tracking-wide my-2 *:bg-cardBg/40 *:py-2 *:px-3  *:capitalize ">
                   {row.inquiry.map((historyRow, i) => (
-                    <p key={i}>{historyRow}</p>
+                    <p key={i} className="max-w-[700px]">{historyRow}</p>
                   ))}
                 </div>
               </div>
@@ -100,9 +100,7 @@ export default function Page() {
     async function fetchData() {
       setLoading(true);
       try {
-        const response = await fetch(
-          `http://localhost:3000/api/query/get?date=${filterValue}`
-        );
+        const response = await fetch(`/api/query/get?date=${filterValue}`);
         const resData = await response.json();
         setLoading(false);
         setData(resData.data);
@@ -115,7 +113,7 @@ export default function Page() {
   }, [filterValue]);
 
   return (
-    <section className="max-w-[70vw] mx-auto my-8">
+    <section className="md:max-w-[70vw] max-sm:mx-4 mx-auto my-8">
       <div className="flex items-center gap-1 mb-3 float-right">
         <FilterAltIcon className="text-prim_black/70 size-8" />
         <FormControl className="min-w-[150px]">
