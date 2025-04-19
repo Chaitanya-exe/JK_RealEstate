@@ -100,9 +100,7 @@ export default function Page() {
     async function fetchData() {
       setLoading(true);
       try {
-        const response = await fetch(
-          `http://localhost:3000/api/query/get?date=${filterValue}`
-        );
+        const response = await fetch(`/api/query/get?date=${filterValue}`);
         const resData = await response.json();
         setLoading(false);
         setData(resData.data);

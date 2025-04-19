@@ -34,7 +34,6 @@ async function handler(req) {
         type: typeData,
       },
     });
-    console.log(response);
     return NextResponse.json(
       { msg: "Query sent successfully", response },
       { status: 201 }
