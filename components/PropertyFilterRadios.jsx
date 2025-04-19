@@ -27,7 +27,7 @@ const PropertyFilterRadios = ({ onFilterChange }) => {
       <div className="flex flex-col py-3">
         <h3 className="text-lg font-semibold mb-2 text-gray-800 ">Property Type</h3>
         <div className="flex space-x-4">
-          {["Residential", "Commercial", "Industrial"].map((type) => (
+          {["Residence", "Commercial", "Industrial"].map((type) => (
             <div key={type} className="flex items-center">
               <input
                 type="radio"

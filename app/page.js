@@ -26,26 +26,38 @@ export default function Home() {
   const headingRef = useRef(null);
   const [data, setData] = useState(properties);
   const [activeTab, setActiveTab] = useState("1");
+  const [residentialData, setResidentialData] = useState([]);
+  const [commercialData, setCommercialData] = useState([]);
 
   const { ref, inView } = useInView({
     threshold: 0.5,
     triggerOnce: true,
   });
 
-  
+  const getVisibleProperties = () => {
+    if (activeTab === "1") return residentialData.slice(0, 3);
+    if (activeTab === "2") return commercialData.slice(0, 3);
+    return [];
+  };
 
-  useEffect(()=>{
-    async function fetchProperties(){
+  // console.log("prop", residentialData);
+  // console.log("Commer_prop", commercialData);
+  // console.log("activeTab", activeTab);
+
+  useEffect(() => {
+    async function fetchProperties() {
       try {
         const response = await fetch(`/api/estate/client`);
         const data = await response.json();
         console.log(data);
+        setResidentialData(data.result?.residential);
+        setCommercialData(data.result?.commercial);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
     fetchProperties();
-  },[]);
+  }, []);
 
   useGSAP(() => {
     const words = headingRef.current.textContent.split(" ");
@@ -213,9 +225,15 @@ export default function Home() {
         </div>
 
         <div className="divide-y divide-[#D6DCE1]">
-          {data.slice(0, 3).map((property) => (
-            <PropertyCard property={property} key={property.id} />
-          ))}
+          {getVisibleProperties().length > 0 ? (
+            getVisibleProperties().map((property, i) => (
+              <PropertyCard property={property} key={i} />
+            ))
+          ) : (
+            <p className="p-8 text-center text-lg text-bright_red">
+              No Property Found
+            </p>
+          )}
         </div>
 
         <Link href={"/moreProperties"} className="flex justify-center">

@@ -64,8 +64,7 @@ const Page = () => {
 
     setLoading(true);
     try {
-      const response = await fetch(
-        `http://localhost:3000/api/estate/get?searchValue=${search}&sortOrder=${sortSize}`
+      const response = await fetch(`http://localhost:3000/api/estate/get?searchValue=${search}&sortOrder=${sortSize}`
       );
 
       const resData = await response.json();
@@ -98,7 +97,9 @@ const Page = () => {
     setPage(0);
   };
 
-  const handleDelete=() =>{};
+  const handleDelete=() =>{
+
+  };
 
   return (
     <section className="max-w-[80vw] mx-auto my-8">
@@ -109,7 +110,7 @@ const Page = () => {
             onChange={(e) => setSearch(e.target.value)}
             placeholder={`Search by address, location or owner name`}
             type="text"
-            className="p-2 focus:outline-none min-w-[300px] bg-transparent rounded-r-full"
+            className="md:p-2 focus:outline-none min-w-[300px] bg-transparent rounded-r-full"
           />
           <button className="bg-blue-500 hover:bg-blue-800  p-3">
             <SearchIcon

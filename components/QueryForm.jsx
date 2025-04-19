@@ -20,7 +20,7 @@ const QueryForm = () => {
   const [querySent, setQuerySent] = useState(false);
   const [queryduplicate, setQueryDuplicate] = useState(false);
 
-  console.log(queryduplicate);
+  // console.log(queryduplicate);
 
   const handleClick = async () => {
     try {

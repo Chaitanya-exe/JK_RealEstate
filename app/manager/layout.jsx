@@ -21,7 +21,7 @@ const layout = ({children}) => {
         <Button
           text={"add Properties"}
           type={"primary"}
-          classname={"md:p-4 p-1 max-sm:hidden max-sm:rounded-md  rounded-md"}
+          classname={"md:p-4 p-1  max-sm:rounded-md  rounded-md"}
         />
       </Link>
       <Link href={'/manager/viewProp'}>
@@ -29,7 +29,7 @@ const layout = ({children}) => {
         <Button
           text={"view Properties"}
           type={"primary"}
-          classname={"md:p-4 p-1 max-sm:hidden max-sm:rounded-md  rounded-md"}
+          classname={"md:p-4 p-1 max-sm:rounded-md  rounded-md"}
         />
       </Link>
       <Link  href={'/manager/queries'}>
@@ -37,7 +37,7 @@ const layout = ({children}) => {
         <Button
           text={" all queries"}
           type={"primary"}
-          classname={"md:p-4 p-1 max-sm:hidden max-sm:rounded-md  rounded-md"}
+          classname={"md:p-4 p-1  max-sm:rounded-md  rounded-md"}
         />
       </Link>
        

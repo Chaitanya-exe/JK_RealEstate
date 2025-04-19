@@ -12,19 +12,28 @@ import { Close } from "@mui/icons-material";
 export default function MoreProperties() {
   const [openModal, setOpenModal] = useState(false);
   const [modal, setModal] = useState(null);
+  const [allProps, setAllProps] = useState([]);
 
-  React.useEffect(()=>{
-    async function fetchProperties(){
+  console.log("allProp", allProps);
+
+  React.useEffect(() => {
+    async function fetchProperties() {
       try {
         const response = await fetch(`/api/estate/client`);
         const data = await response.json();
-        console.log(data)
+        console.log(data);
+
+        const residential = data.result?.residential || [];
+        const commercial = data.result?.commercial || [];
+
+        const combined = [...residential, ...commercial];
+        setAllProps(combined);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
     fetchProperties();
-  });
+  }, []);
 
   const renderModal = () => {
     return (
@@ -35,9 +44,9 @@ export default function MoreProperties() {
               <Close />
             </IconButton>
           </span>
-          <h2 className="hero_subheading">{modal?.title}</h2>
-          <h2 className="text-[20px] mb-2">{modal?.description}</h2>
-          <ul>
+          {/* <h2 className="hero_subheading">{modal?.}</h2>
+          <h2 className="text-[20px] mb-2">{modal?.description}</h2> */}
+          {/* <ul>
             {modal?.features.map((item, _id) => (
               <li key={_id} className="flex pb-1">
                 <PushPinIcon
@@ -47,12 +56,12 @@ export default function MoreProperties() {
                 <span className="bodyText">{item}</span>
               </li>
             ))}
-          </ul>
+          </ul> */}
           <div className="flex flex-wrap gap-4 my-6">
             {modal?.images.map((imgsrc) => (
               <Image
-                key={imgsrc}
-                src={imgsrc}
+                key={imgsrc?.id}
+                src={imgsrc?.url}
                 width={400}
                 height={300}
                 alt="image"
@@ -77,40 +86,50 @@ export default function MoreProperties() {
           </h1>
         </div>
       </div>
+              {openModal && renderModal()}
 
-      {openModal && renderModal()}
 
       <div className="flex justify-center  flex-wrap gap-7 my-6 px-4 md:px-28">
-        {properties?.map((property) => (
-          <div
-            onClick={() => {
-              setOpenModal(true);
-              setModal(property);
-            }}
-            key={property.id}
-            className="rounded-lg p-1 max-w-[400px] overflow-hidden shadow-md"
-          >
-            <Image
-              src={property.images[1]}
-              width={800}
-              height={400}
-              alt="img"
-              className="h-[240px] rounded w-full hover:scale-[1.02] transition duration-200 object-cover object-center"
-            />
-            <p className="text-[20px] leading-tight py-2">{property.title}</p>
-            {/* <p className="text-ellipsis ext-nowrap">{property.description}</p> */}
+        {allProps.length > 0 ? (
+          allProps?.map((property) => (
+            <div
+              onClick={() => {
+                setOpenModal(true);
+                setModal(property);
+              }}
+              key={property.id}
+              className="rounded-lg p-1 max-w-[400px] overflow-hidden shadow-md"
+            >
+              <Image
+                src={property.images[0]?.url}
+                width={800}
+                height={400}
+                alt="img"
+                className="h-[240px] rounded w-full hover:scale-[1.02] transition duration-200 object-cover object-center"
+              />
+              {/* <p className="text-[20px] leading-tight py-2">{property.title}</p> */}
+              {/* <p className="text-ellipsis ext-nowrap">{property.description}</p> */}
 
-            <div className="flex gap-1">
-              <LocationOnIcon fontSize="small" className="text-prim_black/55" />
-              <span>GH-4, Lajpat Nagar</span>
-            </div>
+              <div className="flex gap-1">
+                <LocationOnIcon
+                  fontSize="small"
+                  className="text-prim_black/55"
+                />
+                <span>{property.location}</span>
+              </div>
 
-            <div className="flex gap-1">
-              <SquareFootIcon fontSize="small" className="text-prim_black/55" />
-              <span>800 X 800 sq</span>
+              <div className="flex gap-1">
+                <SquareFootIcon
+                  fontSize="small"
+                  className="text-prim_black/55"
+                />
+                <span>{property.size}</span>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>Loading....</p>
+        )}
       </div>
     </section>
   );
