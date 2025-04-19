@@ -81,20 +81,6 @@ export default function Page() {
   const [isLoading, setLoading] = React.useState(true);
   const [filterValue, setFilterValue] = React.useState("ALL");
 
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const router = useRouter();
-
-  React.useEffect(() => {
-    if (filterValue) {
-      const params = new URLSearchParams(searchParams.toString());
-
-      params.set("range", filterValue);
-
-      router.replace(`${pathname}?${params.toString()}`);
-    }
-  }, [filterValue, searchParams, pathname, router]);
-
 
   React.useEffect(() => {
     async function fetchData() {
