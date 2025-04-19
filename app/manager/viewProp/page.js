@@ -18,6 +18,7 @@ import Image from "next/image";
 import SearchIcon from "@mui/icons-material/Search";
 import SortIcon from "@mui/icons-material/Sort";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import Modal from "@/components/Modal";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -43,6 +44,8 @@ const Page = () => {
   const [sortSize, setSortSize] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const [properties, setProperties] = React.useState([]);
+  const [openImageModal, setImageModal] = React.useState(false);
+  const [selectedImage, setSelectedImage] = React.useState(null);
 
   console.log(properties);
 
@@ -64,7 +67,8 @@ const Page = () => {
 
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:3000/api/estate/get?searchValue=${search}&sortOrder=${sortSize}`
+      const response = await fetch(
+        `/api/estate/get?searchValue=${search}&sortOrder=${sortSize}`
       );
 
       const resData = await response.json();
@@ -97,34 +101,49 @@ const Page = () => {
     setPage(0);
   };
 
-  const handleDelete=() =>{
+  const handleDelete = () => {};
 
+  const renderModal = () => {  
+    if(!selectedImage) return null; 
+    return  (
+      <Modal onClose={()=> setImageModal(false)} divStyle={"h-[350px] p-2"}>
+        <Image
+          key={selectedImage?.id}
+          src={selectedImage?.url}
+          alt="property-image"
+          width={300}
+          height={200}
+          className="max-sm:w w-full h-full bg-green-200"
+        />
+      </Modal>
+    );
   };
 
   return (
     <section className="max-w-[80vw] mx-auto my-8">
-      <div className="flex gap-4 items-center justify-end">
-        <div className="w-fit p2 overflow-hidden bg-transparent border rounded-r-full">
+      {openImageModal && renderModal()}
+      <div className="gap-4 flex flex-col md:flex-row items-center justify-end">
+        <div className="flex w-full md:w-fit overflow-hidden bg-transparent border rounded">
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder={`Search by address, location or owner name`}
             type="text"
-            className="md:p-2 focus:outline-none min-w-[300px] bg-transparent rounded-r-full"
+            className="p-2 flex-1 focus:outline-none md:min-w-[300px] bg-transparent rounded"
           />
-          <button className="bg-blue-500 hover:bg-blue-800  p-3">
+          <button className="bg-blue-500 hover:bg-blue-800  p-2 md:p-3">
             <SearchIcon
               onClick={() => fetchPropertiesData()}
               className="text-prim_white "
             />
           </button>
         </div>
-        <div className="w-fit px-2 overflow-hidden bg-transparent border rounded-r-full">
+        <div className="w-full flex items-center justify-between md:w-fit px-2 overflow-hidden bg-transparent border rounded">
           <SortIcon />
           <select
             value={sortSize}
             onChange={(e) => setSortSize(e.target.value)}
-            className="p-3 focus:outline-none bg-transparent "
+            className="p-3 flex-1 focus:outline-none bg-transparent "
           >
             <option value={""}></option>
             <option value={"asc"}>Increasing size</option>
@@ -137,7 +156,7 @@ const Page = () => {
         // sx={{ width: "83%", overflow: "hidden" }}
         className="mx-auto mt-3"
       >
-        <TableContainer sx={{ maxHeight: 580 }}>
+        <TableContainer sx={{ maxHeight: 600 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
@@ -216,15 +235,19 @@ const Page = () => {
                               timeout="auto"
                               unmountOnExit
                             >
-                              <div className="my-3  flex flex-wrap gap-3 *:rounded *:object-contain">
+                              <div className="my-3  flex md:flex-wrap max-sm:flex-nowrap gap-3 *:rounded *:object-contain">
                                 {row.images.map((image, index) => (
                                   <Image
+                                    onClick={() => {
+                                      setSelectedImage(image);
+                                      setImageModal(true);
+                                    }}
                                     key={image.id}
                                     src={image.url}
                                     alt="image"
                                     width={280}
                                     height={200}
-                                    className="hover:scale-105"
+                                    className="hover:scale-105 max-sm:w-[150px] max-sm:-h-[150px]"
                                   />
                                 ))}
                               </div>

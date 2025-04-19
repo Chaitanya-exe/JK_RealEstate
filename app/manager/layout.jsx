@@ -15,7 +15,7 @@ const layout = ({children}) => {
 
   return (
     <div className='bg-prim_white min-h-screen'>
-      <div className="flex gap-3 justify-end mx-10 py-3">
+      <div className="flex gap-3 md:justify-end justify-center md:mx-10 py-3">
       <Link href={'/manager/addProp'} >
 
         <Button

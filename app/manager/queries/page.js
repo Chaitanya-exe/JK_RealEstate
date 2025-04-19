@@ -26,7 +26,7 @@ function Row(props) {
   return (
     <React.Fragment>
       <TableRow
-        className="min-h-screen bg-cardBg/50"
+        className="min-h-screen bg-cardBg/50 text-nowrap"
         sx={{ "& > *": { borderBottom: "unset" } }}
       >
         <TableCell>
@@ -50,7 +50,7 @@ function Row(props) {
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            <div className="my-3">
+            <div className="my-3 text-nowrap">
               <div className="flex gap-4  mb-4">
                 <h1 className="text-lg font-[550]">Type :-</h1>
                 <div className="flex gap-2 text-[15px] *:bg-cardBg/40 *:py-1 *:px-3  *:capitalize ">
@@ -140,13 +140,13 @@ export default function Page() {
               <TableCell />
               <TableCell className="font-[550] capitalize ">Name</TableCell>
               <TableCell className="font-[550] capitalize ">email</TableCell>
-              <TableCell className="font-[550] capitalize ">
+              <TableCell className="font-[550] capitalize text-nowrap ">
                 Phone number
               </TableCell>
               <TableCell
                 align="right"
                 sx={{ maxWidth: "50px" }}
-                className="font-[550] capitalize "
+                className="font-[550] capitalize text-nowrap "
               >
                 sent on
               </TableCell>
@@ -155,7 +155,7 @@ export default function Page() {
           {isLoading ? (
             <TableBody>
               <TableRow>
-                <TableCell colSpan="2" className="p-4 text-center">
+                <TableCell colSpan="2" className="p-4 text-center text-nowrap">
                   Fetching data
                 </TableCell>
               </TableRow>
@@ -166,7 +166,7 @@ export default function Page() {
                 data.map((row) => <Row key={row.id} row={row} />)
               ) : (
                 <TableRow>
-                  <TableCell colSpan="2" className="p-4 text-center">
+                  <TableCell colSpan="2" className="p-4 text-center text-nowrap">
                     No queries found
                   </TableCell>
                 </TableRow>

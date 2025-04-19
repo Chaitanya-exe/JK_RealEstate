@@ -8,7 +8,8 @@ import React, { useEffect, useState } from "react";
 const ClientLayout = ({ children }) => {
   const pathname = usePathname();
   
-  const excludeHeaderFooter = pathname.includes('/manager') 
+  const excludeHeaderFooter = pathname.includes('/manager') || window.location.hostname.startsWith("admin")
+console.log(excludeHeaderFooter);
 
   return (
     <div className="min-h-screen flex flex-col">
