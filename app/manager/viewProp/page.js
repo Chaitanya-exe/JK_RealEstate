@@ -1,5 +1,4 @@
 "use client";
-
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
@@ -17,7 +16,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Image from "next/image";
 import SearchIcon from "@mui/icons-material/Search";
 import SortIcon from "@mui/icons-material/Sort";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Modal from "@/components/Modal";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -47,20 +45,6 @@ const Page = () => {
   const [openImageModal, setImageModal] = React.useState(false);
   const [selectedImage, setSelectedImage] = React.useState(null);
 
-  console.log(properties);
-
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const router = useRouter();
-
-  React.useEffect(() => {
-    if (search || sortSize) {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set("sortOrder", sortSize);
-
-      router.replace(`${pathname}?${params.toString()}`);
-    }
-  }, [searchParams, pathname, sortSize]);
 
   async function fetchPropertiesData(params) {
     // params.set("search", search);
