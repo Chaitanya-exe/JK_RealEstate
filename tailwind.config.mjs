@@ -18,6 +18,7 @@ export default {
         gray: "#4A5568",
         cardBg: "#EDF2F7",
       },
+      
 
       
     },

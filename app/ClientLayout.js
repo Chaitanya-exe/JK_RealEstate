@@ -7,9 +7,19 @@ import React, { useEffect, useState } from "react";
 
 const ClientLayout = ({ children }) => {
   const pathname = usePathname();
+  const [excludeHeaderFooter, setExcludeHeaderFooter] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setExcludeHeaderFooter(
+        pathname.includes("/manager") ||
+          window.location.hostname.startsWith("admin")
+      );
+    }
+  }, [pathname]);
   
-  const excludeHeaderFooter = pathname.includes('/manager') || window.location.hostname.startsWith("admin")
-console.log(excludeHeaderFooter);
+//   const excludeHeaderFooter = pathname.includes('/manager') || window.location.hostname.startsWith("admin")
+// console.log(excludeHeaderFooter);
 
   return (
     <div className="min-h-screen flex flex-col">
