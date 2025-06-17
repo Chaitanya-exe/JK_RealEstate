@@ -5,23 +5,24 @@ import gsap from "gsap";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { TiLocation } from "react-icons/ti";
+import { MdSquareFoot } from "react-icons/md";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
 const PropertyCard = ({ property }) => {
-	
   const [index, setIndex] = useState(0);
 
- useEffect(() => {
-   if (!property?.images || property.images.length === 0) return;
+  useEffect(() => {
+    if (!property?.images || property.images.length === 0) return;
 
-   const interval = setInterval(() => {
-     setIndex((prevIndex) => (prevIndex + 1) % property.images.length);
-   }, 6000);
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % property.images.length);
+    }, 6000);
 
-   return () => clearInterval(interval);
- }, [property?.images]);
-
+    return () => clearInterval(interval);
+  }, [property?.images]);
 
   useGSAP(() => {
     gsap.utils.toArray(".right_imgclass").forEach((el) => {
@@ -72,15 +73,15 @@ const PropertyCard = ({ property }) => {
     <div
       key={property.id}
       className={`
-        relative md:py-16 py-12 px-4 text-start`}
-      // className={`${ property.id % 2 !== 0 ? "md:flex-row" : "md:flex-row-reverse"} 
-      //   relative md:flex-center  flex flex-col gap-6 md:py-16 py-12 px-4  md:gap-28`}
+${property.id % 2 !== 0 ? "right_imgclass" : "left_imgclass"}
+
+        relative  text-start border border-prim_black/30 rounded-md  pb-8`}
     >
       {/* LEFT */}
       <div
-        className={`${
-          property.id % 2 !== 0 ? "right_imgclass" : "left_imgclass"
-        } relative group w-fit  `}
+        className={`
+       
+        relative group w-fit  `}
       >
         <Image
           src={property.images[index]?.url}
@@ -89,7 +90,7 @@ const PropertyCard = ({ property }) => {
           alt="propertyImg"
           className={` ${
             property.id % 2 !== 0 ? "md:-rotate-" : "md:rotate-"
-          } md:w-[545px] md:h-[350px] object-cover object-center transition-all delay-200 `}
+          } md:w-[545px] md:h-[350px] rounded-t-md object-cover object-center transition-all delay-200 `}
         />
 
         <div className="flex justify-center gap-2">
@@ -119,23 +120,23 @@ const PropertyCard = ({ property }) => {
             className="md:w-[50px] w-[30px] "
           />
         </div>
-
       </div>
       {/* RIGHT */}
-      <div
-        className={` ${
-          property.id % 2 !== 0 ? "left_imgclass" : "right_imgclass"
-        } max-w-[700px] `}
-      >
-        <h2 className="md:text-[34px] text-[28px] leading-snug md:leading-normal font-[550] text-[#003A47]">
-          {property.location}
-        </h2>
-        <h3 className="font-medium md:text-[28px] text-[23px] leading-tight m:leading-normal md:tracking-[0.5px] text-[#234E70]">
+      <div className={` max-w-[700px] px-3 `}>
+        <div className="flex justify-between items-start">
+          <h2 className="md:text-[30px] flex items-center text-[28px] leading-snug font-[550] text-[#003A47]">
+            <TiLocation className="inline-flex size-7" />
+            {property.location}
+          </h2>
+          <h3 className="font-medium bg-prim_black px-2 py-0.5 rounded-full text-prim_white capitalize md:text-[15px] text-sm leading-tight">
+            For {property.status.toLowerCase()}
+          </h3>
+        </div>
+        <h3 className="font-medium flex items-center md:text-[24px] text-[23px] leading-tight m:leading-normal md:tracking-[0.5px] text-[#234E70]">
+          <MdSquareFoot />
           {property.size} sq. foot
         </h3>
-        <h3 className="font-medium capitalize md:text-[28px] text-[23px] leading-tight m:leading-normal md:tracking-[0.5px] text-[#234E70]">
-          For {property.status.toLowerCase()}
-        </h3>
+
         {/* <ul className="list-disc list-outside pl-5 md:bodyText pt-2 space-y-1 text-[#003A47]">
 					{property.features.map((feature, i) => (
 						<li key={i}>{feature}</li>

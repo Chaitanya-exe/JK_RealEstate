@@ -25,7 +25,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
   const headingRef = useRef(null);
   const [data, setData] = useState(properties);
-  const [activeTab, setActiveTab] = useState("1");
+  const [activeTab, setActiveTab] = useState("2");
   const [residentialData, setResidentialData] = useState([]);
   const [commercialData, setCommercialData] = useState([]);
 
@@ -39,10 +39,6 @@ export default function Home() {
     if (activeTab === "2") return commercialData.slice(0, 3);
     return [];
   };
-
-  // console.log("prop", residentialData);
-  // console.log("Commer_prop", commercialData);
-  // console.log("activeTab", activeTab);
 
   useEffect(() => {
     async function fetchProperties() {
@@ -103,7 +99,6 @@ export default function Home() {
 
     gsap.from(".hr_subheading", {
       x: -15,
-      // y:10,
       opacity: 0,
       ease: "power1.inOut",
       duration: 1,
@@ -118,7 +113,7 @@ export default function Home() {
         duration: 1.5,
         scrollTrigger: {
           trigger: el,
-          start: "top 90%",
+          start: "top 70%",
           toggleActions: "play reverse play reverse",
         },
       });
@@ -224,7 +219,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="divide-y divide-[#D6DCE1]">
+        <div className="flex justify-center gap-24 my-16 divide-[#D6DCE1]">
           {getVisibleProperties().length > 0 ? (
             getVisibleProperties().map((property, i) => (
               <PropertyCard property={property} key={i} />
